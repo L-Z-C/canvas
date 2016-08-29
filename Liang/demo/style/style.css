@@ -1,0 +1,700 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: '微软雅黑';
+    color: #333;
+    text-decoration: none;
+    outline: none;
+}
+html {
+    font-size: 62.5%;
+}
+body{
+    -moz-user-select:none;
+    overflow-x: hidden;
+}
+#header{
+    width: 100%;
+    height: 60px;
+    background: sandybrown;
+    position: absolute;
+    top:0;
+}
+#header .nav{
+    position: absolute;
+    left:35%;
+    width: 240px;
+    height: 60px;
+}
+#header .nav>li{
+    float: left;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    cursor: pointer;
+    transition:all 2s ease;
+}
+#header .nav>li>a{
+    line-height: 60px;
+    font-size: 1.4rem;
+    color: #FFF;
+    width: 60px;
+    height: 60px;
+}
+#header .nav>li:hover{
+    background: #e79b5b;
+}
+#header .nav .active{
+    background: #e79b5b;
+}
+#grogshop{
+    width: 15%;
+    height: 60px;
+    position: absolute;
+    left: 20%;
+    cursor: pointer;
+    transition:all 2s ease;
+}
+#grogshop:hover{
+    background: #e79b5b;
+}
+#grogshop>h1{
+    font-size: 1.8rem;
+    color: #FFF;
+    line-height: 60px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: normal;
+    width: 88%;
+}
+#grogshop .arrow{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top:20px;
+    right: 2%;
+    background-image: url("../images/arrow_bottom.png");
+    background-size: 100% 100%;
+}
+#grogshop_list{
+    position: absolute;
+    width: 15%;
+    height: auto;
+    background: #e79b5b;
+    left: -20%;
+    top:60px;
+    z-index: 9997;
+    opacity:0;
+    filter:alpha(opacity=0);
+    transition:all 1s ease;
+}
+#grogshop_list>li{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #FFF;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition:all 1s ease;
+}
+#grogshop_list>li:hover{
+    background: sandybrown;
+}
+#left{
+    width: 20%;
+    height: 100%;
+    position: absolute;
+    top:120px;
+    background: slategray;
+    z-index: 9995;
+}
+#content{
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top:60px;
+    transition:all 2s ease;
+}
+#list{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 60px;
+}
+#list li{
+    width: 8.992%;
+    height: 60px;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 1px 1px 5px #CCC;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#list li .list_top>h3{
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 30px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+#list li .list_bottom>p{
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 30px;
+    color: red;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+#list li .list_top{
+    width:100%;
+    height: 30px;
+    position: absolute;
+    top: 0;
+}
+#list li .list_bottom{
+    width:100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+}
+#left .list{
+    position: relative;
+}
+#left .list li{
+    width: 99.5%;
+    height: 60px;
+    border-bottom: 1px solid #CCC;
+    text-align: center;
+    line-height: 60px;
+    color: #FFF;
+    font-size: 1.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+#left .list li:hover{
+    background: #979797;
+    transition:all 1s ease;
+}
+#top{
+    width: 20%;
+    height: 60px;
+    position: absolute;
+    top:60px;
+    background: #FFF;
+    z-index: 9996;
+}
+#top .head{
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    top:0;
+}
+#top .foot{
+    width: 100%;
+    height: 30px;
+    background: wheat;
+    position: absolute;
+    left: 0;
+    bottom:0;
+}
+#content .right{
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 60px;
+}
+#content .data{
+    width: 100%;
+    height: 60px;
+}
+#content .data dd{
+    width: 8.98%;
+    height: 60px;
+    float: left;
+    position: relative;
+    box-shadow: 1px 1px 10px #CCC;
+    font-size: 1.4rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#content .data dd .data_top{
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    top: 0;
+}
+#content .data dd .data_top>p{
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 30px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+#content .data dd .data_bottom{
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+}
+#content .data dd .data_bottom>p{
+    font-size: 1.4rem;
+    text-align: center;
+    line-height: 30px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+#prev{
+    position: absolute;
+    width: 11%;
+    height: 30px;
+    background-image: url("../images/prev.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+    left: 0;
+}
+#EntTime{
+    width: 78%;
+    height: 30px;
+    position: absolute;
+    left: 11%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+    font-size: 1.6rem;
+    color: #333;
+    border: none;
+    outline: none;
+}
+#next{
+    position: absolute;
+    width: 11%;
+    height: 30px;
+    background-image: url("../images/next.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+    right: 0;
+}
+#shade{
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    position:fixed;
+    background:#999;
+    opacity:0.5;
+    filter:alpha(opacity=50);
+    display:none;
+    z-index: 9997;
+}
+#tier{
+    width: 55%;
+    height: 70%;
+    background:#FFF;
+    position: fixed;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px #545454;
+    top:50%;
+    left:50%;
+    display: none;
+    z-index: 9999;
+}
+#close{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top:10px;
+    right: 10px;
+    background-image: url("../images/close.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+#title{
+    font-size: 18px;
+    position: absolute;
+    top:5%;
+    left: 5%;
+}
+#set{
+    position: absolute;
+    top:10%;
+    left: 10%;
+}
+#set>li{
+    margin: 20px 0 0 0;
+    font-size: 14px;
+}
+#preservation{
+    width: 80px;
+    height: 50px;
+    background: salmon;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+
+#rooms{
+    width: 80%;
+    height: 100%;
+    position: absolute;
+    left: -80%;
+    top:60px;
+    transition:all 2s ease;
+    z-index: 9994;
+    opacity:0;
+    filter:alpha(opacity=0);
+}
+
+#set_left{
+    width: 20%;
+    height: 90%;
+    position: absolute;
+    top:60px;
+    background: slategray;
+    z-index: 9995;
+}
+#set_left .list{
+    position: relative;
+}
+#set_left .list li{
+    width: 99.5%;
+    height: 60px;
+    border-bottom: 1px solid #CCC;
+    text-align: center;
+    line-height: 60px;
+    color: #FFF;
+    font-size: 1.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+#set_left .list li:hover{
+    background: #979797;
+    transition:all 1s ease;
+}
+#set_content{
+    width: 80%;
+    height: 90%;
+    position: absolute;
+    right: 0;
+    top:60px;
+    overflow: hidden;
+}
+#set_content .content{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    opacity: 0;
+    transition: all 1s ease;
+    overflow-y: auto;
+}
+#set_content .content .hotel{
+    width: 96%;
+    height: auto;
+    margin: 0 auto;
+    padding: 50px 0 0 0;
+}
+#set_content .content .hotel>dt{
+    width: 100%;
+    height: 60px;
+    background: #f5f5f5;
+    border: solid 1px #CCC;
+    position: relative;
+}
+#set_content .content .hotel>dt>h1{
+    font-size: 1.8rem;
+    line-height: 60px;
+    color: #333;
+    padding:  0 0 0 30px;
+}
+#set_content .content .hotel>dt .add{
+    width: 100px;
+    height: 30px;
+    background: #f48811;
+    border-radius: 5px;
+    top:15px;
+    position: absolute;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    right: 120px;
+}
+#set_content .content .hotel>dt .compile{
+    width: 100px;
+    height: 30px;
+    background: steelblue;
+    border-radius: 5px;
+    top:15px;
+    position: absolute;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    right: 10px;
+    font-size: 1.4rem;
+}
+#set_content .content .hotel>dd{
+    width: 100%;
+    height: 50px;
+    border: solid 1px #CCC;
+    border-top:none;
+}
+#set_content .content .hotel>dd:hover{
+    background: #f5f5f5;
+    transition: all 0.5s ease;
+}
+#set_content .content .hotel>dd:nth-child(2){
+    font-weight: bold;
+}
+#set_content .content .hotel>dd>ul{
+    width: 100%;
+    height: 100%;
+}
+#set_content .content .hotel>dd>ul>li{
+    width: 20%;
+    height: 50px;
+    float: left;
+    line-height: 50px;
+    text-align: center;
+    font-size: 1.4rem;
+    box-shadow: 1px 1px 2px #CCC;
+    position: relative;
+}
+#set_content .content .hotel>dd>ul>li .compile_small{
+    position: absolute;
+    width: 30%;
+    height: 30px;
+    background: steelblue;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    top:10px;
+    left: 18%;
+}
+#set_content .content .hotel>dd>ul>li .delete{
+    position: absolute;
+    width: 30%;
+    height: 30px;
+    background: salmon;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    top:10px;
+    right: 18%;
+}
+
+
+#spinner {
+    width: 90px;
+    height: 82px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -41px;
+    margin-left: -33px;
+    display: none;
+    z-index: 9998;
+}
+
+#spinner > div {
+    background-color: #67CF22;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+    box-shadow: 2px 2px 5px #469046;
+    border-radius: 10px;
+    margin: 0 4px 0 0;
+
+    -webkit-animation: stretchdelay 1.2s infinite ease-in-out;
+    animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.box{
+    position: absolute;
+    left:0.3%;
+    top:0;
+    width: 100%;
+    height: 100%;
+    opacity:0;
+    filter:alpha(opacity=0);
+    transition:all 1s ease;
+}
+.box>li{
+    float: left;
+    margin: 5px 10px 5px 8px;
+}
+.box .nop{
+    position: absolute;
+    right: 5px;
+    top:10px;
+    font-size: 1.4rem;
+}
+.pink{
+    background: #fed5d5;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+.greenT{
+    background: #66cc66;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+.grey{
+    background: #e9ebe9;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+.green{
+    background: #d7f1d7;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+.yellow{
+    background: #e9ec52;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    position: relative;
+    display: none;
+    cursor: pointer;
+}
+.orange{
+    background: #ecec4c;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+.reserve{
+    background: #ffcc99;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+.blue{
+    background: #99ccff;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+}
+
+.info{
+    position: absolute;
+    top:5px;
+    left:15px;
+}
+.info>dd:first-child{
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+.info>dd{
+    line-height: 18px;
+    font-size: 1.2rem;
+}
+.head{
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    background-size: 100%;
+    left:38px;
+}
+.head>img{
+    width: 100%;
+    height: 100%;
+}
+
+#spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+#spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+#spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+#spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+#spinner .rect6 {
+    -webkit-animation-delay: -0.7s;
+    animation-delay: -0.7s;
+}
+
+@-webkit-keyframes stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}
