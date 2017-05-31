@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/css.css"/>
+    <script src="js/js.js"></script>
+</head>
+<body>
+<div id="modify">
+    <div class="close"></div>
+    <span>111</span>
+    <ul>
+        <li><span>用户ID</span><input type="text"/></li>
+        <li><span>用户姓名</span><input type="text"/></li>
+        <li><span>备注</span><textarea></textarea></li>
+        <li><span>图片</span><div></div></li>
+    </ul>
+    <button>保存</button>
+</div>
+<div id="mask"></div>
+<div id="header">
+    <div class="logo"></div>
+    <span>征途榜</span>
+    <dl>
+        <dd class="active">榜单</dd>
+        <dd>用户</dd>
+        <dd>数据</dd>
+    </dl>
+</div>
+<div id="content">
+    <dl>
+        <dd>
+            <ul id="users"></ul>
+        </dd>
+        <dd>
+            <ol>
+                <li>姓名</li>
+                <li><input type="text"/></li>
+                <li>照片</li>
+                <li>
+                    <select>
+                        <option>全部</option>
+                        <option>有</option>
+                        <option>无</option>
+                    </select>
+                </li>
+                <ul class="after">
+                    <li><button>查询</button></li>
+                    <li><button>导出</button></li>
+                </ul>
+                <ul class="before">
+                    <li class="edit"><button>编辑</button></li>
+                    <li class="del"><button>删除</button></li>
+                    <li class="add"><button>新增</button></li>
+                    <li><button>导入用户</button></li>
+                    <li><button>下载模板</button></li>
+                </ul>
+            </ol>
+            <div class="userData">
+                <dl>
+                    <dd>ID</dd>
+                    <dd>姓名</dd>
+                    <dd>等级</dd>
+                    <dd>照片</dd>
+                    <dd>备注</dd>
+                </dl>
+                <ul>
+                    <li>1</li>
+                    <li>张三</li>
+                    <li>
+                        <ol>
+                            <li><img src="images/gold.png"/></li>
+                            <li><img src="images/silver.png"/></li>
+                            <li><img src="images/bronze.png"/></li>
+                        </ol>
+                    </li>
+                    <li>有</li>
+                    <li>广州岗顶</li>
+                </ul>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+            </div>
+        </dd>
+        <dd>
+            <ol>
+                <li>姓名</li>
+                <li><input type="text"/></li>
+                <li>年</li>
+                <li>
+                    <select class="year">
+                        <option>全部</option>
+                        <option>2017</option>
+                        <option>2018</option>
+                        <option>2019</option>
+                        <option>2020</option>
+                    </select>
+                </li>
+                <li>周</li>
+                <li>
+                    <select class="month">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </li>
+                <ul class="after">
+                    <li><button>查询</button></li>
+                    <li><button>导出</button></li>
+                </ul>
+                <ul class="before">
+                    <li><button>导入数据</button></li>
+                    <li><button>下载模板</button></li>
+                </ul>
+            </ol>
+            <div class="tableData">
+                <dl>
+                    <dd>姓名</dd>
+                    <dd>年份</dd>
+                    <dd>周</dd>
+                    <dd>营业收入</dd>
+                    <dd>好评人数</dd>
+                    <dd>备注</dd>
+                </dl>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+                <ul></ul>
+            </div>
+        </dd>
+    </dl>
+</div>
+</body>
+</html>

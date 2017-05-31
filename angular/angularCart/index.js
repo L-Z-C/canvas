@@ -6,37 +6,37 @@ app.controller('cartController',function($scope){
     $scope.cart = [
         {
             id:1000,
-            name:'iphone5s',
+            name:'篮球',
             quantity:3,
             price:4300
         },
         {
             id:3300,
-            name:'iphone5',
+            name:'足球',
             quantity:30,
             price:3300
         },
         {
             id:232,
-            name:'imac',
+            name:'乒乓球',
             quantity:4,
             price:23000
         },
         {
             id:1100,
-            name:'ipad',
+            name:'排球',
             quantity:5,
             price:6906
         },
         {
             id:1200,
-            name:'ipad2',
+            name:'棒球',
             quantity:25,
             price:5900
         },
         {
             id:1140,
-            name:'ipad3',
+            name:'悠悠球',
             quantity:15,
             price:5800
         }

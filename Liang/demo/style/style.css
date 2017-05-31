@@ -12,12 +12,13 @@ html {
 }
 body{
     -moz-user-select:none;
-    overflow-x: hidden;
+    overflow: hidden;
+    background-image: url("../images/in_top_bj.jpg");
 }
 #header{
     width: 100%;
-    height: 60px;
-    background: sandybrown;
+    height: 10%;
+    background: rgba(244,164,96,0.8);
     position: absolute;
     top:0;
 }
@@ -32,33 +33,35 @@ body{
 #header .nav{
     position: absolute;
     left:35%;
-    width: 240px;
-    height: 60px;
+    height: 100%;
 }
 #header .nav>li{
     float: left;
-    width: 60px;
-    height: 60px;
+    height: 100%;
     text-align: center;
     cursor: pointer;
     transition:all 2s ease;
 }
 #header .nav>li>a{
-    line-height: 60px;
     font-size: 1.4rem;
     color: #FFF;
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    height: 100%;
+    float: left;
 }
 #header .nav>li:hover{
     background: #e79b5b;
+    box-shadow:  0 2px 16px #666, 0 0 1px #666, 0 0 1px #666;
+    border-radius: 10px;
 }
 #header .nav .active{
     background: #e79b5b;
+    box-shadow:  0 2px 16px #666, 0 0 1px #666, 0 0 1px #666;
+    border-radius: 10px;
 }
 #grogshop{
     width: 15%;
-    height: 60px;
+    height: 100%;
     position: absolute;
     left: 20%;
     cursor: pointer;
@@ -66,11 +69,12 @@ body{
 }
 #grogshop:hover{
     background: #e79b5b;
+    box-shadow:  0 2px 16px #666, 0 0 1px #666, 0 0 1px #666;
+    border-radius: 10px;
 }
 #grogshop>h1{
     font-size: 1.8rem;
     color: #FFF;
-    line-height: 60px;
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -82,18 +86,17 @@ body{
     width: 20px;
     height: 20px;
     position: absolute;
-    top:20px;
     right: 2%;
     background-image: url("../images/arrow_bottom.png");
     background-size: 100% 100%;
 }
 #grogshop_list{
-    position: absolute;
+    position: fixed;
     width: 15%;
-    height: auto;
+    height: 240px;
     background: #e79b5b;
     left: -20%;
-    top:60px;
+    top:10%;
     z-index: 9997;
     opacity:0;
     filter:alpha(opacity=0);
@@ -114,13 +117,21 @@ body{
 }
 #grogshop_list>li:hover{
     background: sandybrown;
+    box-shadow:  0 2px 16px #666, 0 0 1px #666, 0 0 1px #666;
+    border-radius: 10px;
+}
+.both{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 #left{
     width: 20%;
-    height: 100%;
     position: absolute;
-    top:120px;
-    background: slategray;
+    top: 60px;
     z-index: 9995;
 }
 #content{
@@ -128,8 +139,9 @@ body{
     height: 100%;
     position: absolute;
     right: 0;
-    top:60px;
+    bottom: 0;
     transition:all 2s ease;
+    z-index: 9994;
 }
 #list{
     position: absolute;
@@ -137,7 +149,7 @@ body{
     height: auto;
     top: 60px;
 }
-#list li{
+#list .typeClass{
     width: 8.992%;
     height: 60px;
     float: left;
@@ -147,8 +159,9 @@ body{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    background-color: rgba(255,255,255,0.92);
 }
-#list li .list_top>h3{
+#list .typeClass .list_top_h3{
     font-size: 1.4rem;
     text-align: center;
     line-height: 30px;
@@ -158,7 +171,7 @@ body{
     white-space: nowrap;
     width: 100%;
 }
-#list li .list_bottom>p{
+#list .typeClass .list_bottom_p{
     font-size: 1.4rem;
     text-align: center;
     line-height: 30px;
@@ -168,13 +181,13 @@ body{
     white-space: nowrap;
     width: 100%;
 }
-#list li .list_top{
+#list .typeClass .list_top{
     width:100%;
     height: 30px;
     position: absolute;
     top: 0;
 }
-#list li .list_bottom{
+#list .typeClass .list_bottom{
     width:100%;
     height: 30px;
     position: absolute;
@@ -183,11 +196,11 @@ body{
 #left .list{
     position: relative;
 }
-#left .list li{
-    width: 99.5%;
+#left .list .listClass{
+    width: 100%;
     height: 60px;
-    border-bottom: 1px solid #CCC;
     text-align: center;
+    box-shadow: 1px 1px 5px #CCC;
     line-height: 60px;
     color: #FFF;
     font-size: 1.6rem;
@@ -195,17 +208,17 @@ body{
     text-overflow: ellipsis;
     white-space: nowrap;
     cursor: pointer;
+    background-color: rgba(112,128,144,0.90);
 }
 #left .list li:hover{
-    background: #979797;
+    background-color: rgba(151,151,151,0.8);
     transition:all 1s ease;
+    box-shadow: inset 2px 2px 3px #333;
 }
 #top{
     width: 20%;
     height: 60px;
     position: absolute;
-    top:60px;
-    background: #FFF;
     z-index: 9996;
 }
 #top .head{
@@ -214,11 +227,12 @@ body{
     position: absolute;
     left: 0;
     top:0;
+    background-color: rgba(255,255,255,0.92);
 }
 #top .foot{
     width: 100%;
     height: 30px;
-    background: wheat;
+    background-color: rgba(245,222,179,0.8);
     position: absolute;
     left: 0;
     bottom:0;
@@ -228,6 +242,7 @@ body{
     top:0;
     width: 100%;
     height: 60px;
+    z-index: 9996;
 }
 #content .data{
     width: 100%;
@@ -243,6 +258,7 @@ body{
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    background-color: rgba(255,255,255,0.95);
 }
 #content .data dd .data_top{
     width: 100%;
@@ -331,13 +347,23 @@ body{
     display: none;
     z-index: 9999;
 }
-#close{
+.close{
     position: absolute;
     width: 40px;
     height: 40px;
     top:10px;
     right: 10px;
     background-image: url("../images/close.png");
+    background-size: 100% 100%;
+    cursor: pointer;
+}
+.back{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top:5px;
+    left: 15px;
+    background-image: url("../images/back.png");
     background-size: 100% 100%;
     cursor: pointer;
 }
@@ -372,22 +398,46 @@ body{
 
 #rooms{
     width: 80%;
-    height: 100%;
+    height: 90%;
     position: absolute;
     left: -80%;
-    top:60px;
+    bottom: 0;
     transition:all 2s ease;
-    z-index: 9994;
+    z-index: 9992;
     opacity:0;
     filter:alpha(opacity=0);
+}
+#rooms_list{
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    opacity:0;
+    filter:alpha(opacity=0);
+    transition:all 2s ease;
+    z-index: 9993;
+}
+#rooms_list>dd{
+    float: left;
+    margin-right: 20px;
+    position: relative;
+}
+#rooms_list>dd>button{
+    width: 80px;
+    height: 50px;
+    background: salmon;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
 }
 
 #set_left{
     width: 20%;
     height: 90%;
     position: absolute;
-    top:60px;
-    background: slategray;
+    bottom: 0;
+    background-color: rgba(112,128,144,0.9);
     z-index: 9995;
 }
 #set_left .list{
@@ -407,16 +457,41 @@ body{
     cursor: pointer;
 }
 #set_left .list li:hover{
-    background: #979797;
+    background-color: rgba(151,151,151,0.6);
     transition:all 1s ease;
+    box-shadow: inset 2px 2px 3px #333;
 }
 #set_content{
     width: 80%;
     height: 90%;
     position: absolute;
+    transition: all 1s ease;
     right: 0;
-    top:60px;
+    bottom: 0;
     overflow: hidden;
+    background-color: rgba(255,255,255,0.35);
+}
+#set_content .topArrowT{
+    width: 0;
+    height: 0;
+    border-radius: 10px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid salmon;
+    position: absolute;
+    left: 15px;
+    top:25px;
+}
+#set_content .bottomArrowT{
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid salmon;
+    position: absolute;
+    left: 15px;
+    top:25px;
+    border-radius: 10px;
 }
 #set_content .content{
     width: 100%;
@@ -439,12 +514,13 @@ body{
     background: #f5f5f5;
     border: solid 1px #CCC;
     position: relative;
+    cursor: pointer;
 }
 #set_content .content .hotel>dt>h1{
     font-size: 1.8rem;
     line-height: 60px;
     color: #333;
-    padding:  0 0 0 30px;
+    padding:  0 0 0 50px;
 }
 #set_content .content .hotel>dt .add{
     width: 100px;
@@ -476,6 +552,7 @@ body{
     height: 50px;
     border: solid 1px #CCC;
     border-top:none;
+    background-color: rgba(255,255,255,0.8);
 }
 #set_content .content .hotel>dd:hover{
     background: #f5f5f5;
@@ -522,6 +599,19 @@ body{
     top:10px;
     right: 18%;
 }
+#set_content .content:nth-child(3) .addGrogshop{
+    width: 80px;
+    height: 38px;
+    background: #e09758;
+    border-radius: 5px;
+    top: 6px;
+    right: 2%;
+    position: absolute;
+    border: none;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
 
 
 #set_content .content .classes{
@@ -535,44 +625,21 @@ body{
     height: 60px;
     background: #f5f5f5;
     border: solid 1px #CCC;
+    cursor: pointer;
     position: relative;
 }
 #set_content .content .classes>dt>h1{
     font-size: 1.8rem;
     line-height: 60px;
     color: #333;
-    padding:  0 0 0 30px;
-}
-#set_content .content .classes>dt .add{
-    width: 100px;
-    height: 30px;
-    background: #f48811;
-    border-radius: 5px;
-    top:15px;
-    position: absolute;
-    border: none;
-    color: #FFF;
-    cursor: pointer;
-    right: 120px;
-}
-#set_content .content .classes>dt .compile{
-    width: 100px;
-    height: 30px;
-    background: steelblue;
-    border-radius: 5px;
-    top:15px;
-    position: absolute;
-    border: none;
-    color: #FFF;
-    cursor: pointer;
-    right: 10px;
-    font-size: 1.4rem;
+    padding:  0 0 0 50px;
 }
 #set_content .content .classes>dd{
     width: 100%;
     height: 50px;
     border: solid 1px #CCC;
     border-top:none;
+    background-color: rgba(255,255,255,0.8);
 }
 #set_content .content .classes>dd:hover{
     background: #f5f5f5;
@@ -595,7 +662,7 @@ body{
     box-shadow: 1px 1px 2px #CCC;
     position: relative;
 }
-#set_content .content .classes>dd>ul>li .compile_small{
+#set_content .content .classes>dd>ul>li .compile_smallT{
     position: absolute;
     width: 30%;
     height: 30px;
@@ -607,7 +674,7 @@ body{
     top:10px;
     left: 18%;
 }
-#set_content .content .classes>dd>ul>li .delete{
+#set_content .content .classes>dd>ul>li .deleteT{
     position: absolute;
     width: 30%;
     height: 30px;
@@ -618,6 +685,9 @@ body{
     border-radius: 5px;
     top:10px;
     right: 18%;
+}
+#set_content button{
+    line-height: 30px;
 }
 
 
@@ -652,13 +722,8 @@ body{
     top:0;
     width: 100%;
     height: 100%;
-    opacity:0;
-    filter:alpha(opacity=0);
     transition:all 1s ease;
-}
-.box>li{
-    float: left;
-    margin: 5px 10px 5px 8px;
+    overflow-y: auto;
 }
 .box .nop{
     position: absolute;
@@ -667,76 +732,92 @@ body{
     font-size: 1.4rem;
 }
 .pink{
-    background: #fed5d5;
+    background-color: rgba(254,213,213,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 .greenT{
-    background: #66cc66;
+    background-color: rgba(102,204,102,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 .grey{
-    background: #e9ebe9;
+    background-color: rgba(233,235,233,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 .green{
-    background: #d7f1d7;
+    background-color: rgba(215,241,215,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 .yellow{
-    background: #e9ec52;
+    background-color: rgba(233,236,82,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     position: relative;
     display: none;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 .orange{
-    background: #ecec4c;
+    background-color: rgba(236,236,76,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 .reserve{
-    background: #ffcc99;
+    background-color: rgba(255,204,153,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 .blue{
-    background: #99ccff;
+    background-color: rgba(153,204,255,0.8);
     width: 80px;
     height: 80px;
     border-radius: 10px;
     display: inline-block;
     position: relative;
     cursor: pointer;
+    float: left;
+    margin: 5px 8px;
 }
 
 .info{
@@ -744,11 +825,15 @@ body{
     top:5px;
     left:15px;
 }
-.info>dd:first-child{
+.info .infoDd:first-child{
     font-size: 1.4rem;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 60px;
 }
-.info>dd{
+.info .infoDd{
     line-height: 18px;
     font-size: 1.2rem;
 }
@@ -764,6 +849,628 @@ body{
     width: 100%;
     height: 100%;
 }
+#modification>h3{
+    position: absolute;
+    left: 15%;
+    top:5%;
+    font-size: 1.8rem;
+}
+#modification>button{
+    width: 100px;
+    height: 60px;
+    background-color: rgba(250,128,114,0.8);
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+#modification{
+    width: 80%;
+    height: 90%;
+    position: absolute;
+    left: -80%;
+    bottom: 0;
+    transition:all 2s ease;
+    background-color: rgba(255,255,255,0.92);
+    z-index: 9994;
+    opacity:0;
+    filter:alpha(opacity=0);
+}
+#modification>ul{
+    position: absolute;
+    left: 15%;
+    top:15%;
+}
+#modification>ul>li{
+    font-size: 1.4rem;
+    margin-top: 25px;
+}
+#modification>ul>li:first-child>input{
+    width: 400px;
+    height: 20px;
+}
+#modification>ul>li:nth-child(2)>textarea{
+    width: 600px;
+    height: 50px;
+}
+#modification>ul>li:nth-child(3)>select{
+    width: 50px;
+    height: 30px;
+}
+
+
+#add_rooms .addRoom>button{
+    width: 80px;
+    height: 50px;
+    background: salmon;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 4%;
+    right: 8%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+#add_rooms .addRooms>button{
+    width: 80px;
+    height: 50px;
+    background: salmon;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 4%;
+    right: 8%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+#add_rooms .close{
+    position: absolute;
+    top:50px;
+    right: 10px;
+    z-index: 9999;
+}
+#add_rooms .both{
+    width: 200%;
+    height: 89%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transition: all 1s ease;
+}
+#add_rooms .addRoom{
+    width: 50%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    background: #FFF;
+}
+#add_rooms .addRooms{
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    background: #FFF;
+    overflow: hidden;
+}
+#add_rooms .bar{
+    width: 50%;
+    height: 10%;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    line-height: 40px;
+    color: #FFF;
+    text-align: center;
+    left: 0;
+    background: slategray;
+    cursor: pointer;
+    position: absolute;
+    box-shadow: 3px 3px 3px slategray;
+    transition: all 1s ease;
+}
+#add_rooms>h3{
+    width: 50%;
+    height: 10%;
+    float: left;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    line-height: 40px;
+    color: #333;
+    text-align: center;
+    cursor: pointer;
+}
+#add_rooms span{
+    position: absolute;
+    left:5%;
+    top:3%;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+#add_rooms ul{
+    position: absolute;
+    left: 5%;
+    top:10%;
+}
+#add_rooms ul>li{
+    font-size: 1.4rem;
+    margin-top: 15px;
+}
+#add_rooms ul>li:first-child>input{
+    width: 200px;
+    height: 20px;
+}
+#add_rooms ul>li:nth-child(2)>textarea{
+    width: 400px;
+    height: 50px;
+}
+#add_rooms ul>li:nth-child(3)>select{
+    width: 50px;
+    height: 30px;
+}
+#add_rooms .roomsNum{
+    position: absolute;
+    left: 5%;
+    top:10%;
+}
+#add_rooms .roomsNum>li{
+    float: left;
+    margin-right: 60px;
+    font-size: 1.4rem;
+}
+#add_rooms .roomsNum>li>button{
+    width: 70px;
+    height: 30px;
+    background: salmon;
+    position: absolute;
+    top:10px;
+    border-radius: 5px;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+
+#add_rooms{
+    width: 50%;
+    height: 70%;
+    background:#FFF;
+    position: fixed;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px #545454;
+    top:50%;
+    left:50%;
+    display: none;
+    z-index: 9999;
+}
+
+
+#addHouse_type{
+    width: 30%;
+    height: 50%;
+    background:#FFF;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px #545454;
+    z-index: 9999;
+    display: none;
+}
+#addHouse_type>h3{
+    position: absolute;
+    left:5%;
+    top:6%;
+    font-size: 1.6rem;
+}
+#addHouse_type>ol{
+    position: absolute;
+    left: 22%;
+    top:10%;
+}
+#addHouse_type>ol li{
+    margin-top: 25px;
+    font-size: 1.4rem;
+}
+#addHouse_type>ol li:nth-child(3){
+    text-indent: 15px;
+}
+#addHouse_type>ol li:nth-child(4){
+    text-indent: -14px;
+}
+#addHouse_type>button{
+    width: 80px;
+    height: 50px;
+    background: salmon;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 5%;
+    right: 8%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+#addGrogshop_Information{
+    width: 80%;
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.8);
+    left: -80%;
+    transition: all 2s ease;
+    opacity: 0;
+    filter:alpha(opacity=0);
+}
+#addGrogshop_Information>ul{
+    position: absolute;
+    left: 15%;
+    top:15%;
+}
+#addGrogshop_Information>ul>li{
+    font-size: 1.4rem;
+    margin-top: 25px;
+}
+#addGrogshop_Information>ul>li>input[type="text"]{
+    width: 400px;
+    height: 25px;
+}
+#addGrogshop_Information>ul>li textarea{
+    width: 600px;
+    height: 50px;
+}
+#addGrogshop_Information>h3{
+    position: absolute;
+    left: 15%;
+    top:5%;
+    font-size: 2.4rem;
+}
+#addGrogshop_Information>button{
+    width: 100px;
+    height: 60px;
+    background: salmon;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 10%;
+    right: 8%;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: #FFF;
+}
+
+#housingPrice{
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: rgba(255,255,255,0.35);
+}
+#housingPrice .bar{
+    background: slategray;
+    width: 33.3%;
+    height: 7%;
+    position: absolute;
+    border-radius: 10px;
+    left: 0;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #FFF;
+    text-align: center;
+    transition: all 1.5s ease;
+    box-shadow: 3px 3px 3px slategray;
+    z-index: 9996;
+}
+#housingPrice>h3{
+    float: left;
+    width: 33.3%;
+    height: 7%;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.6rem;
+    color: #333;
+    cursor: pointer;
+}
+#housingPrice .housingPrice{
+    width: 300%;
+    height: 93%;
+    position: absolute;
+    transition: all 1.5s ease;
+    left: 0;
+    bottom: 0;
+}
+#housingPrice .housingPrice .addHousingPrice{
+    width: 33.3%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    transition: all 1.5s ease;
+}
+.roomTypeContent{
+    width: 100%;
+    position: relative;
+    transition: all 1s ease;
+    z-index: 9995;
+    overflow-x: hidden;
+}
+.roomType{
+    width: 100%;
+    height: 8%;
+    background: salmon;
+    position: relative;
+    cursor: pointer;
+    margin:  5px 0 0 0;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px salmon;
+}
+.roomType .bottomArrow{
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 12px solid #FFF;
+    position: absolute;
+    right: 2%;
+    top:18px;
+    border-radius: 10px;
+}
+.roomType .topArrow{
+    width: 0;
+    height: 0;
+    border-radius: 10px;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid #FFF;
+    position: absolute;
+    right: 2%;
+    top:38%;
+}
+.roomType>span{
+    position: absolute;
+    left: 5%;
+    font-size: 1.6rem;
+    color: #FFF;
+}
+#housingPrice .housingPrice .modificationHousingPrice{
+    width: 33.3%;
+    height: 100%;
+    position: absolute;
+    left: 33.3%;
+    transition: all 1.5s ease;
+}
+#housingPrice .housingPrice .modificationHousingPriceT{
+    width: 33.3%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    transition: all 1.5s ease;
+}
+.roomTypeContent .list{
+    width: 100%;
+    height: 15%;
+    position: relative;
+    padding:  0 0 0 20px;
+}
+.roomTypeContent .list li{
+    display: inline-block;
+    line-height: 55px;
+    margin-right: 50px;
+}
+.roomTypeContent .list>li>dl>dd{
+    display: inline-block;
+    margin-right: 10px;
+    color: #F0F0F0;
+}
+.roomTypeContent .list>li>dl>dd>button{
+    width: 90px;
+    height: 45px;
+    border-radius: 5px;
+    background: #d6d6d6;
+    border: 0;
+    color: #333;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-shadow: 3px 3px 3px #d6d6d6;
+    margin:  0 0 0 5px;
+    transition: all 1s ease;
+
+}
+.search{
+    width: 80px;
+    height: 35px;
+    border-radius: 5px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    background: salmon;
+    border: 0;
+    color: #FFF;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    box-shadow: 3px 3px 3px salmon;
+}
+.housingPrice_information{
+    position: relative;
+    width: 100%;
+    height: 85%;
+    margin:  10px 0 0 0;
+    z-index: 9996;
+    background-color: rgba(255,255,255,0.35);
+    overflow-x: hidden;
+}
+.housingPrice_information>dd:first-child{
+    font-weight: bold;
+}
+.housingPrice_information>dd:first-child{
+    width: 100%;
+    height: 40px;
+    border: solid 1px #CCC;
+}
+.housingPrice_information>dd{
+    width: 100%;
+    height: 40px;
+    border: none;
+}
+.housingPrice_information>dd>ul{
+    width: 100%;
+    height: 100%;
+}
+.housingPrice_information>dd>ul>li{
+    width: 16.66%;
+    height: 40px;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+    font-size: 1.4rem;
+    box-shadow: 1px 1px 2px #CCC;
+    position: relative;
+    color: #F0F0F0;
+}
+#explain{
+    width: 150px;
+    height: 90px;
+    position: fixed;
+    bottom: 10%;
+    right: -120px;
+    z-index: 9998;
+    transition: all 0.5s ease;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#explain>span{
+    width: 30px;
+    height: 90px;
+    left: 0;
+    position: absolute;
+    background-color: rgba(250,128,114,0.8);
+    font-size: 1.6rem;
+    text-align: center;
+    color: #FFF;
+    line-height: 45px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+#explain .content{
+    width: 120px;
+    height: 90px;
+    position: absolute;
+    right: 0;
+    text-justify: auto;
+    background-color: rgba(255,255,255,0.8);
+    font-size: 1.4rem;
+}
+
+
+
+#logo{
+    width: 20%;
+    height:45%;
+    position: absolute;
+    left:50%;
+    top:10%;
+    z-index: 9999;
+}
+#logo>img{
+    width: 100%;
+    height: 100%;
+}
+#login_box{
+    position: fixed;
+    width: 800px;
+    height: 360px;
+    border-radius: 10px;
+    top:50%;
+    left:50%;
+    margin-top: -55px;
+    margin-left: -400px;
+    z-index: 9999;
+}
+#login_box .list li h2{
+    color: #FFF;
+    text-align: center;
+    line-height: 60px;
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+#login_box .list li h2 span{
+    font-size: 24px;
+    font-weight: bold;
+}
+#login_info{
+    position: relative;
+    margin: 100px auto;
+    width:300px;
+    height:auto;
+    z-index:998;
+}
+#login_info li{
+    line-height: 70px;
+}
+#login_info .text{
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    filter:alpha(opacity=50);
+    opacity: 0.5;
+    font-size: 1.4rem;
+}
+#login_info .submit{
+    width: 300px;
+    height: 45px;
+    color: #FFF;
+    background: seagreen;
+    cursor: pointer;
+    border: 0;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow:  0 2px 16px #666, 0 0 1px #666, 0 0 1px #666;
+}
+
+
+
+#canvas {
+    width:100%;
+    height:100%;
+    display:inline-block;
+    vertical-align:baseline;
+    position:absolute;
+    z-index:-1;
+}
+.canvaszz{  /*用来解决视频右键菜单，用于视频上面的遮罩层*/
+    width:100%;
+    background-image: url("../images/in_top_bj.jpg");
+    height:100%;
+    position:absolute;
+    z-index:10;
+    filter:alpha(opacity=40);
+    -moz-opacity:0.4;
+    -khtml-opacity: 0.4;
+    opacity: 0.4;
+}
+
+.audio{
+    /*设置音乐显示位置*/
+    width:45px;
+    position:fixed;top:65px;left:94%;
+    z-index:100;
+    filter:alpha(opacity=30);
+    -moz-opacity:0.3;
+    -khtml-opacity: 0.3;
+    opacity: 0.3;
+}
+
+
 
 #spinner .rect2 {
     -webkit-animation-delay: -1.1s;

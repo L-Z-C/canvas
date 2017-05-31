@@ -8,6 +8,17 @@
 </head>
 <body onselectstart="return false">
 <div id="shade"></div>
+<div id="addHouse_type">
+    <h3></h3>
+    <div class="close"></div>
+    <ol>
+        <li>房型名称:<input type="text"/></li>
+        <li>房间数量:<input type="text"/></li>
+        <li>门市价:<input type="text"/></li>
+        <li>网络零售价:<input type="text"/></li>
+    </ol>
+    <button></button>
+</div>
 <div id="header">
     <div id="grogshop">
         <h1>富力南昆山店</h1>
@@ -21,9 +32,10 @@
     </ul>
     <ul class="nav">
         <li><a href="index.html">房态</a></li>
+        <li><a href="housingPrice.html">房价</a></li>
         <li class="active"><a href="set.html">设置</a></li>
     </ul>
-    <span class="logout">退出</span>
+    <a href="login.html" class="logout">退出</a>
 </div>
 <div id="set_left">
     <ul class="list">
@@ -31,15 +43,28 @@
         <li>产品与规则</li>
         <li>酒店及房型</li>
         <li>账号及密码</li>
+        <li>房间</li>
     </ul>
+</div>
+<div id="addGrogshop_Information">
+    <div class="back"></div>
+    <h3></h3>
+    <ul>
+        <li><span>*</span>房型名称：<input type="text"/></li>
+        <li><span>*</span>前台号码：<input type="text"/></li>
+        <li><span>*</span>酒店品牌：<input type="text"/></li>
+        <li><span>*</span>酒店地址：<textarea></textarea></li>
+        <li><span>*</span>酒店简介：<textarea></textarea></li>
+        <li><span>*</span>男：<input type="radio"/></li>
+    </ul>
+    <button>保存</button>
 </div>
 <div id="set_content">
     <div class="content">
         <dl class="classes">
             <dt>
+            <p class="topArrowT"></p>
             <h1>班次</h1>
-            <button class="add">添加房型</button>
-            <button class="compile">编辑</button>
             </dt>
             <dd>
                 <ul>
@@ -61,8 +86,8 @@
                     <li>20:00</li>
                     <li>可用</li>
                     <li>
-                        <button class="compile_small">编辑</button>
-                        <button class="delete">删除</button>
+                        <button class="compile_smallT">编辑</button>
+                        <button class="deleteT">删除</button>
                     </li>
                 </ul>
             </dd>
@@ -75,8 +100,8 @@
                     <li>5:00</li>
                     <li>可用</li>
                     <li>
-                        <button class="compile_small">编辑</button>
-                        <button class="delete">删除</button>
+                        <button class="compile_smallT">编辑</button>
+                        <button class="deleteT">删除</button>
                     </li>
                 </ul>
             </dd>
@@ -89,8 +114,8 @@
                     <li>20:00</li>
                     <li>可用</li>
                     <li>
-                        <button class="compile_small">编辑</button>
-                        <button class="delete">删除</button>
+                        <button class="compile_smallT">编辑</button>
+                        <button class="deleteT">删除</button>
                     </li>
                 </ul>
             </dd>
@@ -98,8 +123,10 @@
     </div>
     <div class="content">2</div>
     <div class="content">
+        <button class="addGrogshop">添加酒店</button>
     <dl class="hotel">
         <dt>
+        <p class="topArrowT"></p>
            <h1>富力南昆山店</h1>
            <button class="add">添加房型</button>
            <button class="compile">编辑</button>
@@ -188,6 +215,7 @@
     </dl>
     <dl class="hotel">
         <dt>
+        <p class="topArrowT"></p>
         <h1>广州四叶草金盛公寓</h1>
         <button class="add">添加房型</button>
         <button class="compile">编辑</button>
@@ -228,6 +256,7 @@
     </dl>
     <dl class="hotel">
         <dt>
+        <p class="topArrowT"></p>
         <h1>阳江盛和珍珠湾店</h1>
         <button class="add">添加房型</button>
         <button class="compile">编辑</button>
@@ -316,6 +345,32 @@
     </dl>
     </div>
     <div class="content">4</div>
+    <div class="content">
+        <div class="roomType">
+            <span>条件选择</span>
+            <div class="topArrow"></div>
+        </div>
+        <div class="roomTypeContent">
+            <ul class="list">
+                <li>
+                    <dl>
+                        <dd>房间类型：</dd>
+                        <dd>
+                            <button>欧式大床房</button>
+                            <button>欧式双床房</button>
+                            <button>欧式豪华单人房</button>
+                            <button>中式双床房</button>
+                            <button>欧式风情房</button>
+                            <button>中式单人房</button>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <dl class="housingPrice_information">
+
+        </dl>
+    </div>
 </div>
 <div id="spinner">
     <div class="rect1"></div>
@@ -325,5 +380,7 @@
     <div class="rect5"></div>
     <div class="rect6"></div>
 </div>
+<canvas id="canvas"></canvas>
+<div class="videozz"></div>
 </body>
 </html>
