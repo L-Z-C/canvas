@@ -387,10 +387,14 @@ window.onload = ()=>{
                             });
                             chats.cellLength([1],aTagName,'audio',(aTagName)=>{
                                 aTagName.style.margin = '0 1rem 0 1rem';
+                                aTagName.controls = "controls";
                                 aTagName.src = audio.src;
+                                aTagName.style.width = '20rem';
+                                aTagName.style.height = '5rem';
                             });
                         });
-                    },10000);
+                        oContent.removeEventListener('click',getUserMedia,false);
+                    },3000);
                 },
                 function(err) {
                     console.log("The following error occurred: " + err.name);
@@ -581,4 +585,7 @@ window.onload = ()=>{
         };
         fr.readAsDataURL(ele);
     }, false);
+    chats.myPromise(true).then(console.log(111)).then(()=>{
+        console.log(222);
+    })
 };
