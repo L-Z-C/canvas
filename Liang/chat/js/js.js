@@ -409,7 +409,7 @@ window.onload = ()=>{
         }
     }
     chats.getTagClass(chats.getId('#more'),'.video').addEventListener('click',()=>{
-        window.location.href = 'video.html';
+        window.location.href = './video.html';
     },false);
     let oArticle = document.querySelectorAll('#emoticon>article');
     let oArt = aAllOneLi.querySelectorAll('article');
