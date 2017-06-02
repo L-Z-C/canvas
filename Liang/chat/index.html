@@ -7,6 +7,7 @@
     <title>Chat</title>
     <link rel="prefetch" href="http://davidwalsh.name/css-enhancements-user-experience" />
     <link rel="stylesheet" href="css/style.css"/>
+    <script src="js/recordmp3.js"></script>
     <script src="js/js.js"></script>
 </head>
 <body>
@@ -16,11 +17,11 @@
             <title>群聊(1)</title>
             <i class="group"></i>
         </header>
-        <article></article>
+        <article><div id="recordingslist"></div><button id="btnStop" onclick="funStop(this);">暂停</button></article>
         <footer>
             <ul id="operation">
                 <li class="voice"></li>
-                <li class="content" contenteditable='true'></li>
+                <li class="content" contenteditable='true' onclick="funStart(this);" id="btnStart" ></li>
                 <li class="emoticon"></li>
                 <li class="plus"></li>
             </ul>
@@ -173,5 +174,49 @@
         </dl>
     </footer>
 </div>
+<script>
+    var recorder = new MP3Recorder({
+        debug:true,
+        funOk: function () {
+            btnStart.disabled = false;
+            console.log('初始化成功');
+        },
+        funCancel: function (msg) {
+            console.log(msg);
+            recorder = null;
+        }
+    });
+    var mp3Blob;
+
+
+    function funStart(button) {
+        btnStart.disabled = true;
+        console.log('录音开始...');
+        recorder.start();
+    }
+    function funStop(button) {
+        recorder.stop();
+        btnStart.disabled = false;
+        console.log('录音结束，MP3导出中...');
+        recorder.getMp3Blob(function (blob) {
+            console.log('MP3导出成功');
+
+            mp3Blob = blob;
+            var url = URL.createObjectURL(mp3Blob);
+            var div = document.createElement('div');
+            var au = document.createElement('audio');
+            var hf = document.createElement('a');
+
+            au.controls = true;
+            au.src = url;
+            hf.href = url;
+            hf.download = new Date().toISOString() + '.mp3';
+            hf.innerHTML = hf.download;
+            div.appendChild(au);
+            div.appendChild(hf);
+            recordingslist.appendChild(div);
+        });
+    }
+</script>
 </body>
 </html>

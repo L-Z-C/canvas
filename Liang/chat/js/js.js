@@ -306,6 +306,8 @@ window.onload = ()=>{
             oContent.style.justifyContent = 'flex-start';
             oContent.style.contentEditable = 'true';
         }else {
+            oContent.setAttribute("disabled", "disabled");
+            oContent.setAttribute("id", "btnStart");
             oContent.innerHTML = '';
             chats.cellLength([1],oContent,'span',(aTagName)=>{
                 aTagName.innerHTML = '按住说话';
@@ -380,21 +382,21 @@ window.onload = ()=>{
                     audio.onloadedmetadata = function(e) {
                         audio.play();
                     };
-                    setTimeout(()=>{
-                        chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                                aTagName.style.margin = '0 1rem 0 1rem';
-                            });
-                            chats.cellLength([1],aTagName,'audio',(aTagName)=>{
-                                aTagName.style.margin = '0 1rem 0 1rem';
-                                aTagName.controls = "controls";
-                                aTagName.src = audio.src;
-                                aTagName.style.width = '20rem';
-                                aTagName.style.height = '5rem';
-                            });
-                        });
-                        oContent.removeEventListener('click',getUserMedia,false);
-                    },3000);
+                    // setTimeout(()=>{
+                    //     chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+                    //         chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                    //             aTagName.style.margin = '0 1rem 0 1rem';
+                    //         });
+                    //         chats.cellLength([1],aTagName,'audio',(aTagName)=>{
+                    //             aTagName.style.margin = '0 1rem 0 1rem';
+                    //             aTagName.controls = "controls";
+                    //             aTagName.src = audio.src;
+                    //             aTagName.style.width = '20rem';
+                    //             aTagName.style.height = '5rem';
+                    //         });
+                    //     });
+                    //     oContent.removeEventListener('click',getUserMedia,false);
+                    // },3000);
                 },
                 function(err) {
                     console.log("The following error occurred: " + err.name);
@@ -585,7 +587,7 @@ window.onload = ()=>{
         };
         fr.readAsDataURL(ele);
     }, false);
-    chats.myPromise(true).then(console.log(111)).then(()=>{
+    chats.myPromise(true).then(console.log(new Audio())).then(()=>{
         console.log(222);
-    })
+    });
 };
