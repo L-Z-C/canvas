@@ -5,16 +5,16 @@
     <meta name="renderer" content="webkit" />
     <meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1,initial-scale=1,user-scalable=no" />
     <title>Chat</title>
-    <link rel="prefetch" href="http://davidwalsh.name/css-enhancements-user-experience" />
     <link rel="stylesheet" href="css/style.css"/>
+    <script src="js/base.js"></script>
+    <script src="js/index.js"></script>
     <script src="js/recordmp3.js"></script>
-    <script src="js/js.js"></script>
 </head>
 <body>
 <ol id="all">
     <li>
         <header>
-            <title>群聊(1)</title>
+            <title>群名称(1)</title>
             <i class="group"></i>
         </header>
         <article><div id="recordingslist"></div><button id="btnStop" onclick="funStop(this);">暂停</button></article>
@@ -26,80 +26,130 @@
                 <li class="plus"></li>
             </ul>
         </footer>
-    </li>
-    <li>
-        <header>
-            <title>群聊(1)</title>
-            <i class="back"></i>
-        </header>
-        <div class="person">
+        <div id="more">
             <ul>
-                <li>
+                <li class="photo">
                     <figure>
-                        <img src="images/headOne.jpg"/>
+                        <img src="images/photo.png"/>
                     </figure>
-                    <figcaption>路飞</figcaption>
+                    <figcaption>照片</figcaption>
+                    <input class="uploadImages" type="file" accept="image/*">
+                </li>
+                <li class="shot">
+                    <figure>
+                        <img src="images/shot.png"/>
+                    </figure>
+                    <figcaption>拍摄</figcaption>
+                    <input class="shots" type="file" accept="image/*" capture = "camcorder">
                 </li>
                 <li>
-                    <figure>
-                        <img src="images/headTwo.jpg"/>
+                    <figure class="video">
+                        <img src="images/video.png"/>
                     </figure>
-                    <figcaption>路飞</figcaption>
+                    <figcaption>视频聊天</figcaption>
                 </li>
-                <li>
+                <li class="position">
                     <figure>
-                        <img src="images/headOne.jpg"/>
+                        <img src="images/position.png"/>
                     </figure>
-                    <figcaption>路飞</figcaption>
-                </li>
-                <li>
-                    <figure>
-                        <img src="images/headTwo.jpg"/>
-                    </figure>
-                    <figcaption>路飞</figcaption>
-                </li>
-                <li>
-                    <figure>
-                        <img src="images/headOne.jpg"/>
-                    </figure>
-                    <figcaption>路飞</figcaption>
-                </li>
-                <li>
-                    <figure>
-                        <img src="images/headTwo.jpg"/>
-                    </figure>
-                    <figcaption>路飞</figcaption>
-                </li>
-                <li>
-                    <figure>
-                        <img src="images/headOne.jpg"/>
-                    </figure>
-                    <figcaption>路飞</figcaption>
-                </li>
-                <li>
-                    <figure>
-                        <img src="images/person_plus.png"/>
-                    </figure>
-                    <figcaption></figcaption>
+                    <figcaption>位置</figcaption>
                 </li>
             </ul>
         </div>
-        <article>
-            <ul>
-                <li>
-                    <bdi>群聊名称</bdi>
-                    <bdo>海贼王</bdo>
-                </li>
-                <li>
-                    <bdi>群主</bdi>
-                    <bdo>路飞</bdo>
-                </li>
-                <li>
-                    <bdi>管理员</bdi>
-                    <bdo>乔巴</bdo>
-                </li>
-            </ul>
-        </article>
+        <div id="emoticon">
+            <article></article>
+            <article></article>
+            <article></article>
+            <footer>
+                <dl>
+                    <dd>
+                        <i></i>
+                    </dd>
+                    <dd>
+                        <ul>
+                            <li><img src="images/em_list/1.png"/></li>
+                            <li><img src="images/em_list/2.png"/></li>
+                            <li><img src="images/em_list/3.png"/></li>
+                        </ul>
+                    </dd>
+                    <dd id="send">发送</dd>
+                </dl>
+            </footer>
+        </div>
+    </li>
+    <li>
+        <header>
+            <title>聊天信息(1)</title>
+            <i class="back"></i>
+        </header>
+            <div class="person">
+                <ul>
+                    <li class="persons">
+                        <figure>
+                            <img src="images/headOne.jpg"/>
+                        </figure>
+                        <figcaption>路飞</figcaption>
+                    </li>
+                    <li class="persons">
+                        <figure>
+                            <img src="images/headTwo.jpg"/>
+                        </figure>
+                        <figcaption>乔巴</figcaption>
+                    </li>
+                    <li class="persons">
+                        <figure>
+                            <img src="images/headOne.jpg"/>
+                        </figure>
+                        <figcaption>路飞</figcaption>
+                    </li>
+                    <li class="persons">
+                        <figure>
+                            <img src="images/headTwo.jpg"/>
+                        </figure>
+                        <figcaption>乔巴</figcaption>
+                    </li>
+                    <li class="persons">
+                        <figure>
+                            <img src="images/headOne.jpg"/>
+                        </figure>
+                        <figcaption>路飞</figcaption>
+                    </li>
+                    <li class="persons">
+                        <figure>
+                            <img src="images/headTwo.jpg"/>
+                        </figure>
+                        <figcaption>乔巴</figcaption>
+                    </li>
+                    <li class="persons">
+                        <figure>
+                            <img src="images/headOne.jpg"/>
+                        </figure>
+                        <figcaption>路飞</figcaption>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="images/person_plus.png"/>
+                        </figure>
+                        <figcaption></figcaption>
+                    </li>
+                </ul>
+            </div>
+            <article>
+                <ul>
+                    <li>
+                        <bdi>群聊名称</bdi>
+                        <bdo>海贼王</bdo>
+                    </li>
+                    <li>
+                        <bdi>群主</bdi>
+                        <bdo>路飞</bdo>
+                    </li>
+                    <li>
+                        <bdi>管理员</bdi>
+                        <bdo>乔巴</bdo>
+                    </li>
+                </ul>
+            </article>
         <article>
             <ul>
                 <li>
@@ -119,61 +169,17 @@
                 <li>
                     <bdi>清空聊天记录</bdi>
                 </li>
-            </ul>
+                </ul>
         </article>
         <button>删除并退出</button>
     </li>
+    <li>
+        <header>
+            <title>详细资料</title>
+            <i class="back"></i>
+        </header>
+    </li>
 </ol>
-<div id="more">
-    <ul>
-        <li class="photo">
-            <figure>
-                <img src="images/photo.png"/>
-            </figure>
-            <figcaption>照片</figcaption>
-            <input class="uploadImages" type="file" accept="image/*">
-        </li>
-        <li class="shot">
-            <figure>
-                <img src="images/shot.png"/>
-            </figure>
-            <figcaption>拍摄</figcaption>
-            <input class="shots" type="file" accept="image/*" capture = "camcorder">
-        </li>
-        <li>
-            <figure class="video">
-                <img src="images/video.png"/>
-            </figure>
-            <figcaption>视频聊天</figcaption>
-        </li>
-        <li class="position">
-            <figure>
-                <img src="images/position.png"/>
-            </figure>
-            <figcaption>位置</figcaption>
-        </li>
-    </ul>
-</div>
-<div id="emoticon">
-    <article></article>
-    <article></article>
-    <article></article>
-    <footer>
-        <dl>
-            <dd>
-                <i></i>
-            </dd>
-            <dd>
-                <ul>
-                    <li><img src="images/em_list/1.png"/></li>
-                    <li><img src="images/em_list/2.png"/></li>
-                    <li><img src="images/em_list/3.png"/></li>
-                </ul>
-            </dd>
-            <dd id="send">发送</dd>
-        </dl>
-    </footer>
-</div>
 <script>
     var recorder = new MP3Recorder({
         debug:true,

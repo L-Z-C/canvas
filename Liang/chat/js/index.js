@@ -1,106 +1,6 @@
 /**
- * Created by Liulc on 2017/5/19.
+ * Created by Liulc on 2017/6/3.
  */
-function * Chat() {
-    "use strict";
-}
-Chat.prototype = {
-  add : (a,b)=>{
-      "use strict";
-      return a+b;
-  },
-  addEvFn : (obj,event,fn)=>{
-      "use strict";
-      obj.addEventListener(event,function () {
-          let that = this;
-          fn(that);
-      },false);
-  },
-    myPromise : (tag)=>{
-      "use strict";
-      return new Promise((resolve,reject)=>{
-          if(tag){
-              resolve();
-          }else{
-              reject();
-          }
-      })
-    },
-    loop : (aObj,fn)=>{
-      "use strict";
-      for (let i of aObj){
-          fn(i)
-      }
-    },
-    cellLength : (length,obj,tagName,fn)=>{
-        "use strict";
-        for (let i of length){
-            let aTagName = document.createElement(tagName);
-            fn(aTagName,i);
-            obj.appendChild(aTagName);
-        }
-    },
-    getId : (id)=>{
-      "use strict";
-        return typeof id==='string'?document.querySelector(id):id;
-    },
-    getTagClassAll : (obj,classTagName,num)=>{
-      "use strict";
-        return typeof classTagName==='string'?obj.querySelectorAll(classTagName)[num]:classTagName;
-    },
-    getTagClass : (obj,classTagName)=>{
-        "use strict";
-        return typeof classTagName==='string'?obj.querySelector(classTagName):classTagName;
-    },
-    touch : (obj,fn)=>{
-      "use strict";
-        let startx, starty;
-        function getAngle(angx, angy) {
-            return Math.atan2(angy, angx) * 180 / Math.PI;
-        };
-        function getDirection(startx, starty, endx, endy) {
-            let angx = endx - startx;
-            let angy = endy - starty;
-            let result = 0;
-            if (Math.abs(angx) < 2 && Math.abs(angy) < 2) {
-                return result;
-            }
-
-            let angle = getAngle(angx, angy);
-            if (angle >= -135 && angle <= -45) {
-                result = 1;
-            } else if (angle > 45 && angle < 135) {
-                result = 2;
-            } else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
-                result = 3;
-            } else if (angle >= -45 && angle <= 45) {
-                result = 4;
-            }
-
-            return result;
-        }
-        obj.addEventListener("touchstart", function(e) {
-            startx = e.touches[0].pageX;
-            starty = e.touches[0].pageY;
-        }, false);
-        obj.addEventListener("touchend", function(e) {
-            let endx, endy;
-            endx = e.changedTouches[0].pageX;
-            endy = e.changedTouches[0].pageY;
-            let direction = getDirection(startx, starty, endx, endy);
-            fn(direction);
-        }, false);
-    },
-    remove : (obj)=>{
-      "use strict";
-        let navigatorName = "zh-CN";
-        if(navigator.browserLanguage == navigatorName){
-            obj.removeNode(true);
-        }else{
-            obj.remove();
-        }
-    }
-};
 window.onload = ()=>{
     "use strict";
     function F() {
@@ -110,6 +10,7 @@ window.onload = ()=>{
     let oAll = chats.getId('#all');
     let aAllOneLi = document.querySelectorAll('#all>li')[0];
     let aAllTwoLi = document.querySelectorAll('#all>li')[1];
+    let aAllThreeLi = document.querySelectorAll('#all>li')[2];
     let oOperation = chats.getId('#operation');
     let oVoice = chats.getTagClass(oOperation,'.voice'),oContent = chats.getTagClass(oOperation,'.content'),
         oPlus = chats.getTagClass(oOperation,'.plus'), oEmoticon = chats.getTagClass(oOperation,'.emoticon');
@@ -118,12 +19,16 @@ window.onload = ()=>{
         document.body.style.overflowY = 'auto';
         chats.getId('#more').style.display = 'none';
         chats.getId('#emoticon').style.display = 'none';
+        oAll.style.height = 'auto';
+        aAllTwoLi.style.height = 'auto';
     });
     chats.addEvFn(aAllTwoLi.querySelector('.back'),'click',()=>{
         oAll.style.left = 0;
         document.body.style.overflowY = 'hidden';
         chats.getId('#more').style.display = 'block';
         chats.getId('#emoticon').style.display = 'block';
+        oAll.style.height = '100%';
+        aAllTwoLi.style.height = '100%';
     });
     chats.addEvFn(oEmoticon,'click',(that)=>{
         if (that.parentNode.parentNode.style.bottom == '18rem'){
@@ -228,7 +133,7 @@ window.onload = ()=>{
     });
     chats.addEvFn(chats.getId('#send'),'click',(that)=>{
         if (that.style.color == 'white'){
-            let  oArticle = chats.getTagClass(document,'article');
+            let  oArticle = chats.getTagClass(aAllOneLi,'article');
             if (oContent.innerHTML !== ''){
                 chats.cellLength([1],oArticle,'div',(aTagName)=>{
                     chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
@@ -279,29 +184,29 @@ window.onload = ()=>{
         if (chats.getTagClass(oContent,'span')){
             that.style.backgroundImage = 'url(./images/voice.png)';
             oContent.innerHTML = '';
-                chats.addEvFn(oContent,'keydown',(that,e)=>{
-                    e = e || window.event;
-                    if (e.keyCode == 13){
-                        e.returnValue = false;
-                        e.preventDefault();
-                        let  oArticle = chats.getTagClass(document,'article');
-                        if (that.innerHTML !== ''){
-                            chats.cellLength([1],oArticle,'div',(aTagName)=>{
-                                chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                                    aTagName.style.margin = '0 1rem 0 1rem';
-                                });
-                                chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                                    aTagName.style.margin = '0 1rem 0 1rem';
-                                    aTagName.innerHTML = that.innerHTML;
-                                });
+            chats.addEvFn(oContent,'keydown',(that,e)=>{
+                e = e || window.event;
+                if (e.keyCode == 13){
+                    e.returnValue = false;
+                    e.preventDefault();
+                    let  oArticle = chats.getTagClass(document,'article');
+                    if (that.innerHTML !== ''){
+                        chats.cellLength([1],oArticle,'div',(aTagName)=>{
+                            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                                aTagName.style.margin = '0 1rem 0 1rem';
                             });
-                            that.innerHTML = '';
-                        }else {
-                            return false;
-                        }
+                            chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                                aTagName.style.margin = '0 1rem 0 1rem';
+                                aTagName.innerHTML = that.innerHTML;
+                            });
+                        });
+                        that.innerHTML = '';
+                    }else {
+                        return false;
                     }
-                    return false;
-                });
+                }
+                return false;
+            });
             oContent.removeEventListener('click',getUserMedia,false);
             oContent.style.justifyContent = 'flex-start';
             oContent.style.contentEditable = 'true';
@@ -467,127 +372,87 @@ window.onload = ()=>{
     oContent.focus();
     let oUploadImages = chats.getTagClass(chats.getId('#more'),'.uploadImages');
     let oShot = chats.getTagClass(chats.getId('#more'),'.shots');
-    oUploadImages.addEventListener('change',function(e){
-        console.log(this);
-        let ele = this.files[0];
-        let fr = new FileReader();
-        fr.onload = function (ele) {
-            let pvImg = new Image();
-            pvImg.src = ele.target.result;
-            console.log(pvImg);
-            pvImg.onload = function () {
-                console.log(this.width);
-                console.log(this.height);
-                chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                    chats.cellLength([1],aTagName,'em',(aTagName)=>{
-                        aTagName.innerHTML = this.width;
-                    });
-                    chats.cellLength([1],aTagName,'p',(aTagName)=>{
-                        aTagName.innerHTML = this.height;
-                    });
-                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                    });
-                    chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                        aTagName.style.backgroundImage = 'url('+pvImg.src+')';
-                        chats.addEvFn(aTagName,'click',(that)=>{
-                            chats.cellLength([1],chats.getTagClass(document,'body'),'div',(aTagName)=>{
-                                aTagName.className = 'morePic';
-                                aTagName.style.width = window.screen.width+'px';
-                                aTagName.style.height = window.screen.height+'px';
-                                chats.addEvFn(aTagName,'click',(that)=>{
-                                    chats.remove(that);
-                                });
-                                chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                                    let ratioWidth = 0,_this = that.parentNode;
-                                    if (chats.getTagClass(_this,'em').innerHTML >= window.screen.width || chats.getTagClass(_this,'em').innerHTML < window.screen.width){
-                                        ratioWidth = window.screen.width/chats.getTagClass(_this,'em').innerHTML;
-                                        aTagName.style.width = chats.getTagClass(_this,'em').innerHTML*ratioWidth+'px';
-                                        aTagName.style.height = chats.getTagClass(_this,'p').innerHTML*ratioWidth+'px';
-                                    }
-                                    aTagName.style.backgroundImage = that.style.backgroundImage;
-                                    aTagName.style.backgroundSize = '100% 100%';
+    function ShotUpload(obj) {
+        obj.addEventListener('change',function(e){
+            console.log(this);
+            let ele = this.files[0];
+            let fr = new FileReader();
+            fr.onload = function (ele) {
+                let pvImg = new Image();
+                pvImg.src = ele.target.result;
+                console.log(pvImg);
+                pvImg.onload = function () {
+                    console.log(this.width);
+                    console.log(this.height);
+                    chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+                        chats.cellLength([1],aTagName,'em',(aTagName)=>{
+                            aTagName.innerHTML = this.width;
+                        });
+                        chats.cellLength([1],aTagName,'p',(aTagName)=>{
+                            aTagName.innerHTML = this.height;
+                        });
+                        chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                            aTagName.style.margin = '0 1rem 0 1rem';
+                        });
+                        chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                            aTagName.style.margin = '0 1rem 0 1rem';
+                            aTagName.style.backgroundImage = 'url('+pvImg.src+')';
+                            chats.addEvFn(aTagName,'click',(that)=>{
+                                chats.cellLength([1],chats.getTagClass(document,'body'),'div',(aTagName)=>{
+                                    aTagName.className = 'morePic';
+                                    aTagName.style.width = window.screen.width+'px';
+                                    aTagName.style.height = window.screen.height+'px';
+                                    chats.addEvFn(aTagName,'click',(that)=>{
+                                        chats.remove(that);
+                                    });
+                                    chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                                        let ratioWidth = 0,_this = that.parentNode;
+                                        if (chats.getTagClass(_this,'em').innerHTML >= window.screen.width || chats.getTagClass(_this,'em').innerHTML < window.screen.width){
+                                            ratioWidth = window.screen.width/chats.getTagClass(_this,'em').innerHTML;
+                                            aTagName.style.width = chats.getTagClass(_this,'em').innerHTML*ratioWidth+'px';
+                                            aTagName.style.height = chats.getTagClass(_this,'p').innerHTML*ratioWidth+'px';
+                                        }
+                                        aTagName.style.backgroundImage = that.style.backgroundImage;
+                                        aTagName.style.backgroundSize = '100% 100%';
+                                    });
                                 });
                             });
+                            let ratioWidth = 0,ratioHeight = 0;
+                            if (this.width > 200){
+                                ratioWidth = 200/this.width;
+                                aTagName.style.width = this.width*ratioWidth+'px';
+                                aTagName.style.height = this.height*ratioWidth+'px';
+                            }else {
+                                aTagName.style.width = this.width+'px';
+                                aTagName.style.height = this.height+'px';
+                            }
+                            aTagName.style.backgroundSize = '100% 100%';
                         });
-                        let ratioWidth = 0,ratioHeight = 0;
-                        if (this.width > 200){
-                            ratioWidth = 200/this.width;
-                            aTagName.style.width = this.width*ratioWidth+'px';
-                            aTagName.style.height = this.height*ratioWidth+'px';
-                        }else {
-                            aTagName.style.width = this.width+'px';
-                            aTagName.style.height = this.height+'px';
-                        }
-                        aTagName.style.backgroundSize = '100% 100%';
                     });
-                });
+                };
             };
+            fr.readAsDataURL(ele);
+        }, false);
+    }
+    ShotUpload(oUploadImages);
+    ShotUpload(oShot);
+    let aPersons = aAllTwoLi.querySelectorAll('.persons');
+    chats.myPromise(true).then(()=>{
+        let logger = {
+            fn: ()=>{
+                oAll.style.left = '-200%';
+            }
         };
-        fr.readAsDataURL(ele);
-    }, false);
-    oShot.addEventListener('change',function(e){
-        console.log(this);
-        let ele = this.files[0];
-        let fr = new FileReader();
-        fr.onload = function (ele) {
-            let pvImg = new Image();
-            pvImg.src = ele.target.result;
-            console.log(pvImg);
-            pvImg.onload = function () {
-                console.log(this.width);
-                console.log(this.height);
-                chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                    chats.cellLength([1],aTagName,'em',(aTagName)=>{
-                        aTagName.innerHTML = this.width;
-                    });
-                    chats.cellLength([1],aTagName,'p',(aTagName)=>{
-                        aTagName.innerHTML = this.height;
-                    });
-                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                    });
-                    chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                        aTagName.style.backgroundImage = 'url('+pvImg.src+')';
-                        chats.addEvFn(aTagName,'click',(that)=>{
-                            chats.cellLength([1],chats.getTagClass(document,'body'),'div',(aTagName)=>{
-                                aTagName.className = 'morePic';
-                                aTagName.style.width = window.screen.width+'px';
-                                aTagName.style.height = window.screen.height+'px';
-                                chats.addEvFn(aTagName,'click',(that)=>{
-                                    chats.remove(that);
-                                });
-                                chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                                    let ratioWidth = 0,_this = that.parentNode;
-                                    if (chats.getTagClass(_this,'em').innerHTML > window.screen.width || chats.getTagClass(_this,'em').innerHTML < window.screen.width){
-                                        ratioWidth = window.screen.width/chats.getTagClass(_this,'em').innerHTML;
-                                        aTagName.style.width = chats.getTagClass(_this,'em').innerHTML*ratioWidth+'px';
-                                        aTagName.style.height = chats.getTagClass(_this,'p').innerHTML*ratioWidth+'px';
-                                    }
-                                    aTagName.style.backgroundImage = that.style.backgroundImage;
-                                    aTagName.style.backgroundSize = '100% 100%';
-                                });
-                            });
-                        });
-                        let ratioWidth = 0,ratioHeight = 0;
-                        if (this.width > 200){
-                            ratioWidth = 200/this.width;
-                            aTagName.style.width = this.width*ratioWidth+'px';
-                            aTagName.style.height = this.height*ratioWidth+'px';
-                        }else {
-                            aTagName.style.width = this.width+'px';
-                            aTagName.style.height = this.height+'px';
-                        }
-                        aTagName.style.backgroundSize = '100% 100%';
-                    });
-                });
-            };
+        chats.loop(aPersons,(i)=>{
+            chats.addEvFn(i,'click',logger.fn.bind(logger));
+        });
+    }).then(()=>{
+        let oBack = chats.getTagClass(aAllThreeLi,'.back');
+        let logger = {
+            fn: ()=>{
+                oAll.style.left = '-100%';
+            }
         };
-        fr.readAsDataURL(ele);
-    }, false);
-    chats.myPromise(true).then(console.log(new Audio())).then(()=>{
-        console.log(222);
+        chats.addEvFn(oBack,'click',logger.fn.bind(logger));
     });
 };

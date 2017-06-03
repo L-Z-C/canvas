@@ -13,126 +13,96 @@ body{
     overflow: hidden;
     background: #ececec;
 }
+:root {
+    --1:100;
+    --2:calc(var(--1) * 3);
+    --3 : 3;
+}
 #all{
-    width: 200%;
-    height: auto;
+    --start:0;
+    width: calc(var(--2) * 1%);
+    height: calc(var(--1) * 1%);
     display: flex;
     position: absolute;
-    left: 0;
-    top:0;
+    left: var(--start);
+    top:var(--start);
     transition: all 0.5s ease;
 }
 #all>li{
-    width: 100%;
+    width: calc(var(--1) * 1%);
     display: flex;
     height: auto;
     position: relative;
     flex-direction: column;
     overflow: hidden;
 }
-#all>li:first-child{
-    background: #ececec;
-}
 #all>li:last-child{
-    background: #ececec;
+    background: gold;
 }
-.morePic{
-    position: fixed;
-    display: flex;
-    background: #333;
-    top:0;
-    left: 0;
-    z-index: 9999;
-}
-.morePic>span{
-    position: absolute;
-    width: 100%;
-    top:50%;
-    transform: translateY(-50%);
-    background-size: 100% 100%;
-}
-#all>li:first-child>header{
-    width: 100%;
-    height: 8%;
+#all>li:first-child>header,#all>li:nth-child(2)>header,#all>li:last-child>header{
+    width: calc(var(--1)*1%);
+    height: calc(var(--1) / 12.5 * 1%);
     background: #333;
     display: flex;
-    position: fixed;
-    top:0;
+    position: relative;
 }
-#all>li:first-child>header>title{
+#all>li:first-child>header>title,#all>li:nth-child(2)>header>title,#all>li:last-child>header>title{
     display: flex;
     align-self: center;
-    margin: 0 auto;
+    margin: var(--start) auto;
     color: #FFF;
-    font-size: 2rem;
+    font-size: calc(var(--1)/50 *1rem);
 }
 #all>li:first-child>header>i{
-    width: 3.6rem;
-    height: 3rem;
-    border-radius: 50%;
+    width: calc(var(--3) * 1.2rem);
+    height: calc(var(--3)*1rem);
+    border-radius: calc(var(--1)/2*1%);
     position: absolute;
-    right: 6%;
+    right: calc(var(--3) * 2%);
     display: flex;
-    top:50%;
-    transform: translateY(-50%);
+    top:calc(var(--1) / 2 *1%);
+    transform: translateY(calc(var(--1) / 2 * -1%));
     background: url("../images/users.png") no-repeat;
-    background-size: 100% 100%;
+    background-size: calc(var(--1) * 1%) calc(var(--1) * 1%);
+}
+#all>li:nth-child(2)>header>i,#all>li:last-child>header>i{
+    width: calc(var(--3) * 1.2rem);
+    height: calc(var(--3)*1rem);
+    border-radius: calc(var(--1)/2*1%);
+    position: absolute;
+    left: calc(var(--3) * 2%);
+    display: flex;
+    top:calc(var(--1) / 2 *1%);
+    transform: translateY(calc(var(--1) / 2 * -1%));
+    background: url("../images/back.png") no-repeat;
+    background-size: calc(var(--1) * 1%) calc(var(--1) * 1%);
 }
 #all>li:first-child>article{
-    width: 100%;
-    height: 84%;
-    position: fixed;
-    top:8%;
+    width: calc(var(--1)*1%);
+    height: calc(var(--1) / 1.19 * 1%);
+    position: relative;
     background: #ececec;
     overflow-y: auto;
 }
-#all>li:first-child>article>div>em,#all>li:first-child>article>div>p{
-    display: none;
-}
-#all>li:first-child>article>div{
-    width: inherit;
-    height: auto;
-    display: flex;
-    margin: 1rem 0 1rem 0;
-    flex-direction: row-reverse;
-}
-#all>li:first-child>article>div>bdo{
-    width: 5rem;
-    height: 5rem;
-    display: inline-flex;
-    background: url("../images/headOne.jpg") no-repeat;
-    background-size: cover;
-}
-#all>li:first-child>article>div>span{
-    background: #FFF;
-    font-size: 1.6rem;
-    color: #333;
-    padding: 0.5rem;
-    display: inline-flex;
-    border-radius: 0.4rem;
-    align-items: center;
-    letter-spacing: 0.2rem;
-}
 #all>li:first-child>footer{
-    width: 100%;
-    height: 8%;
-    background: seashell;
-    position: fixed;
-    bottom: 0;
-    transition: all 0.5s ease;
+    width: calc(var(--1)*1%);
+    height: calc(var(--1) / 12.5 * 1%);
+    display: flex;
+    position: relative;
+    background: #ececec;
 }
 #all>li:first-child>footer>ul{
-    width: 100%;
-    height: 100%;
+    width: calc(var(--1)*1%);
+    height: calc(var(--1)*1%);
     display: flex;
     justify-content: space-around;
 }
 #all>li:first-child>footer>ul>li{
-    width: 3rem;
-    height: 3rem;
+    width: calc(var(--3) * 1rem);
+    height: calc(var(--3) * 1rem);
     display: inline-flex;
     align-self: center;
-    border-radius: 50%;
+    border-radius: calc(var(--1) / 2 * 1%);
     font-size: 1.8rem;
     align-items: center;
     overflow: hidden;
@@ -167,16 +137,56 @@ body{
     background-size: cover;
     cursor: pointer;
 }
-#more{
+.morePic{
+    position: fixed;
+    display: flex;
+    background: #333;
+    top:0;
+    left: 0;
+    z-index: 9999;
+}
+.morePic>span{
+    position: absolute;
     width: 100%;
-    height: 8rem;
+    top:50%;
+    transform: translateY(-50%);
+    background-size: 100% 100%;
+}
+#all>li:first-child>article>div>em,#all>li:first-child>article>div>p{
+    display: none;
+}
+#all>li:first-child>article>div{
+    width: inherit;
+    height: auto;
+    display: flex;
+    margin: 1rem 0 1rem 0;
+    flex-direction: row-reverse;
+}
+#all>li:first-child>article>div>bdo{
+    width: 5rem;
+    height: 5rem;
+    display: inline-flex;
+    background: url("../images/headOne.jpg") no-repeat;
+    background-size: cover;
+}
+#all>li:first-child>article>div>span{
+    background: #FFF;
+    font-size: 1.6rem;
+    color: #333;
+    padding: 0.5rem;
+    display: inline-flex;
+    border-radius: 0.4rem;
+    align-items: center;
+    letter-spacing: 0.2rem;
+}
+#more{
+    width: calc(var(--1)*1%);
+    height: calc(var(--1) / 12.5 * 1rem);
     display: flex;
     background: #ececec;
     position: fixed;
-    bottom: -8rem;
-    left: 0;
+    bottom: calc(var(--1) / 12.5 * -1rem);
     transition: all 0.5s ease;
-    display: none;
 }
 #more>ul{
     width: 100%;
@@ -220,29 +230,28 @@ body{
     color: #8a8a8a;
 }
 #emoticon{
-    width: 100%;
+    width: calc(var(--1) * 1%);
     height: 18rem;
     display: flex;
     flex-direction: column;
     position: fixed;
     bottom: -18rem;
-    left: 0;
     transition: all 0.5s ease;
 }
 #emoticon>article{
-    width: 100%;
+    width: calc(var(--1) * 1%);
     height: 14rem;
     display: flex;
     background: #FFF;
     position: absolute;
-    top:0;
+    top:var(--start);
     overflow: auto;
 }
 #emoticon>article:first-child{
     z-index: 9999;
 }
 #emoticon>article>ul{
-    width: 100%;
+    width: calc(var(--1) * 1%);
     height: 14rem;
     display: flex;
     flex-wrap: wrap;
@@ -254,11 +263,11 @@ body{
     margin: 4%;
 }
 #emoticon>footer{
-    width: 100%;
+    width: calc(var(--1) * 1%);
     height: 4rem;
     display: flex;
     position: absolute;
-    bottom: 0;
+    bottom: var(--start);
     background: #FFF;
 }
 #emoticon>footer>dl{
@@ -279,7 +288,7 @@ body{
     height: 4rem;
 }
 #emoticon>footer>dl>dd:nth-child(2)>ul{
-    width: 100%;
+    width: calc(var(--1) * 1%);
     height: inherit;
     background: #FFF;
 }
@@ -316,47 +325,21 @@ body{
     background: url("../images/em_plus.png") no-repeat;
     background-size: cover;
 }
-#all>li:last-child>header{
-    width: 100%;
-    height: 8%;
-    background: #333;
-    display: flex;
-    position: relative;
-}
-#all>li:last-child>header>title{
-    display: flex;
-    align-self: center;
-    margin: 0 auto;
-    color: #FFF;
-    font-size: 2rem;
-}
-#all>li:last-child>header>i{
-    width: 3.6rem;
-    height: 3rem;
-    border-radius: 50%;
-    position: absolute;
-    left: 6%;
-    display: flex;
-    top:50%;
-    transform: translateY(-50%);
-    background: url("../images/back.png") no-repeat;
-    background-size: 100% 100%;
-}
-#all>li:last-child .person{
+#all>li:nth-child(2) .person{
     width: 100%;
     height: auto;
     display: flex;
     background: #FFF;
     border-bottom: 0.1rem solid #bfbfbf;
 }
-#all>li:last-child .person>ul{
+#all>li:nth-child(2) .person>ul{
     display: flex;
     width: inherit;
     height: inherit;
     flex-wrap: wrap;
     justify-content: space-around;
 }
-#all>li:last-child .person>ul>li{
+#all>li:nth-child(2) .person>ul>li{
     width: 5rem;
     height: 7rem;
     margin: 2%;
@@ -365,19 +348,19 @@ body{
     border-top-left-radius: 0.5rem;
     border-top-right-radius: 0.5rem;
 }
-#all>li:last-child .person>ul>li>figure{
+#all>li:nth-child(2) .person>ul>li>figure{
     width: 5rem;
     height: 5rem;
     border-radius: 0.5rem;
 }
-#all>li:last-child .person>ul>li>figure>img{
+#all>li:nth-child(2)> .person>ul>li>figure>img{
     width: 100%;
     height: 100%;
     background: no-repeat;
     background-size: cover;
     border-radius: 0.5rem;
 }
-#all>li:last-child .person>ul>li>figcaption{
+#all>li:nth-child(2) .person>ul>li>figcaption{
     width: 5rem;
     height: 2rem;
     display: flex;
@@ -386,12 +369,12 @@ body{
     color: #333;
     font-size: 1rem;
 }
-#all>li:last-child .person>ul>li:last-child>figure{
+#all>li:nth-child(2) .person>ul>li:last-child>figure{
     border: 0.1rem solid #bfbfbf;
     display: flex;
     position: relative;
 }
-#all>li:last-child .person>ul>li:last-child>figure>img{
+#all>li:nth-child(2) .person>ul>li:last-child>figure>img{
     width: 80%;
     height: 80%;
     background: no-repeat;
@@ -402,7 +385,7 @@ body{
     top:50%;
     transform: translateX(-50%) translateY(-50%);
 }
-#all>li:last-child>article{
+#all>li:nth-child(2)>article{
     width: 100%;
     height: auto;
     background: #FFF;
@@ -412,30 +395,30 @@ body{
     border-top: 0.1rem solid #bfbfbf;
     border-bottom: 0.1rem solid #bfbfbf;
 }
-#all>li:last-child>article>ul{
+#all>li:nth-child(2)>article>ul{
     width: inherit;
     height: inherit;
     display: flex;
     flex-direction: column;
 }
-#all>li:last-child>article>ul>li{
+#all>li:nth-child(2)>article>ul>li{
     width: 96%;
     height: 4rem;
     border-bottom: 0.1rem solid #bfbfbf;
     display: flex;
     margin-left: 10%;
 }
-#all>li:last-child>article>ul>li:last-child{
+#all>li:nth-child(2)>article>ul>li:last-child{
     border-bottom: none;
 }
-#all>li:last-child>article>ul>li>bdi{
+#all>li:nth-child(2)>article>ul>li>bdi{
     display: flex;
     align-self: center;
     font-size: 1.8rem;
     color: #333;
     font-weight: bold;
 }
-#all>li:last-child>article>ul>li>bdo{
+#all>li:nth-child(2)>article>ul>li>bdo{
     display: flex;
     align-self: center;
     position: absolute;
@@ -443,14 +426,14 @@ body{
     color: #8c8c8c;
     font-size: 1.6rem;
 }
-#all>li:last-child>article>ul>li .tag{
+#all>li:nth-child(2)>article>ul>li .tag{
     width: 5.5rem;
     height: 3rem;
     border-radius: 2rem;
     background: #e6e6e6;
     border: 0.1rem solid #8a8a8a;
 }
-#all>li:last-child>article>ul>li .tag>span{
+#all>li:nth-child(2)>article>ul>li .tag>span{
     width: 3rem;
     height: 3rem;
     border-radius: 3rem;
@@ -460,7 +443,7 @@ body{
     left: 0;
     transition: all 0.5s ease;
 }
-#all>li:last-child>button{
+#all>li:nth-child(2)>button{
     width: 90%;
     height: 4rem;
     background: salmon;
