@@ -335,6 +335,30 @@ window.onload = ()=>{
                 }
             );
             alert('支持语音');
+        }else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+            navigator.webkitGetUserMedia(videoObj, function(stream){
+                let audio = chats.getId('#audio');
+                console.log(audio);
+                audio.src = window.webkitURL.createObjectURL(stream);
+                audio.onloadedmetadata = function(e) {
+                    audio.play();
+                };
+                setTimeout(()=>{
+                    chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+                        chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                            aTagName.style.margin = '0 1rem 0 1rem';
+                        });
+                        chats.cellLength([1],aTagName,'audio',(aTagName)=>{
+                            aTagName.style.margin = '0 1rem 0 1rem';
+                            aTagName.controls = "controls";
+                            aTagName.src = window.url;
+                            aTagName.style.width = '12rem';
+                            aTagName.style.height = '5rem';
+                        });
+                    });
+                    oContent.removeEventListener('click',getUserMedia,false);
+                },5000);
+            }, errBack);
         } else {
             console.log("getUserMedia not supported");
             alert('不支持语音');
