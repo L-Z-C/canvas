@@ -17,6 +17,13 @@ Chat.prototype = {
             fn(that);
         },false);
     },
+    removeEvFn : (obj,event,fn)=>{
+        "use strict";
+        obj.removeEventListener(event,function () {
+            let that = this;
+            fn(that);
+        },false);
+    },
     myPromise : (tag)=>{
         "use strict";
         return new Promise((resolve,reject)=>{
@@ -47,7 +54,11 @@ Chat.prototype = {
     },
     getTagClassAll : (obj,classTagName,num)=>{
         "use strict";
-        return typeof classTagName==='string'?obj.querySelectorAll(classTagName)[num]:classTagName;
+        if(arguments.length == 2){
+            return typeof classTagName==='string'?obj.querySelectorAll(classTagName):classTagName;
+        }else {
+            return typeof classTagName==='string'?obj.querySelectorAll(classTagName)[num]:classTagName;
+        }
     },
     getTagClass : (obj,classTagName)=>{
         "use strict";

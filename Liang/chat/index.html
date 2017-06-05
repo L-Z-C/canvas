@@ -17,71 +17,22 @@
             <title>群名称(1)</title>
             <i class="group"></i>
         </header>
-        <article><div id="recordingslist"></div><button id="btnStop" onclick="funStop(this);">暂停</button></article>
+        <article></article>
         <footer>
             <ul id="operation">
                 <li class="voice"></li>
-                <li class="content" contenteditable='true' onclick="funStart(this);" id="btnStart" ></li>
+                <li class="content"></li>
                 <li class="emoticon"></li>
                 <li class="plus"></li>
             </ul>
         </footer>
-        <div id="more">
-            <ul>
-                <li class="photo">
-                    <figure>
-                        <img src="images/photo.png"/>
-                    </figure>
-                    <figcaption>照片</figcaption>
-                    <input class="uploadImages" type="file" accept="image/*">
-                </li>
-                <li class="shot">
-                    <figure>
-                        <img src="images/shot.png"/>
-                    </figure>
-                    <figcaption>拍摄</figcaption>
-                    <input class="shots" type="file" accept="image/*" capture = "camcorder">
-                </li>
-                <li>
-                    <figure class="video">
-                        <img src="images/video.png"/>
-                    </figure>
-                    <figcaption>视频聊天</figcaption>
-                </li>
-                <li class="position">
-                    <figure>
-                        <img src="images/position.png"/>
-                    </figure>
-                    <figcaption>位置</figcaption>
-                </li>
-            </ul>
-        </div>
-        <div id="emoticon">
-            <article></article>
-            <article></article>
-            <article></article>
-            <footer>
-                <dl>
-                    <dd>
-                        <i></i>
-                    </dd>
-                    <dd>
-                        <ul>
-                            <li><img src="images/em_list/1.png"/></li>
-                            <li><img src="images/em_list/2.png"/></li>
-                            <li><img src="images/em_list/3.png"/></li>
-                        </ul>
-                    </dd>
-                    <dd id="send">发送</dd>
-                </dl>
-            </footer>
-        </div>
     </li>
     <li>
         <header>
             <title>聊天信息(1)</title>
             <i class="back"></i>
         </header>
+        <footer>
             <div class="person">
                 <ul>
                     <li class="persons">
@@ -172,6 +123,7 @@
                 </ul>
         </article>
         <button>删除并退出</button>
+        </footer>
     </li>
     <li>
         <header>
@@ -180,49 +132,55 @@
         </header>
     </li>
 </ol>
-<script>
-    var recorder = new MP3Recorder({
-        debug:true,
-        funOk: function () {
-            btnStart.disabled = false;
-            console.log('初始化成功');
-        },
-        funCancel: function (msg) {
-            console.log(msg);
-            recorder = null;
-        }
-    });
-    var mp3Blob;
-
-
-    function funStart(button) {
-        btnStart.disabled = true;
-        console.log('录音开始...');
-        recorder.start();
-    }
-    function funStop(button) {
-        recorder.stop();
-        btnStart.disabled = false;
-        console.log('录音结束，MP3导出中...');
-        recorder.getMp3Blob(function (blob) {
-            console.log('MP3导出成功');
-
-            mp3Blob = blob;
-            var url = URL.createObjectURL(mp3Blob);
-            var div = document.createElement('div');
-            var au = document.createElement('audio');
-            var hf = document.createElement('a');
-
-            au.controls = true;
-            au.src = url;
-            hf.href = url;
-            hf.download = new Date().toISOString() + '.mp3';
-            hf.innerHTML = hf.download;
-            div.appendChild(au);
-            div.appendChild(hf);
-            recordingslist.appendChild(div);
-        });
-    }
-</script>
+<div id="more">
+    <ul>
+        <li class="photo">
+            <figure>
+                <img src="images/photo.png"/>
+            </figure>
+            <figcaption>照片</figcaption>
+            <input class="uploadImages" type="file" accept="image/*">
+        </li>
+        <li class="shot">
+            <figure>
+                <img src="images/shot.png"/>
+            </figure>
+            <figcaption>拍摄</figcaption>
+            <input class="shots" type="file" accept="image/*" capture = "camcorder">
+        </li>
+        <li>
+            <figure class="video">
+                <img src="images/video.png"/>
+            </figure>
+            <figcaption>语音聊天</figcaption>
+        </li>
+        <li class="position">
+            <figure>
+                <img src="images/position.png"/>
+            </figure>
+            <figcaption>位置</figcaption>
+        </li>
+    </ul>
+</div>
+<div id="emoticon">
+    <article></article>
+    <article></article>
+    <article></article>
+    <footer>
+        <dl>
+            <dd>
+                <i></i>
+            </dd>
+            <dd>
+                <ul>
+                    <li><img src="images/em_list/1.png"/></li>
+                    <li><img src="images/em_list/2.png"/></li>
+                    <li><img src="images/em_list/3.png"/></li>
+                </ul>
+            </dd>
+            <dd id="send">发送</dd>
+        </dl>
+    </footer>
+</div>
 </body>
 </html>

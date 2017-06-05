@@ -7,28 +7,34 @@ window.onload = ()=>{
         return Chat.call(Chat.prototype);
     }
     const chats = new F();
+    function bodyScroll(event){
+        event.preventDefault();
+    }
+    let jin = 0;
+    if (jin == 0){
+        document.body.addEventListener('touchmove',bodyScroll,false);
+    }
     let oAll = chats.getId('#all');
     let aAllOneLi = document.querySelectorAll('#all>li')[0];
     let aAllTwoLi = document.querySelectorAll('#all>li')[1];
     let aAllThreeLi = document.querySelectorAll('#all>li')[2];
     let oOperation = chats.getId('#operation');
+    let oBody = chats.getTagClass(document,'body');
     let oVoice = chats.getTagClass(oOperation,'.voice'),oContent = chats.getTagClass(oOperation,'.content'),
         oPlus = chats.getTagClass(oOperation,'.plus'), oEmoticon = chats.getTagClass(oOperation,'.emoticon');
     chats.addEvFn(aAllOneLi.querySelector('.group'),'click',()=>{
         oAll.style.left = '-100%';
-        document.body.style.overflowY = 'auto';
+        oBody.style.overflowY = 'auto';
         chats.getId('#more').style.display = 'none';
         chats.getId('#emoticon').style.display = 'none';
-        oAll.style.height = 'auto';
-        aAllTwoLi.style.height = 'auto';
+        oBody.style.height = chats.getTagClass(aAllTwoLi,'header').offsetHeight+chats.getTagClass(aAllTwoLi,'footer').offsetHeight+'px';
+        aAllTwoLi.style.height = oBody.offsetHeight+'px';
     });
     chats.addEvFn(aAllTwoLi.querySelector('.back'),'click',()=>{
         oAll.style.left = 0;
-        document.body.style.overflowY = 'hidden';
+        oBody.style.overflow = 'hidden';
         chats.getId('#more').style.display = 'block';
         chats.getId('#emoticon').style.display = 'block';
-        oAll.style.height = '100%';
-        aAllTwoLi.style.height = '100%';
     });
     chats.addEvFn(oEmoticon,'click',(that)=>{
         if (that.parentNode.parentNode.style.bottom == '18rem'){
@@ -154,13 +160,6 @@ window.onload = ()=>{
             alert(222);
         }
     });
-    function bodyScroll(event){
-        event.preventDefault();
-    }
-    let jin = 0;
-    if (jin == 0){
-        document.body.addEventListener('touchmove',bodyScroll,false);
-    }
     chats.addEvFn(oPlus,'click',(that)=>{
         if (that.parentNode.parentNode.style.bottom == '8rem'){
             that.parentNode.parentNode.style.bottom = 0;
@@ -182,6 +181,11 @@ window.onload = ()=>{
     });
     chats.addEvFn(oVoice,'click',(that)=>{
         if (chats.getTagClass(oContent,'span')){
+            chats.removeEvFn(chats.getId('#btnStart'),'click',()=>{
+                console.log('录音开始...');
+                recorder.start();
+            });
+            oContent.setAttribute("id", "");
             that.style.backgroundImage = 'url(./images/voice.png)';
             oContent.innerHTML = '';
             chats.addEvFn(oContent,'keydown',(that,e)=>{
@@ -207,11 +211,8 @@ window.onload = ()=>{
                 }
                 return false;
             });
-            oContent.removeEventListener('click',getUserMedia,false);
-            oContent.style.justifyContent = 'flex-start';
-            oContent.style.contentEditable = 'true';
         }else {
-            oContent.setAttribute("disabled", "disabled");
+            // oContent.setAttribute("disabled", "disabled");
             oContent.setAttribute("id", "btnStart");
             oContent.innerHTML = '';
             chats.cellLength([1],oContent,'span',(aTagName)=>{
@@ -219,16 +220,42 @@ window.onload = ()=>{
             });
             chats.cellLength([1],oContent,'audio',(aTagName)=>{
                 aTagName.style.opacity = 0;
+                aTagName.setAttribute("id", "audio");
             });
             that.style.backgroundImage = 'url(./images/keyboard.png)';
             oContent.style.border = '0.1rem solid #8a8a8a';
-            oContent.addEventListener('click',getUserMedia,false);
             oContent.style.justifyContent = 'center';
             oContent.style.alignSelf = 'center';
             chats.getId('#more').style.bottom = '-8rem';
             chats.getId('#emoticon').style.bottom = '-18rem';
             that.parentNode.parentNode.style.bottom = 0;
             oContent.style.contentEditable = 'false';
+            oContent.addEventListener('click',getUserMedia,false);
+            var recorder = new MP3Recorder({
+                debug:true,
+                funOk: function () {
+                    console.log('初始化成功');
+                },
+                funCancel: function (msg) {
+                    console.log(msg);
+                    recorder = null;
+                }
+            });
+            let mp3Blob;
+            chats.addEvFn(chats.getId('#btnStart'),'click',()=>{
+                console.log('录音开始...');
+                recorder.start();
+            });
+            setTimeout(()=>{
+                recorder.stop();
+                console.log('录音结束，MP3导出中...');
+                recorder.getMp3Blob(function (blob) {
+                    console.log('MP3导出成功');
+
+                    mp3Blob = blob;
+                    window.url = URL.createObjectURL(mp3Blob);
+                });
+            },5000);
         }
     });
     chats.addEvFn(oContent,'keydown',(that,e)=>{
@@ -281,27 +308,27 @@ window.onload = ()=>{
         if (navigator.MediaStream ) {
             navigator.MediaStream ({ audio: true , video: false},
                 function(stream) {
-                    var audio = document.querySelector('audio');
+                    let audio = chats.getId('#audio');
                     console.log(audio);
                     audio.src = window.URL.createObjectURL(stream);
                     audio.onloadedmetadata = function(e) {
                         audio.play();
                     };
-                    // setTimeout(()=>{
-                    //     chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                    //         chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                    //             aTagName.style.margin = '0 1rem 0 1rem';
-                    //         });
-                    //         chats.cellLength([1],aTagName,'audio',(aTagName)=>{
-                    //             aTagName.style.margin = '0 1rem 0 1rem';
-                    //             aTagName.controls = "controls";
-                    //             aTagName.src = audio.src;
-                    //             aTagName.style.width = '20rem';
-                    //             aTagName.style.height = '5rem';
-                    //         });
-                    //     });
-                    //     oContent.removeEventListener('click',getUserMedia,false);
-                    // },3000);
+                    setTimeout(()=>{
+                        chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+                            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                                aTagName.style.margin = '0 1rem 0 1rem';
+                            });
+                            chats.cellLength([1],aTagName,'audio',(aTagName)=>{
+                                aTagName.style.margin = '0 1rem 0 1rem';
+                                aTagName.controls = "controls";
+                                aTagName.src = window.url;
+                                aTagName.style.width = '12rem';
+                                aTagName.style.height = '5rem';
+                            });
+                        });
+                        oContent.removeEventListener('click',getUserMedia,false);
+                    },5000);
                 },
                 function(err) {
                     console.log("The following error occurred: " + err.name);
@@ -318,50 +345,38 @@ window.onload = ()=>{
     },false);
     let oArticle = document.querySelectorAll('#emoticon>article');
     let oArt = aAllOneLi.querySelectorAll('article');
-    chats.loop(oArticle,(i)=>{
-        chats.touch(i,(direction)=>{
-            switch (direction) {
-                case 1:
-                    if(i.scrollHeight == i.clientHeight + i.scrollTop){
+    function scrollTop(abj) {
+        chats.loop(abj,(i)=>{
+            chats.touch(i,(direction)=>{
+                switch (direction) {
+                    case 1:
+                        if(i.scrollHeight == i.clientHeight + i.scrollTop){
+                            document.body.addEventListener('touchmove',bodyScroll,false);
+                        }else {
+                            document.body.removeEventListener('touchmove',bodyScroll,false);
+                        }
+                        break;
+                    case 2:
+                        if(i.scrollTop == 0){
+                            document.body.addEventListener('touchmove',bodyScroll,false);
+                        }else {
+                            document.body.removeEventListener('touchmove',bodyScroll,false);
+                        }
+                        break;
+                    case 3:
                         document.body.addEventListener('touchmove',bodyScroll,false);
-                    }else {
-                        document.body.removeEventListener('touchmove',bodyScroll,false);
-                    }
-                    break;
-                case 2:
-                    if(i.scrollTop == 0){
+                        break;
+                    case 4:
                         document.body.addEventListener('touchmove',bodyScroll,false);
-                    }else {
-                        document.body.removeEventListener('touchmove',bodyScroll,false);
-                    }
-                    break;
-                default:
-            }
-            jin = 0;
+                        break;
+                    default:
+                }
+                jin = 0;
+            });
         });
-    });
-    chats.loop(oArt,(i)=>{
-        chats.touch(i,(direction)=>{
-            switch (direction) {
-                case 1:
-                    if(i.scrollHeight == i.clientHeight + i.scrollTop){
-                        document.body.addEventListener('touchmove',bodyScroll,false);
-                    }else {
-                        document.body.removeEventListener('touchmove',bodyScroll,false);
-                    }
-                    break;
-                case 2:
-                    if(i.scrollTop == 0){
-                        document.body.addEventListener('touchmove',bodyScroll,false);
-                    }else {
-                        document.body.removeEventListener('touchmove',bodyScroll,false);
-                    }
-                    break;
-                default:
-            }
-            jin = 0;
-        });
-    });
+    }
+    scrollTop(oArticle);
+    scrollTop(oArt);
     // chats.addEvFn(oContent,'focus',(that)=>{
     //     document.execCommand("insertImage","false","https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png")
     //     document.execCommand("insertHTML","false","<br/>");
@@ -441,6 +456,7 @@ window.onload = ()=>{
         let logger = {
             fn: ()=>{
                 oAll.style.left = '-200%';
+                oBody.style.overflow = 'hidden';
             }
         };
         chats.loop(aPersons,(i)=>{
@@ -451,8 +467,34 @@ window.onload = ()=>{
         let logger = {
             fn: ()=>{
                 oAll.style.left = '-100%';
+                oBody.style.overflowY = 'auto';
             }
         };
         chats.addEvFn(oBack,'click',logger.fn.bind(logger));
     });
+    function getLocation()
+    {
+        if (navigator.geolocation)
+        {
+            navigator.geolocation.getCurrentPosition(showPosition);
+            console.log('支持');
+        }
+        else
+        {
+            console.log("该浏览器不支持获取地理位置");
+        }
+    }
+    getLocation();
+    function showPosition(position)
+    {
+        console.log("纬度: " + position.coords.latitude + "<br>经度: " + position.coords.longitude);
+        // if(window.localStorage){
+        //     var latitLongit = {};
+        //     latitLongit.latitude = position.coords.latitude;
+        //     latitLongit.longitude  = position.coords.longitude;
+        //     localStorage.setItem('info',JSON.stringify(latitLongit));
+        // }else{
+        //     alert("浏览暂不支持localStorage");
+        // }
+    }
 };
