@@ -183,7 +183,7 @@ window.onload = ()=>{
         if (chats.getTagClass(oContent,'span')){
             chats.removeEvFn(chats.getId('#btnStart'),'click',()=>{
                 console.log('录音开始...');
-                recorder.start();
+                window.recorder.start();
             });
             oContent.setAttribute("id", "");
             that.style.backgroundImage = 'url(./images/voice.png)';
@@ -231,25 +231,25 @@ window.onload = ()=>{
             that.parentNode.parentNode.style.bottom = 0;
             oContent.style.contentEditable = 'false';
             oContent.addEventListener('click',getUserMedia,false);
-            var recorder = new MP3Recorder({
+            window.recorder = new MP3Recorder({
                 debug:true,
                 funOk: function () {
                     console.log('初始化成功');
                 },
                 funCancel: function (msg) {
                     console.log(msg);
-                    recorder = null;
+                    window.recorder = null;
                 }
             });
             let mp3Blob;
             chats.addEvFn(chats.getId('#btnStart'),'click',()=>{
                 console.log('录音开始...');
-                recorder.start();
+                window.recorder.start();
             });
             setTimeout(()=>{
-                recorder.stop();
+                window.recorder.stop();
                 console.log('录音结束，MP3导出中...');
-                recorder.getMp3Blob(function (blob) {
+                window.recorder.getMp3Blob(function (blob) {
                     console.log('MP3导出成功');
 
                     mp3Blob = blob;
