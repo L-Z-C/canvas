@@ -511,14 +511,6 @@ window.onload = ()=>{
     getLocation();
     function showPosition(position)
     {
-        console.log("纬度: " + position.coords.latitude + "<br>经度: " + position.coords.longitude);
-        // if(window.localStorage){
-        //     var latitLongit = {};
-        //     latitLongit.latitude = position.coords.latitude;
-        //     latitLongit.longitude  = position.coords.longitude;
-        //     localStorage.setItem('info',JSON.stringify(latitLongit));
-        // }else{
-        //     alert("浏览暂不支持localStorage");
-        // }
+        alert("纬度: " + position.coords.latitude + "<br>经度: " + position.coords.longitude);
     }
 };
