@@ -312,7 +312,7 @@ window.onload = ()=>{
                     console.log(audio);
                     audio.src = window.URL.createObjectURL(stream);
                     audio.onloadedmetadata = function(e) {
-                        audio.play();
+                        // audio.play();
                     };
                     setTimeout(()=>{
                         chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
@@ -325,6 +325,33 @@ window.onload = ()=>{
                                 aTagName.src = window.url;
                                 aTagName.style.width = '12rem';
                                 aTagName.style.height = '5rem';
+                                aTagName.style.display = 'none';
+                            });
+                            chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                                aTagName.style.width = '5rem';
+                                aTagName.style.height = '2.6rem';
+                                aTagName.style.background = '#94e322';
+                                aTagName.style.margin = '0.8rem 0 0 0';
+                                chats.cellLength([1],aTagName,'i',(aTagName)=>{
+                                    aTagName.style.backgroundImage = 'url(./images/3.png)';
+                                    aTagName.style.backgroundSize = '100% 100%';
+                                });
+                                chats.addEvFn(aTagName,'click',(that)=>{
+                                    let num = 1;
+                                    that.previousSibling.play();
+                                    let timer = setInterval(()=>{
+                                        if (num >= 3){
+                                            num = 1
+                                        }else {
+                                            num++;
+                                        }
+                                        chats.getTagClass(that,'i').style.backgroundImage = 'url(./images/'+num+'.png)';
+                                    },300);
+                                    that.previousSibling.onended = ()=>{
+                                        clearInterval(timer);
+                                        chats.getTagClass(that,'i').style.backgroundImage = 'url(./images/3.png)';
+                                    };
+                                });
                             });
                         });
                         oContent.removeEventListener('click',getUserMedia,false);
@@ -335,31 +362,7 @@ window.onload = ()=>{
                 }
             );
             alert('支持语音');
-        }else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
-            navigator.webkitGetUserMedia(videoObj, function(stream){
-                let audio = chats.getId('#audio');
-                console.log(audio);
-                audio.src = window.webkitURL.createObjectURL(stream);
-                audio.onloadedmetadata = function(e) {
-                    audio.play();
-                };
-                setTimeout(()=>{
-                    chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                        chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                            aTagName.style.margin = '0 1rem 0 1rem';
-                        });
-                        chats.cellLength([1],aTagName,'audio',(aTagName)=>{
-                            aTagName.style.margin = '0 1rem 0 1rem';
-                            aTagName.controls = "controls";
-                            aTagName.src = window.url;
-                            aTagName.style.width = '12rem';
-                            aTagName.style.height = '5rem';
-                        });
-                    });
-                    oContent.removeEventListener('click',getUserMedia,false);
-                },5000);
-            }, errBack);
-        } else {
+        }else {
             console.log("getUserMedia not supported");
             alert('不支持语音');
         }
@@ -511,6 +514,6 @@ window.onload = ()=>{
     getLocation();
     function showPosition(position)
     {
-        alert("纬度: " + position.coords.latitude + "<br>经度: " + position.coords.longitude);
+        console.log("纬度: " + position.coords.latitude + "<br>经度: " + position.coords.longitude);
     }
 };

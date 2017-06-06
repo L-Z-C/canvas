@@ -119,7 +119,7 @@
                 console.log(str);
             }
         }
-    }
+    };
 
     exports.MP3Recorder = MP3Recorder;
 })(window);

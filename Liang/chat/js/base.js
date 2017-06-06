@@ -111,7 +111,7 @@ Chat.prototype = {
         }else{
             obj.remove();
         }
-    }
+    },
 };
     exports.Chat = Chat;
 })(window);

@@ -33,7 +33,7 @@
     var convertBuffer = function (arrayBuffer) {
         var data = new Float32Array(arrayBuffer);
         var out = new Int16Array(arrayBuffer.length);
-        floatTo16BitPCM(data, out)
+        floatTo16BitPCM(data, out);
         return out;
     };
 
