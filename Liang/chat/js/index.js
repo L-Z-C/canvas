@@ -15,6 +15,7 @@ window.onload = ()=>{
         document.body.addEventListener('touchmove',bodyScroll,false);
     }
     let oAll = chats.getId('#all');
+    let off = true;
     let aAllOneLi = document.querySelectorAll('#all>li')[0];
     let aAllTwoLi = document.querySelectorAll('#all>li')[1];
     let aAllThreeLi = document.querySelectorAll('#all>li')[2];
@@ -22,6 +23,7 @@ window.onload = ()=>{
     let oBody = chats.getTagClass(document,'body');
     let oVoice = chats.getTagClass(oOperation,'.voice'),oContent = chats.getTagClass(oOperation,'.content'),
         oPlus = chats.getTagClass(oOperation,'.plus'), oEmoticon = chats.getTagClass(oOperation,'.emoticon');
+    oContent.setAttribute("type", "true");
     chats.addEvFn(aAllOneLi.querySelector('.group'),'click',()=>{
         oAll.style.left = '-100%';
         oBody.style.overflowY = 'auto';
@@ -49,7 +51,6 @@ window.onload = ()=>{
         }
         oVoice.style.backgroundImage = 'url(./images/voice.png)';
         oContent.style.justifyContent = 'flex-start';
-        oContent.removeEventListener('click',getUserMedia,false);
         if (chats.getTagClass(oContent,'span')){
             chats.remove(chats.getTagClass(oContent,'span'));
         }
@@ -172,20 +173,16 @@ window.onload = ()=>{
             chats.getId('#emoticon').style.bottom = '-18rem';
         }
         oVoice.style.backgroundImage = 'url(./images/voice.png)';
-        oContent.contentEditable = true;
         oContent.style.justifyContent = 'flex-start';
-        oContent.removeEventListener('click',getUserMedia,false);
         if (chats.getTagClass(oContent,'span')){
             chats.remove(chats.getTagClass(oContent,'span'));
         }
     });
     chats.addEvFn(oVoice,'click',(that)=>{
         if (chats.getTagClass(oContent,'span')){
-            chats.removeEvFn(chats.getId('#btnStart'),'click',()=>{
-                console.log('录音开始...');
-                window.recorder.start();
-            });
-            oContent.setAttribute("id", "");
+            oContent.id = '';
+            oContent.type = 'false';
+            oContent.contentEditable = 'true';
             that.style.backgroundImage = 'url(./images/voice.png)';
             oContent.innerHTML = '';
             chats.addEvFn(oContent,'keydown',(that,e)=>{
@@ -212,9 +209,8 @@ window.onload = ()=>{
                 return false;
             });
         }else {
-            // oContent.setAttribute("disabled", "disabled");
-            oContent.setAttribute("id", "btnStart");
             oContent.innerHTML = '';
+            oContent.id = 'btnStart';
             chats.cellLength([1],oContent,'span',(aTagName)=>{
                 aTagName.innerHTML = '按住说话';
             });
@@ -229,35 +225,107 @@ window.onload = ()=>{
             chats.getId('#more').style.bottom = '-8rem';
             chats.getId('#emoticon').style.bottom = '-18rem';
             that.parentNode.parentNode.style.bottom = 0;
-            oContent.style.contentEditable = 'false';
-            oContent.addEventListener('click',getUserMedia,false);
-            window.recorder = new MP3Recorder({
-                debug:true,
-                funOk: function () {
-                    console.log('初始化成功');
-                },
-                funCancel: function (msg) {
-                    console.log(msg);
-                    window.recorder = null;
+            let oBtnStart = chats.getId('#btnStart');
+            chats.recorder(oBtnStart,oBtnStart,(recorder,oBtnStart)=>{
+                chats.getId('#spinner').style.display = 'block';
+                let num = 0;
+                window.seconds = setInterval(()=>{
+                    num++;
+                    console.log(num);
+                    if (num >= 60){
+                        voice(recorder,oBtnStart);
+                        clearInterval(window.seconds);
+                        off = false;
+                    }else if (num < 60){
+                        off = true;
+                    }
+                },1000);
+                // oBtnStart.removeEventListener('touchend',()=>{
+                //     voice(recorder,oBtnStart);
+                //     console.log(111);
+                // },false);
+            },(recorder,oBtnStart)=>{
+                if (off == true){
+                    voice(recorder,oBtnStart);
+                    clearInterval(window.seconds);
                 }
             });
-            let mp3Blob;
-            chats.addEvFn(chats.getId('#btnStart'),'click',()=>{
-                console.log('录音开始...');
-                window.recorder.start();
-            });
-            setTimeout(()=>{
-                window.recorder.stop();
-                console.log('录音结束，MP3导出中...');
-                window.recorder.getMp3Blob(function (blob) {
-                    console.log('MP3导出成功');
-
-                    mp3Blob = blob;
-                    window.url = URL.createObjectURL(mp3Blob);
-                });
-            },5000);
+            oContent.contentEditable = 'false';
+            oContent.type = 'false';
         }
     });
+    function voice(recorder,oBtnStart) {
+        let mp3Blob;
+        if (oBtnStart.id == 'btnStart'){
+            recorder.stop();
+            console.log('录音结束，MP3导出中...');
+            recorder.getMp3Blob((blob)=>{
+                console.log('MP3导出成功');
+
+                mp3Blob = blob;
+                let url = URL.createObjectURL(mp3Blob);
+                chats.getId('#spinner').style.display = 'none';
+                chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                        aTagName.style.margin = '0 1rem 0 1rem';
+                    });
+                    chats.cellLength([1],aTagName,'audio',(aTagName)=>{
+                        aTagName.className = 'audioimg';
+                        aTagName.style.margin = '0 1rem 0 1rem';
+                        aTagName.controls = "controls";
+                        aTagName.src = url;
+                        console.log(url);
+                        aTagName.style.width = '12rem';
+                        aTagName.style.height = '5rem';
+                        aTagName.style.display = 'none';
+                    });
+                    chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                        aTagName.style.height = '2.6rem';
+                        aTagName.style.background = '#94e322';
+                        aTagName.style.margin = '0.8rem 0 0 0';
+                        chats.cellLength([1],aTagName,'i',(aTagName)=>{
+                            aTagName.style.backgroundImage = 'url(./images/3.png)';
+                            aTagName.style.backgroundSize = '100% 100%';
+                        });
+                        chats.addEvFn(aTagName,'click',(that)=>{
+                            let num = 1;
+                            that.previousSibling.play();
+                            let timer = setInterval(()=>{
+                                if (num >= 3){
+                                    num = 1
+                                }else {
+                                    num++;
+                                }
+                                chats.getTagClass(that,'i').style.backgroundImage = 'url(./images/'+num+'.png)';
+                            },300);
+                            that.previousSibling.onended = ()=>{
+                                clearInterval(timer);
+                                chats.getTagClass(that,'i').style.backgroundImage = 'url(./images/3.png)';
+                            };
+                        });
+                    });
+                    chats.cellLength([1],aTagName,'time',(aTagName)=>{
+                        aTagName.style.padding = '2rem 0.5rem 0 0';
+                    });
+                });
+                let aAudioimg = document.querySelectorAll('.audioimg');
+                chats.loop(aAudioimg,(i)=>{
+                    console.log(i.src);
+                    i.onloadedmetadata = ()=>{
+                        console.log(i.duration);
+                        i.nextSibling.nextSibling.innerHTML = Math.round(i.duration)+'s';
+                        let time = (Math.round(i.duration) / 60).toFixed(2);
+                        console.log(time);
+                        if (16 * time < 2){
+                            i.nextSibling.style.width = '2rem';
+                        }else {
+                            i.nextSibling.style.width = 16 * time + 'rem';
+                        }
+                    };
+                })
+            });
+        }
+    }
     chats.addEvFn(oContent,'keydown',(that,e)=>{
         e = e || window.event;
         if (e.keyCode == 13){
@@ -299,73 +367,6 @@ window.onload = ()=>{
         chats.getId('#more').style.display = 'block';
         chats.getId('#emoticon').style.display = 'block';
         document.body.addEventListener('touchmove',bodyScroll,false);
-    }
-    function getUserMedia() {
-        navigator.MediaStream  = navigator.MediaStream  ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia;
-
-        if (navigator.MediaStream ) {
-            navigator.MediaStream ({ audio: true , video: false},
-                function(stream) {
-                    let audio = chats.getId('#audio');
-                    console.log(audio);
-                    audio.src = window.URL.createObjectURL(stream);
-                    audio.onloadedmetadata = function(e) {
-                        // audio.play();
-                    };
-                    setTimeout(()=>{
-                        chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                                aTagName.style.margin = '0 1rem 0 1rem';
-                            });
-                            chats.cellLength([1],aTagName,'audio',(aTagName)=>{
-                                aTagName.style.margin = '0 1rem 0 1rem';
-                                aTagName.controls = "controls";
-                                aTagName.src = window.url;
-                                aTagName.style.width = '12rem';
-                                aTagName.style.height = '5rem';
-                                aTagName.style.display = 'none';
-                            });
-                            chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                                aTagName.style.width = '5rem';
-                                aTagName.style.height = '2.6rem';
-                                aTagName.style.background = '#94e322';
-                                aTagName.style.margin = '0.8rem 0 0 0';
-                                chats.cellLength([1],aTagName,'i',(aTagName)=>{
-                                    aTagName.style.backgroundImage = 'url(./images/3.png)';
-                                    aTagName.style.backgroundSize = '100% 100%';
-                                });
-                                chats.addEvFn(aTagName,'click',(that)=>{
-                                    let num = 1;
-                                    that.previousSibling.play();
-                                    let timer = setInterval(()=>{
-                                        if (num >= 3){
-                                            num = 1
-                                        }else {
-                                            num++;
-                                        }
-                                        chats.getTagClass(that,'i').style.backgroundImage = 'url(./images/'+num+'.png)';
-                                    },300);
-                                    that.previousSibling.onended = ()=>{
-                                        clearInterval(timer);
-                                        chats.getTagClass(that,'i').style.backgroundImage = 'url(./images/3.png)';
-                                    };
-                                });
-                            });
-                        });
-                        oContent.removeEventListener('click',getUserMedia,false);
-                    },5000);
-                },
-                function(err) {
-                    console.log("The following error occurred: " + err.name);
-                }
-            );
-            alert('支持语音');
-        }else {
-            console.log("getUserMedia not supported");
-            alert('不支持语音');
-        }
     }
     chats.getTagClass(chats.getId('#more'),'.video').addEventListener('click',()=>{
         window.location.href = './video.html';
@@ -418,6 +419,10 @@ window.onload = ()=>{
         obj.addEventListener('change',function(e){
             console.log(this);
             let ele = this.files[0];
+            let aaa = this.files;
+            for (let i of aaa){
+                console.log(i);
+            }
             let fr = new FileReader();
             fr.onload = function (ele) {
                 let pvImg = new Image();

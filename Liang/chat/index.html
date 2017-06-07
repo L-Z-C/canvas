@@ -11,6 +11,13 @@
     <script src="js/recordmp3.js"></script>
 </head>
 <body>
+<div id="spinner">
+    <div class="rect1"></div>
+    <div class="rect2"></div>
+    <div class="rect3"></div>
+    <div class="rect4"></div>
+    <div class="rect5"></div>
+</div>
 <ol id="all">
     <li>
         <header>
@@ -139,7 +146,7 @@
                 <img src="images/photo.png"/>
             </figure>
             <figcaption>照片</figcaption>
-            <input class="uploadImages" type="file" accept="image/*">
+            <input class="uploadImages" type="file" accept="image/*" multiple="multiple">
         </li>
         <li class="shot">
             <figure>

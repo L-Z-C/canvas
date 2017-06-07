@@ -54,11 +54,7 @@ Chat.prototype = {
     },
     getTagClassAll : (obj,classTagName,num)=>{
         "use strict";
-        if(arguments.length == 2){
-            return typeof classTagName==='string'?obj.querySelectorAll(classTagName):classTagName;
-        }else {
-            return typeof classTagName==='string'?obj.querySelectorAll(classTagName)[num]:classTagName;
-        }
+        return typeof classTagName==='string'?obj.querySelectorAll(classTagName)[num]:classTagName;
     },
     getTagClass : (obj,classTagName)=>{
         "use strict";
@@ -112,6 +108,71 @@ Chat.prototype = {
             obj.remove();
         }
     },
+    recorder : (startObj,endObj,fn1,fn2)=>{
+        "use strict";
+        if (startObj.type == "true"){
+            let recorder = new MP3Recorder({
+                debug:true,
+                funOk: ()=>{
+                    console.log('初始化成功');
+                },
+                funCancel: (msg)=>{
+                    console.log(msg);
+                    recorder = null;
+                }
+            });
+            startObj.addEventListener("touchstart", (e)=>{
+                if (startObj.id == 'btnStart'){
+                    console.log('录音开始...');
+                    recorder.start();
+                    fn1(recorder,startObj);
+                }
+            });
+            //let mp3Blob;
+            // endObj.addEventListener("touchend", (e)=> {
+            //     if (startObj.id == 'btnStart'){
+            //         recorder.stop();
+            //         console.log('录音结束，MP3导出中...');
+            //         recorder.getMp3Blob((blob)=>{
+            //             console.log('MP3导出成功');
+            //
+            //             mp3Blob = blob;
+            //             let url = URL.createObjectURL(mp3Blob);
+            //             fn2(url);
+            //         });
+            //     }
+            // });
+            endObj.addEventListener("touchend",()=>{
+                fn2(recorder,endObj);
+            });
+        }
+    },
+    getUserMedia : (audio)=>{
+        "use strict";
+        navigator.MediaStream  = navigator.MediaStream  ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia;
+
+        if (navigator.MediaStream ) {
+            navigator.MediaStream ({ audio: true , video: false},
+                (stream)=>{
+                    let audio = audio;
+                    console.log(audio);
+                    audio.src = window.URL.createObjectURL(stream);
+                    audio.onloadedmetadata = (e)=>{
+                        audio.play();
+                    };
+                },
+                (err)=>{
+                    console.log("The following error occurred: " + err.name);
+                }
+            );
+            console.log('支持语音');
+        }else {
+            console.log("getUserMedia not supported");
+            console.log('不支持语音');
+        }
+    }
 };
     exports.Chat = Chat;
 })(window);
