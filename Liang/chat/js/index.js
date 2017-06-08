@@ -415,80 +415,114 @@ window.onload = ()=>{
     oContent.focus();
     let oUploadImages = chats.getTagClass(chats.getId('#more'),'.uploadImages');
     let oShot = chats.getTagClass(chats.getId('#more'),'.shots');
-    function ShotUpload(obj) {
+    chats.browserRedirect((equipment)=>{
+        if (equipment == 'pc'){
+            oUploadImages.setAttribute("multiple", "multiple");
+            ShotUpload(oUploadImages,true);
+            ShotUpload(oShot,true);
+        }else {
+            ShotUpload(oUploadImages,false);
+            ShotUpload(oShot,false);
+        }
+    });
+    function ShotUpload(obj,off) {
         obj.addEventListener('change',function(e){
-            console.log(this);
-            let ele = this.files[0];
-            let aaa = this.files;
-            for (let i of aaa){
-                console.log(i);
-            }
-            let fr = new FileReader();
-            fr.onload = function (ele) {
-                let pvImg = new Image();
-                pvImg.src = ele.target.result;
-                console.log(pvImg);
-                pvImg.onload = function () {
-                    console.log(this.width);
-                    console.log(this.height);
-                    chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                        chats.cellLength([1],aTagName,'em',(aTagName)=>{
-                            aTagName.innerHTML = this.width;
-                        });
-                        chats.cellLength([1],aTagName,'p',(aTagName)=>{
-                            aTagName.innerHTML = this.height;
-                        });
-                        chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                            aTagName.style.margin = '0 1rem 0 1rem';
-                        });
-                        chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                            aTagName.style.margin = '0 1rem 0 1rem';
-                            aTagName.style.backgroundImage = 'url('+pvImg.src+')';
-                            chats.addEvFn(aTagName,'click',(that)=>{
-                                chats.cellLength([1],chats.getTagClass(document,'body'),'div',(aTagName)=>{
-                                    aTagName.className = 'morePic';
-                                    aTagName.style.width = window.screen.width+'px';
-                                    aTagName.style.height = window.screen.height+'px';
-                                    chats.addEvFn(aTagName,'click',(that)=>{
-                                        chats.remove(that);
-                                    });
-                                    chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                                        let ratioWidth = 0,_this = that.parentNode;
-                                        if (chats.getTagClass(_this,'em').innerHTML >= window.screen.width || chats.getTagClass(_this,'em').innerHTML < window.screen.width){
-                                            ratioWidth = window.screen.width/chats.getTagClass(_this,'em').innerHTML;
-                                            aTagName.style.width = chats.getTagClass(_this,'em').innerHTML*ratioWidth+'px';
-                                            aTagName.style.height = chats.getTagClass(_this,'p').innerHTML*ratioWidth+'px';
-                                        }
-                                        aTagName.style.backgroundImage = that.style.backgroundImage;
-                                        aTagName.style.backgroundSize = '100% 100%';
-                                    });
-                                });
-                            });
-                            let ratioWidth = 0,ratioHeight = 0;
-                            if (this.width > 200){
-                                ratioWidth = 200/this.width;
-                                aTagName.style.width = this.width*ratioWidth+'px';
-                                aTagName.style.height = this.height*ratioWidth+'px';
-                            }else {
-                                aTagName.style.width = this.width+'px';
-                                aTagName.style.height = this.height+'px';
-                            }
-                            aTagName.style.backgroundSize = '100% 100%';
-                        });
-                    });
+            if (off == true){
+                let ele = this.files;
+                chats.loop(ele,(i)=>{
+                    let fr = new FileReader();
+                    fr.onload = function (i) {
+                        let pvImg = new Image();
+                        pvImg.src = i.target.result;
+                        console.log(pvImg);
+                        pvImg.onload = function () {
+                            let width = this.width;
+                            let height = this.height;
+                            images(width,height,pvImg);
+                        };
+                    };
+                    fr.readAsDataURL(i);
+                });
+            }else {
+                let ele = this.files[0];
+                let fr = new FileReader();
+                fr.onload = function (ele) {
+                    let pvImg = new Image();
+                    pvImg.src = ele.target.result;
+                    console.log(pvImg);
+                    pvImg.onload = function () {
+                        let width = this.width;
+                        let height = this.height;
+                        images(width,height,pvImg);
+                    };
                 };
-            };
-            fr.readAsDataURL(ele);
+                fr.readAsDataURL(ele);
+            }
         }, false);
     }
-    ShotUpload(oUploadImages);
-    ShotUpload(oShot);
+    function images(width,height,pvImg) {
+        chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+            chats.cellLength([1],aTagName,'em',(aTagName)=>{
+                aTagName.innerHTML = width;
+            });
+            chats.cellLength([1],aTagName,'p',(aTagName)=>{
+                aTagName.innerHTML = height;
+            });
+            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                aTagName.style.margin = '0 1rem 0 1rem';
+            });
+            chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                aTagName.style.margin = '0 1rem 0 1rem';
+                aTagName.style.backgroundImage = 'url('+pvImg.src+')';
+                chats.addEvFn(aTagName,'click',(that)=>{
+                    chats.cellLength([1],chats.getTagClass(document,'body'),'div',(aTagName)=>{
+                        aTagName.className = 'morePic';
+                        aTagName.style.width = window.screen.width+'px';
+                        aTagName.style.height = window.screen.height+'px';
+                        chats.addEvFn(aTagName,'click',(that)=>{
+                            chats.remove(that);
+                        });
+                        chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                            let ratioWidth = 0,_this = that.parentNode;
+                            if (chats.getTagClass(_this,'em').innerHTML >= window.screen.width || chats.getTagClass(_this,'em').innerHTML < window.screen.width){
+                                ratioWidth = window.screen.width/chats.getTagClass(_this,'em').innerHTML;
+                                aTagName.style.width = chats.getTagClass(_this,'em').innerHTML*ratioWidth+'px';
+                                aTagName.style.height = chats.getTagClass(_this,'p').innerHTML*ratioWidth+'px';
+                            }
+                            aTagName.style.backgroundImage = that.style.backgroundImage;
+                            aTagName.style.backgroundSize = '100% 100%';
+                        });
+                        chats.cellLength([1],aTagName,'a',(aTagName)=>{
+                            aTagName.style.position = 'absolute';
+                            aTagName.style.bottom = '1%';
+                            aTagName.style.left = '1%';
+                            aTagName.innerHTML = '保存到本地';
+                            aTagName.style.color = '#FFF';
+                            aTagName.href = pvImg.src;
+                            aTagName.setAttribute("download", "1.jpg");
+                        })
+                    });
+                });
+                let ratioWidth = 0,ratioHeight = 0;
+                if (width > 200){
+                    ratioWidth = 200/width;
+                    aTagName.style.width = width*ratioWidth+'px';
+                    aTagName.style.height = height*ratioWidth+'px';
+                }else {
+                    aTagName.style.width = width+'px';
+                    aTagName.style.height = height+'px';
+                }
+                aTagName.style.backgroundSize = '100% 100%';
+            });
+        });
+    }
     let aPersons = aAllTwoLi.querySelectorAll('.persons');
     chats.myPromise(true).then(()=>{
         let logger = {
-            fn: ()=>{
+            fn: (i)=>{
                 oAll.style.left = '-200%';
                 oBody.style.overflow = 'hidden';
+                chats.getTagClass(aAllThreeLi,'figure').style.backgroundImage = 'url('+chats.getTagClass(i,'img').src+')';
             }
         };
         chats.loop(aPersons,(i)=>{
@@ -521,4 +555,12 @@ window.onload = ()=>{
     {
         console.log("纬度: " + position.coords.latitude + "<br>经度: " + position.coords.longitude);
     }
+    window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+        if (window.orientation === 180 || window.orientation === 0) {
+            alert('竖屏状态！');
+        }
+        if (window.orientation === 90 || window.orientation === -90 ){
+            alert('横屏状态！');
+        }
+    }, false);
 };

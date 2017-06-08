@@ -128,20 +128,6 @@ Chat.prototype = {
                     fn1(recorder,startObj);
                 }
             });
-            //let mp3Blob;
-            // endObj.addEventListener("touchend", (e)=> {
-            //     if (startObj.id == 'btnStart'){
-            //         recorder.stop();
-            //         console.log('录音结束，MP3导出中...');
-            //         recorder.getMp3Blob((blob)=>{
-            //             console.log('MP3导出成功');
-            //
-            //             mp3Blob = blob;
-            //             let url = URL.createObjectURL(mp3Blob);
-            //             fn2(url);
-            //         });
-            //     }
-            // });
             endObj.addEventListener("touchend",()=>{
                 fn2(recorder,endObj);
             });
@@ -172,6 +158,40 @@ Chat.prototype = {
             console.log("getUserMedia not supported");
             console.log('不支持语音');
         }
+    },
+    browserRedirect :(fn)=>{
+        "use strict";
+        let sUserAgent = navigator.userAgent.toLowerCase();
+        console.log(sUserAgent);
+        let equipment;
+        let bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        let bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        let bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        let bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        let bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        let bIsAndroid = sUserAgent.match(/android/i) == "android";
+        let bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        let bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            console.log("mobile");
+            equipment = 'mobile';
+        } else {
+            console.log("pc");
+            equipment = 'pc';
+        }
+        fn(equipment);
+    },
+    orientation : (fn)=>{
+        "use strict";
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", ()=>{
+            if (window.orientation === 180 || window.orientation === 0) {
+                alert('竖屏状态！');
+            }
+            if (window.orientation === 90 || window.orientation === -90 ){
+                alert('横屏状态！');
+            }
+        }, false);
+        fn();
     }
 };
     exports.Chat = Chat;
