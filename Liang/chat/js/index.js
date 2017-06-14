@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by Liulc on 2017/6/3.
  */
 window.onload = ()=>{
@@ -21,6 +21,9 @@ window.onload = ()=>{
     let aAllThreeLi = document.querySelectorAll('#all>li')[2];
     let oOperation = chats.getId('#operation');
     let oBody = chats.getTagClass(document,'body');
+    let oMore = chats.getId('#more');
+    oMore.style.bottom = '-'+ oMore.offsetHeight+'px';
+    let MoreHeight = oMore.offsetHeight+'px';
     let oVoice = chats.getTagClass(oOperation,'.voice'),oContent = chats.getTagClass(oOperation,'.content'),
         oPlus = chats.getTagClass(oOperation,'.plus'), oEmoticon = chats.getTagClass(oOperation,'.emoticon');
     oContent.setAttribute("type", "true");
@@ -47,7 +50,7 @@ window.onload = ()=>{
             that.parentNode.parentNode.style.bottom = '18rem';
             chats.getId('#emoticon').style.display = 'block';
             chats.getId('#emoticon').style.bottom = 0;
-            chats.getId('#more').style.bottom = '-8rem';
+            chats.getId('#more').style.bottom = '-18rem';
         }
         oVoice.style.backgroundImage = 'url(./images/voice.png)';
         oContent.style.justifyContent = 'flex-start';
@@ -64,46 +67,30 @@ window.onload = ()=>{
             that.parentNode.style.background = '#0ee379';
         }
     });
-    chats.cellLength([1],chats.getTagClassAll(chats.getId('#emoticon'),'article',0),'ul',(aTagName)=>{
-        var num = 0;
-        chats.cellLength(new Array(91),aTagName,'li',(aTagName)=>{
-            num++;
-            aTagName.style.width = '3rem';
-            aTagName.style.height = '3rem';
-            aTagName.style.backgroundImage = 'url(./images/qq/'+num+'.gif)';
-            aTagName.style.backgroundSize = 'cover';
-            chats.addEvFn(aTagName,'click',(that)=>{
-                chats.cellLength([1],oContent,'bdo',(aTagName)=>{
-                    aTagName.style.width = '3rem';
-                    aTagName.style.height = '3rem';
-                    aTagName.style.backgroundImage = that.style.backgroundImage;
-                    aTagName.style.backgroundSize = 'cover';
+    function cell(obj,nums,width,height,file,mine) {
+        chats.cellLength([1],obj,'ul',(aTagName)=>{
+            var num = 0;
+            chats.cellLength(nums,aTagName,'li',(aTagName)=>{
+                num++;
+                aTagName.style.width = width;
+                aTagName.style.height = height;
+                aTagName.style.backgroundImage = 'url(./images/'+file+'/'+num+mine+')';
+                aTagName.style.backgroundSize = 'cover';
+                chats.addEvFn(aTagName,'click',(that)=>{
+                    chats.cellLength([1],oContent,'bdo',(aTagName)=>{
+                        aTagName.style.width = '3rem';
+                        aTagName.style.height = '3rem';
+                        aTagName.style.backgroundImage = that.style.backgroundImage;
+                        aTagName.style.backgroundSize = 'cover';
+                    });
+                    chats.getId('#send').style.backgroundColor = '#3572c5';
+                    chats.getId('#send').style.color = 'white';
                 });
-                chats.getId('#send').style.backgroundColor = '#3572c5';
-                chats.getId('#send').style.color = 'white';
-            });
-        })
-    });
-    chats.cellLength([1],chats.getTagClassAll(chats.getId('#emoticon'),'article',1),'ul',(aTagName)=>{
-        var num = 0;
-        chats.cellLength(new Array(50),aTagName,'li',(aTagName)=>{
-            num++;
-            aTagName.style.width = '3rem';
-            aTagName.style.height = '3rem';
-            aTagName.style.backgroundImage = 'url(./images/tieba/'+num+'.jpg)';
-            aTagName.style.backgroundSize = 'cover';
-            chats.addEvFn(aTagName,'click',(that)=>{
-                chats.cellLength([1],oContent,'bdo',(aTagName)=>{
-                    aTagName.style.width = '3rem';
-                    aTagName.style.height = '3rem';
-                    aTagName.style.backgroundImage = that.style.backgroundImage;
-                    aTagName.style.backgroundSize = 'cover';
-                });
-                chats.getId('#send').style.backgroundColor = '#3572c5';
-                chats.getId('#send').style.color = 'white';
-            });
-        })
-    });
+            })
+        });
+    }
+    cell(chats.getTagClassAll(chats.getId('#emoticon'),'article',0),new Array(91),'3rem','3rem','qq','.gif');
+    cell(chats.getTagClassAll(chats.getId('#emoticon'),'article',1),new Array(50),'3rem','3rem','tieba','.jpg');
     chats.cellLength([1],chats.getTagClassAll(chats.getId('#emoticon'),'article',2),'ul',(aTagName)=>{
         var num = 0;
         chats.cellLength(new Array(39),aTagName,'li',(aTagName)=>{
@@ -162,12 +149,12 @@ window.onload = ()=>{
         }
     });
     chats.addEvFn(oPlus,'click',(that)=>{
-        if (that.parentNode.parentNode.style.bottom == '8rem'){
+        if (that.parentNode.parentNode.style.bottom == MoreHeight){
             that.parentNode.parentNode.style.bottom = 0;
             chats.getId('#more').style.display = 'none';
-            chats.getId('#more').style.bottom = '-8rem';
+            chats.getId('#more').style.bottom = '-'+MoreHeight;
         }else {
-            that.parentNode.parentNode.style.bottom = '8rem';
+            that.parentNode.parentNode.style.bottom = MoreHeight;
             chats.getId('#more').style.bottom = 0;
             chats.getId('#more').style.display = 'block';
             chats.getId('#emoticon').style.bottom = '-18rem';
@@ -222,7 +209,7 @@ window.onload = ()=>{
             oContent.style.border = '0.1rem solid #8a8a8a';
             oContent.style.justifyContent = 'center';
             oContent.style.alignSelf = 'center';
-            chats.getId('#more').style.bottom = '-8rem';
+            chats.getId('#more').style.bottom = '-'+MoreHeight;
             chats.getId('#emoticon').style.bottom = '-18rem';
             that.parentNode.parentNode.style.bottom = 0;
             let oBtnStart = chats.getId('#btnStart');
@@ -240,10 +227,6 @@ window.onload = ()=>{
                         off = true;
                     }
                 },1000);
-                // oBtnStart.removeEventListener('touchend',()=>{
-                //     voice(recorder,oBtnStart);
-                //     console.log(111);
-                // },false);
             },(recorder,oBtnStart)=>{
                 if (off == true){
                     voice(recorder,oBtnStart);
@@ -356,7 +339,7 @@ window.onload = ()=>{
         if (chats.getId('#emoticon').style.bottom != '0'){
             chats.getId('#operation').parentNode.parentNode.style.bottom = 0;
         }else {
-            chats.getId('#more').style.bottom = '-8rem';
+            chats.getId('#more').style.bottom = MoreHeight;
             chats.getId('#emoticon').style.bottom = '-18rem';
         }
         chats.getId('#more').style.display = 'none';
@@ -368,9 +351,6 @@ window.onload = ()=>{
         chats.getId('#emoticon').style.display = 'block';
         document.body.addEventListener('touchmove',bodyScroll,false);
     }
-    chats.getTagClass(chats.getId('#more'),'.video').addEventListener('click',()=>{
-        window.location.href = './video.html';
-    },false);
     let oArticle = document.querySelectorAll('#emoticon>article');
     let oArt = aAllOneLi.querySelectorAll('article');
     function scrollTop(abj) {
@@ -405,6 +385,7 @@ window.onload = ()=>{
     }
     scrollTop(oArticle);
     scrollTop(oArt);
+    scrollTop(document.querySelectorAll('#all>li'));
     // chats.addEvFn(oContent,'focus',(that)=>{
     //     document.execCommand("insertImage","false","https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png")
     //     document.execCommand("insertHTML","false","<br/>");
@@ -415,6 +396,7 @@ window.onload = ()=>{
     oContent.focus();
     let oUploadImages = chats.getTagClass(chats.getId('#more'),'.uploadImages');
     let oShot = chats.getTagClass(chats.getId('#more'),'.shots');
+    let oRecording = chats.getTagClass(chats.getId('#more'),'.recording');
     chats.browserRedirect((equipment)=>{
         if (equipment == 'pc'){
             oUploadImages.setAttribute("multiple", "multiple");
@@ -480,7 +462,26 @@ window.onload = ()=>{
                         aTagName.style.width = window.screen.width+'px';
                         aTagName.style.height = window.screen.height+'px';
                         chats.addEvFn(aTagName,'click',(that)=>{
-                            chats.remove(that);
+                            if (that.firstChild.style.bottom == '-10rem'){
+                                that.firstChild.style.bottom = '1rem';
+                            }else {
+                                that.firstChild.style.bottom = '-10rem';
+                            }
+                        });
+                        chats.cellLength([1],aTagName,'nav',(aTagName)=>{
+                            aTagName.style.bottom = '-10rem';
+                            aTagName.style.position = 'fixed';
+                            chats.cellLength([1],aTagName,'a',(aTagName)=>{
+                                aTagName.innerHTML = '保存图片';
+                                aTagName.href = pvImg.src;
+                                aTagName.setAttribute("download",new Date());
+                            });
+                            chats.cellLength([1],aTagName,'bdi',(aTagName)=>{
+                                aTagName.innerHTML = '关闭';
+                                chats.addEvFn(aTagName,'click',(that)=>{
+                                    chats.remove(that.parentNode.parentNode);
+                                });
+                            });
                         });
                         chats.cellLength([1],aTagName,'span',(aTagName)=>{
                             let ratioWidth = 0,_this = that.parentNode;
@@ -492,15 +493,6 @@ window.onload = ()=>{
                             aTagName.style.backgroundImage = that.style.backgroundImage;
                             aTagName.style.backgroundSize = '100% 100%';
                         });
-                        chats.cellLength([1],aTagName,'a',(aTagName)=>{
-                            aTagName.style.position = 'absolute';
-                            aTagName.style.bottom = '1%';
-                            aTagName.style.left = '1%';
-                            aTagName.innerHTML = '保存到本地';
-                            aTagName.style.color = '#FFF';
-                            aTagName.href = pvImg.src;
-                            aTagName.setAttribute("download", "1.jpg");
-                        })
                     });
                 });
                 let ratioWidth = 0,ratioHeight = 0;
@@ -555,12 +547,61 @@ window.onload = ()=>{
     {
         console.log("纬度: " + position.coords.latitude + "<br>经度: " + position.coords.longitude);
     }
-    window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() {
+    window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", ()=>{
         if (window.orientation === 180 || window.orientation === 0) {
-            alert('竖屏状态！');
+            alert('竖屏');
         }
         if (window.orientation === 90 || window.orientation === -90 ){
-            alert('横屏状态！');
+            alert('横屏');
         }
     }, false);
+    oRecording.addEventListener('change',function(e){
+        let ele = this.files[0];
+        console.log(ele);
+        let fr = new FileReader();
+        fr.onload = function (ele) {
+            let pvImg = document.createElement('video');
+            pvImg.src = ele.target.result;
+            console.log(pvImg);
+            chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+                chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
+                    aTagName.style.margin = '0 1rem 0 1rem';
+                });
+                chats.cellLength([1],aTagName,'video',(aTagName)=>{
+                    aTagName.style.margin = '0 1rem 0 1rem';
+                    aTagName.controls = 'controls';
+                    aTagName.src = pvImg.src;
+                    aTagName.style.width = '16rem';
+                    aTagName.style.height = '16rem';
+                });
+            });
+        };
+        fr.readAsDataURL(ele);
+    });
 };
+function M() {
+    this.showM = function () {
+        console.log('M');
+    }
+}
+function N() {
+    this.showN = function () {
+        console.log('N');
+    }
+}
+function K() {};
+M.prototype = new N();
+M.prototype.constructor = M;
+K.prototype = new M();
+K.prototype.constructor = K;
+K.prototype.getBook = function () {
+    console.log('JAVASCRIPT');
+};
+M.prototype.name = function (name) {
+    console.log(name);
+};
+let box = new K();
+box.showM();
+box.showN();
+box.getBook();
+box.name('梁志成');
