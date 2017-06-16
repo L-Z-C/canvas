@@ -10,10 +10,10 @@ window.onload = ()=>{
     function bodyScroll(event){
         event.preventDefault();
     }
-    let jin = 0;
-    if (jin == 0){
-        document.body.addEventListener('touchmove',bodyScroll,false);
-    }
+    // let jin = 0;
+    // if (jin == 0){
+    //     document.body.addEventListener('touchmove',bodyScroll,false);
+    // }
     let oAll = chats.getId('#all');
     let off = true;
     let aAllOneLi = document.querySelectorAll('#all>li')[0];
@@ -29,7 +29,6 @@ window.onload = ()=>{
     oContent.setAttribute("type", "true");
     chats.addEvFn(aAllOneLi.querySelector('.group'),'click',()=>{
         oAll.style.left = '-100%';
-        oBody.style.overflowY = 'auto';
         chats.getId('#more').style.display = 'none';
         chats.getId('#emoticon').style.display = 'none';
         oBody.style.height = chats.getTagClass(aAllTwoLi,'header').offsetHeight+chats.getTagClass(aAllTwoLi,'footer').offsetHeight+'px';
@@ -372,20 +371,21 @@ window.onload = ()=>{
                         }
                         break;
                     case 3:
-                        document.body.addEventListener('touchmove',bodyScroll,false);
+                        // document.body.addEventListener('touchmove',bodyScroll,false);
                         break;
                     case 4:
-                        document.body.addEventListener('touchmove',bodyScroll,false);
+                        // document.body.addEventListener('touchmove',bodyScroll,false);
                         break;
                     default:
                 }
-                jin = 0;
+                // jin = 0;
             });
         });
     }
     scrollTop(oArticle);
-    scrollTop(oArt);
-    scrollTop(document.querySelectorAll('#all>li'));
+    // scrollTop(oArt);
+    // scrollTop(aAllOneLi.querySelectorAll('article'));
+    // scrollTop(document.querySelectorAll('#all>li'));
     // chats.addEvFn(oContent,'focus',(that)=>{
     //     document.execCommand("insertImage","false","https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png")
     //     document.execCommand("insertHTML","false","<br/>");
@@ -578,6 +578,8 @@ window.onload = ()=>{
         };
         fr.readAsDataURL(ele);
     });
+    oBody.style.width = oAll.offsetWidth+'px';
+    alert(oBody.offsetWidth);
 };
 function M() {
     this.showM = function () {

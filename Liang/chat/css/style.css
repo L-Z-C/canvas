@@ -9,8 +9,8 @@ html{
     font-size: 62.5%;
 }
 body{
-    overflow: hidden;
     background: #ececec;
+    overflow-x: hidden;
 }
 #all{
     width: 300%;
@@ -27,7 +27,7 @@ body{
     height: auto;
     position: relative;
     flex-direction: column;
-    overflow: hidden;
+    overflow-x: auto;
 }
 #all>li:first-child>header,#all>li:nth-child(2)>header,#all>li:last-child>header{
     width: 100%;
@@ -336,7 +336,7 @@ body{
     background: #FFF;
     position: absolute;
     top:0;
-    overflow: auto;
+    overflow-y: auto;
 }
 #emoticon>article:first-child{
     z-index: 9999;
