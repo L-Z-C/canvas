@@ -10,10 +10,10 @@ window.onload = ()=>{
     function bodyScroll(event){
         event.preventDefault();
     }
-    // let jin = 0;
-    // if (jin == 0){
-    //     document.body.addEventListener('touchmove',bodyScroll,false);
-    // }
+    let jin = 0;
+    if (jin == 0){
+        document.body.addEventListener('touchmove',bodyScroll,false);
+    }
     let oAll = chats.getId('#all');
     let off = true;
     let aAllOneLi = document.querySelectorAll('#all>li')[0];
@@ -99,10 +99,10 @@ window.onload = ()=>{
             aTagName.style.backgroundImage = 'url(./images/beg/'+num+'.jpg)';
             aTagName.style.backgroundSize = '100% 100%';
             chats.addEvFn(aTagName,'click',(that)=>{
+                let meYou = ['me','you'];
                 chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                    });
+                    aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
+                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
                     chats.cellLength([1],aTagName,'span',(aTagName)=>{
                         aTagName.style.width = that.offsetWidth+'px';
                         aTagName.style.height = that.offsetHeight+'px';
@@ -127,11 +127,11 @@ window.onload = ()=>{
     chats.addEvFn(chats.getId('#send'),'click',(that)=>{
         if (that.style.color == 'white'){
             let  oArticle = chats.getTagClass(aAllOneLi,'article');
+            let meYou = ['me','you'];
             if (oContent.innerHTML !== ''){
                 chats.cellLength([1],oArticle,'div',(aTagName)=>{
-                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                    });
+                    aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
+                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
                     chats.cellLength([1],aTagName,'span',(aTagName)=>{
                         aTagName.style.margin = '0 1rem 0 1rem';
                         aTagName.innerHTML = oContent.innerHTML;
@@ -177,11 +177,11 @@ window.onload = ()=>{
                     e.returnValue = false;
                     e.preventDefault();
                     let  oArticle = chats.getTagClass(document,'article');
+                    let meYou = ['me','you'];
                     if (that.innerHTML !== ''){
                         chats.cellLength([1],oArticle,'div',(aTagName)=>{
-                            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                                aTagName.style.margin = '0 1rem 0 1rem';
-                            });
+                            aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
+                            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
                             chats.cellLength([1],aTagName,'span',(aTagName)=>{
                                 aTagName.style.margin = '0 1rem 0 1rem';
                                 aTagName.innerHTML = that.innerHTML;
@@ -247,13 +247,12 @@ window.onload = ()=>{
                 mp3Blob = blob;
                 let url = URL.createObjectURL(mp3Blob);
                 chats.getId('#spinner').style.display = 'none';
+                let meYou = ['me','you'];
                 chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                    });
+                    aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
+                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
                     chats.cellLength([1],aTagName,'audio',(aTagName)=>{
                         aTagName.className = 'audioimg';
-                        aTagName.style.margin = '0 1rem 0 1rem';
                         aTagName.controls = "controls";
                         aTagName.src = url;
                         console.log(url);
@@ -264,7 +263,6 @@ window.onload = ()=>{
                     chats.cellLength([1],aTagName,'span',(aTagName)=>{
                         aTagName.style.height = '2.6rem';
                         aTagName.style.background = '#94e322';
-                        aTagName.style.margin = '0.8rem 0 0 0';
                         chats.cellLength([1],aTagName,'i',(aTagName)=>{
                             aTagName.style.backgroundImage = 'url(./images/3.png)';
                             aTagName.style.backgroundSize = '100% 100%';
@@ -286,9 +284,7 @@ window.onload = ()=>{
                             };
                         });
                     });
-                    chats.cellLength([1],aTagName,'time',(aTagName)=>{
-                        aTagName.style.padding = '2rem 0.5rem 0 0';
-                    });
+                    chats.cellLength([1],aTagName,'time',(aTagName)=>{});
                 });
                 let aAudioimg = document.querySelectorAll('.audioimg');
                 chats.loop(aAudioimg,(i)=>{
@@ -308,30 +304,56 @@ window.onload = ()=>{
             });
         }
     }
-    chats.addEvFn(oContent,'keydown',(that,e)=>{
-        e = e || window.event;
-        if (e.keyCode == 13){
-            e.returnValue = false;
-            e.preventDefault();
-            let  oArticle = chats.getTagClass(document,'article');
-            if (that.innerHTML !== ''){
-                chats.cellLength([1],oArticle,'div',(aTagName)=>{
-                    chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 0';
-                    });
-                    chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                        aTagName.innerHTML = that.innerHTML;
-                    });
-                });
-                that.innerHTML = '';
-            }else {
+    function send(obj,event) {
+        chats.addEvFn(obj,event,(that,e)=>{
+            e = e || window.event;
+            if (event == 'keydown'){
+                if (e.keyCode == 13) {
+                    e.returnValue = false;
+                    e.preventDefault();
+                    let  oArticle = chats.getTagClass(document,'article');
+                    if (that.innerHTML !== ''){
+                        let meYou = ['me','you'];
+                        chats.cellLength([1],oArticle,'div',(aTagName)=>{
+                            aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
+                            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
+                            chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                                aTagName.style.margin = '0 1rem 0 1rem';
+                                aTagName.innerHTML = that.innerHTML;
+                            });
+                        });
+                        that.innerHTML = '';
+                        oPlus.style.display = 'flex';
+                        chats.getTagClass(oOperation,'.sendText').style.display = 'none';
+                    }else {
+                        return false;
+                    }
+                }
                 return false;
+            }else {
+                let  oArticle = chats.getTagClass(document,'article');
+                if (oContent.innerHTML !== ''){
+                    let meYou = ['me','you'];
+                    chats.cellLength([1],oArticle,'div',(aTagName)=>{
+                        aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
+                        chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
+                        chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                            aTagName.style.margin = '0 1rem 0 1rem';
+                            aTagName.innerHTML = oContent.innerHTML;
+                        });
+                    });
+                    oContent.innerHTML = '';
+                    oPlus.style.display = 'flex';
+                    chats.getTagClass(oOperation,'.sendText').style.display = 'none';
+                }else {
+                    return false;
+                }
             }
-            chats.addEvFn(oContent,'blur',bottoms);
-        }
-        return false;
-    });
+            return false;
+        });
+    }
+    send(oContent,'keydown');
+    send(chats.getTagClass(oOperation,'.sendText'),'click');
     chats.addEvFn(oContent,'blur',bottoms);
     chats.addEvFn(oContent,'focus',bottom);
     function bottom() {
@@ -371,27 +393,34 @@ window.onload = ()=>{
                         }
                         break;
                     case 3:
-                        // document.body.addEventListener('touchmove',bodyScroll,false);
+                        document.body.addEventListener('touchmove',bodyScroll,false);
                         break;
                     case 4:
-                        // document.body.addEventListener('touchmove',bodyScroll,false);
+                        document.body.addEventListener('touchmove',bodyScroll,false);
                         break;
                     default:
                 }
-                // jin = 0;
+                jin = 0;
             });
         });
     }
     scrollTop(oArticle);
-    // scrollTop(oArt);
+    scrollTop(oArt);
     // scrollTop(aAllOneLi.querySelectorAll('article'));
     // scrollTop(document.querySelectorAll('#all>li'));
     // chats.addEvFn(oContent,'focus',(that)=>{
     //     document.execCommand("insertImage","false","https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png")
     //     document.execCommand("insertHTML","false","<br/>");
     // });
+    chats.getTagClass(oOperation,'.sendText').style.display = 'none';
     oContent.addEventListener('input',function(e){
-        console.log(this.innerHTML);
+        if (this.innerHTML == ''){
+            oPlus.style.display = 'flex';
+            chats.getTagClass(oOperation,'.sendText').style.display = 'none';
+        }else {
+            oPlus.style.display = 'none';
+            chats.getTagClass(oOperation,'.sendText').style.display = 'flex';
+        }
     }, false);
     oContent.focus();
     let oUploadImages = chats.getTagClass(chats.getId('#more'),'.uploadImages');
@@ -443,17 +472,18 @@ window.onload = ()=>{
         }, false);
     }
     function images(width,height,pvImg) {
+        let meYou = ['me','you'];
         chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
+            aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
             chats.cellLength([1],aTagName,'em',(aTagName)=>{
                 aTagName.innerHTML = width;
             });
             chats.cellLength([1],aTagName,'p',(aTagName)=>{
                 aTagName.innerHTML = height;
             });
-            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                aTagName.style.margin = '0 1rem 0 1rem';
-            });
+            chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
             chats.cellLength([1],aTagName,'span',(aTagName)=>{
+                aTagName.className = 'images';
                 aTagName.style.margin = '0 1rem 0 1rem';
                 aTagName.style.backgroundImage = 'url('+pvImg.src+')';
                 chats.addEvFn(aTagName,'click',(that)=>{
@@ -483,15 +513,54 @@ window.onload = ()=>{
                                 });
                             });
                         });
-                        chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                            let ratioWidth = 0,_this = that.parentNode;
-                            if (chats.getTagClass(_this,'em').innerHTML >= window.screen.width || chats.getTagClass(_this,'em').innerHTML < window.screen.width){
-                                ratioWidth = window.screen.width/chats.getTagClass(_this,'em').innerHTML;
-                                aTagName.style.width = chats.getTagClass(_this,'em').innerHTML*ratioWidth+'px';
-                                aTagName.style.height = chats.getTagClass(_this,'p').innerHTML*ratioWidth+'px';
-                            }
-                            aTagName.style.backgroundImage = that.style.backgroundImage;
-                            aTagName.style.backgroundSize = '100% 100%';
+                        let imagesLi = document.querySelectorAll('.images');
+                        console.log(imagesLi);
+                        chats.cellLength([1],aTagName,'ul',(aTagName)=>{
+                            aTagName.style.width = imagesLi.length * window.screen.width+'px';
+                            aTagName.style.overflow = 'hidden';
+                            chats.loop(imagesLi.entries(),(i)=>{
+                                chats.cellLength([1],aTagName,'li',(aTagName)=>{
+                                    aTagName.style.float = 'left';
+                                    let ratioWidth = 0,_this = i[1].parentNode;
+                                    if (chats.getTagClass(_this,'em').innerHTML >= window.screen.width || chats.getTagClass(_this,'em').innerHTML < window.screen.width){
+                                        ratioWidth = window.screen.width/chats.getTagClass(_this,'em').innerHTML;
+                                        aTagName.style.width = chats.getTagClass(_this,'em').innerHTML*ratioWidth+'px';
+                                        aTagName.style.height = chats.getTagClass(_this,'p').innerHTML*ratioWidth+'px';
+                                    }
+                                    aTagName.style.backgroundImage = imagesLi[i[0]].style.backgroundImage;
+                                    aTagName.style.backgroundSize = '100% 100%';
+                                })
+                            });
+                            let num = 0;
+                            chats.touch(aTagName,(direction)=>{
+                                switch (direction) {
+                                    case 1:
+                                        alert('上');
+                                        break;
+                                    case 2:
+                                        alert('下');
+                                        break;
+                                    case 3:
+                                        if(num >= imagesLi.length-1){
+                                            num = imagesLi.length-1;
+                                        }else {
+                                            parseInt(num++);
+                                        }
+                                        console.log(num);
+                                        aTagName.style.left = '-'+chats.getTagClassAll(aTagName,'li',num).offsetLeft+'px';
+                                        break;
+                                    case 4:
+                                        if (num <= 0 ){
+                                            num = 0;
+                                        }else {
+                                            parseInt(num--);
+                                        }
+                                        console.log(num);
+                                        aTagName.style.left = '-'+chats.getTagClassAll(aTagName,'li',num).offsetLeft+'px';
+                                        break;
+                                    default:
+                                }
+                            });
                         });
                     });
                 });
@@ -515,6 +584,8 @@ window.onload = ()=>{
                 oAll.style.left = '-200%';
                 oBody.style.overflow = 'hidden';
                 chats.getTagClass(aAllThreeLi,'figure').style.backgroundImage = 'url('+chats.getTagClass(i,'img').src+')';
+                chats.getTagClass(aAllThreeLi,'span').innerHTML = chats.getTagClass(i,'figcaption').innerHTML;
+                chats.getTagClass(aAllThreeLi,'.niCheng').innerHTML = '昵称：'+chats.getTagClass(aAllTwoLi,'.niCheng').innerHTML;
             }
         };
         chats.loop(aPersons,(i)=>{
@@ -563,10 +634,10 @@ window.onload = ()=>{
             let pvImg = document.createElement('video');
             pvImg.src = ele.target.result;
             console.log(pvImg);
+            let meYou = ['me','you'];
             chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
-                chats.cellLength([1],aTagName,'bdo',(aTagName)=>{
-                    aTagName.style.margin = '0 1rem 0 1rem';
-                });
+                aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
+                chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
                 chats.cellLength([1],aTagName,'video',(aTagName)=>{
                     aTagName.style.margin = '0 1rem 0 1rem';
                     aTagName.controls = 'controls';
@@ -579,7 +650,24 @@ window.onload = ()=>{
         fr.readAsDataURL(ele);
     });
     oBody.style.width = oAll.offsetWidth+'px';
-    alert(oBody.offsetWidth);
+    chats.myPromise(true).then(()=>{
+        chats.addEvFn(chats.getTagClass(aAllTwoLi,'.niCheng'),'click',()=>{
+            chats.getId('#nickname').style.bottom = 0;
+            chats.getTagClass(chats.getId('#nickname'),'.niCheng').focus();
+        });
+    }).then(()=>{
+        chats.addEvFn(chats.getTagClass(chats.getId('#nickname'),'.cancle'),'click',()=>{
+            chats.getId('#nickname').style.bottom = '-100%';
+            chats.getTagClass(chats.getId('#nickname'),'.niCheng').blur();
+        });
+    }).then(()=>{
+        chats.addEvFn(chats.getTagClass(chats.getId('#nickname'),'.preservation'),'click',()=>{
+            chats.getId('#nickname').style.bottom = '-100%';
+            chats.getTagClass(chats.getId('#nickname'),'.niCheng').blur();
+            chats.getTagClass(aAllTwoLi,'.niCheng').innerHTML = chats.getTagClass(chats.getId('#nickname'),'.niCheng').innerHTML;
+            chats.getTagClass(chats.getId('#nickname'),'.niCheng').innerHTML = '';
+        });
+    });
 };
 function M() {
     this.showM = function () {

@@ -28,6 +28,7 @@ body{
     position: relative;
     flex-direction: column;
     overflow-x: auto;
+    overflow-y: hidden;
 }
 #all>li:first-child>header,#all>li:nth-child(2)>header,#all>li:last-child>header{
     width: 100%;
@@ -77,6 +78,21 @@ body{
     bottom:8%;
     transition: all 0.5s ease;
 }
+#all>li:first-child>article .robot{
+    background: rgba(192,192,192,0.5);
+    color: #FFF;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+    letter-spacing: 0.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top:1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.4rem;
+}
 #all>li:first-child>footer{
     width: 100%;
     height: 8%;
@@ -107,7 +123,7 @@ body{
     cursor: pointer;
 }
 #all>li:first-child>footer>ul>li:nth-child(2){
-    width: 16rem;
+    width: 65%;
     height: auto;
     border-radius: 0.5rem;
     border: 0.1rem solid #8a8a8a;
@@ -126,25 +142,36 @@ body{
     background-size: cover;
     cursor: pointer;
 }
-#all>li:first-child>footer>ul>li:last-child{
+#all>li:first-child>footer>ul>li:nth-child(4){
     background: url("../images/plus.png") no-repeat;
     background-size: cover;
     cursor: pointer;
 }
+#all>li:first-child>footer>ul>li:last-child{
+    width: 4.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #333;
+    color: #FFF;
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+}
 .morePic{
     position: fixed;
-    display: flex;
     background: #333;
     top:0;
     left: 0;
     z-index: 9999;
 }
-.morePic>span{
+.morePic>ul{
     position: fixed;
-    width: 100%;
     top:50%;
     transform: translateY(-50%);
-    background-size: 100% 100%;
+    background: #FFF;
+    transition: all 0.5s ease;
 }
 .morePic>nav{
     width: 90%;
@@ -178,13 +205,11 @@ body{
     height: auto;
     display: flex;
     margin: 1rem 0 1rem 0;
-    flex-direction: row-reverse;
 }
 #all>li:first-child>article>div>bdo{
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     display: inline-flex;
-    background: url("../images/headOne.jpg") no-repeat;
     background-size: cover;
 }
 #all>li:first-child>article>div>span,#all>li:first-child>article>div>video{
@@ -200,6 +225,32 @@ body{
 #all>li:first-child>article>div>span>i{
     width:2rem;
     height: 2rem;
+}
+#all .me{
+    flex-direction: row-reverse;
+}
+#all .you{
+    flex-direction: row;
+}
+#all .me>bdo{
+    margin: 0 1rem 0 0;
+    background: url("../images/headOne.jpg") no-repeat;
+}
+#all .you>bdo{
+    margin: 0 0 0 1rem;
+    background: url("../images/headTwo.jpg") no-repeat;
+}
+#all .me>span,#all .me>video{
+    margin: 1rem 1rem 0 0;
+}
+#all .you>span,#all .you>video{
+    margin: 1rem 0 0 1rem;
+}
+#all .me>time{
+    padding: 2rem 0.5rem 0 0;
+}
+#all .you>time{
+    padding: 2rem 0 0 0.5rem;
 }
 #all>li:last-child>article{
     width: 100%;
@@ -502,11 +553,10 @@ body{
     flex-direction: column;
 }
 #all>li:nth-child(2)>footer>article>ul>li{
-    width: 96%;
+    width: 100%;
     height: 4rem;
     border-bottom: 0.1rem solid #bfbfbf;
     display: flex;
-    margin-left: 10%;
     position: relative;
 }
 #all>li:nth-child(2)>footer>article>ul>li:last-child{
@@ -518,12 +568,16 @@ body{
     font-size: 1.8rem;
     color: #333;
     font-weight: bold;
+    left: 10%;
+    top:50%;
+    position: absolute;
+    transform: translateY(-50%);
 }
 #all>li:nth-child(2)>footer>article>ul>li>bdo{
     display: flex;
     align-self: center;
     position: absolute;
-    right: 15%;
+    right: 10%;
     top:50%;
     transform: translateY(-50%);
     color: #8c8c8c;
@@ -611,4 +665,54 @@ body{
            transform: scaleY(1.0);
            -webkit-transform: scaleY(1.0);
        }
+}
+#nickname{
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    background: #FFF;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    bottom:-100%;
+    transition: all 0.5s ease;
+}
+#nickname>header{
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    background: #333;
+}
+#nickname>header>ul{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+#nickname>header>ul>li {
+    display: flex;
+    align-self: center;
+    color: #FFF;
+    font-size: 1.6rem;
+}
+#nickname>header>ul>li:nth-child(2){
+    font-weight: bold;
+}
+#nickname>header>ul>li:last-child{
+    color: #00e000;
+}
+#nickname .niCheng{
+    width: 100%;
+    min-height: 3.6rem;
+    height: auto;
+    border-top:0.2rem solid #CCC;
+    border-bottom:0.2rem solid #CCC;
+    background: #FFF;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    padding-left: 1rem;
+    outline: none;
 }

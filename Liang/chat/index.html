@@ -11,6 +11,16 @@
     <script src="js/recordmp3.js"></script>
 </head>
 <body>
+<div id="nickname">
+    <header>
+        <ul>
+            <li class="cancle">取消</li>
+            <li>我在本群的昵称</li>
+            <li class="preservation">保存</li>
+        </ul>
+    </header>
+    <div class="niCheng" contenteditable="true"></div>
+</div>
 <div id="spinner">
     <div class="rect1"></div>
     <div class="rect2"></div>
@@ -24,13 +34,16 @@
             <title>群名称(1)</title>
             <i class="group"></i>
         </header>
-        <article></article>
+        <article>
+            <span class="robot">你邀请LZC加入了群聊</span>
+        </article>
         <footer>
             <ul id="operation">
                 <li class="voice"></li>
                 <li class="content" contenteditable="true"></li>
                 <li class="emoticon"></li>
                 <li class="plus"></li>
+                <li class="sendText">发送</li>
             </ul>
         </footer>
     </li>
@@ -112,7 +125,7 @@
             <ul>
                 <li>
                     <bdi>我在本群的昵称</bdi>
-                    <bdo>LZC</bdo>
+                    <bdo class="niCheng">LZC</bdo>
                 </li>
                 <li>
                     <bdi>显示群成员昵称</bdi>
@@ -144,7 +157,7 @@
             <div class="right">
                 <ul>
                     <li><span>路飞</span><i></i></li>
-                    <li>昵称：路飞</li>
+                    <li class="niCheng">昵称：路飞</li>
                 </ul>
             </div>
         </article>
