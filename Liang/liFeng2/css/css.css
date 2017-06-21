@@ -12,6 +12,10 @@ body{
     background: #FFF;
     overflow-x:hidden;
 }
+@font-face {
+    font-family: hua;
+    src: url('../font/华文行楷.ttf');
+}
 #content{
     width: 100%;
     height: auto;
@@ -23,12 +27,13 @@ body{
     padding: 5% 0 6% 0;
 }
 #content .title{
-    font-size: 8rem;
+    font-size: 16rem;
     color: #FFF;
     text-align: center;
     text-shadow: 1rem 1rem 1rem #333;
     letter-spacing: 1.2rem;
     margin: 40px 0 50px 0;
+    font-family: hua;
 }
 #content .center,#content .firstThree{
     width: 1024px;
