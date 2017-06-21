@@ -6,9 +6,11 @@ function * Chat() {
     "use strict";
 }
 Chat.prototype = {
-    add : (a,b)=>{
+    css : (obj,attrValue)=>{
         "use strict";
-        return a+b;
+        for(let i in attrValue){
+            obj.style[i] = attrValue[i];
+        }
     },
     addEvFn : (obj,event,fn)=>{
         "use strict";

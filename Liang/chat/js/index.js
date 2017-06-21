@@ -43,12 +43,14 @@ window.onload = ()=>{
     chats.addEvFn(oEmoticon,'click',(that)=>{
         if (that.parentNode.parentNode.style.bottom == '18rem'){
             that.parentNode.parentNode.style.bottom = 0;
-            chats.getId('#emoticon').style.display = 'none';
-            chats.getId('#emoticon').style.bottom = '-18rem';
+            chats.css(chats.getId('#emoticon'),{'display':'none','bottom':'-18rem'});
+            // chats.getId('#emoticon').style.display = 'none';
+            // chats.getId('#emoticon').style.bottom = '-18rem';
         }else {
             that.parentNode.parentNode.style.bottom = '18rem';
-            chats.getId('#emoticon').style.display = 'block';
-            chats.getId('#emoticon').style.bottom = 0;
+            chats.css(chats.getId('#emoticon'),{'display':'block','bottom':'0'});
+            // chats.getId('#emoticon').style.display = 'block';
+            // chats.getId('#emoticon').style.bottom = 0;
             chats.getId('#more').style.bottom = '-18rem';
         }
         oVoice.style.backgroundImage = 'url(./images/voice.png)';
@@ -59,9 +61,11 @@ window.onload = ()=>{
     });
     chats.addEvFn(aAllTwoLi.querySelector('span'),'click',(that)=>{
         if (that.style.left == '50%'){
+            // chats.css(that,{'left':'0','background':'#e6e6e6'});
             that.style.left = '0';
             that.parentNode.style.background = '#e6e6e6';
         }else {
+            // chats.css(that,{'left':'50%','background':'#0ee379'});
             that.style.left = '50%';
             that.parentNode.style.background = '#0ee379';
         }
@@ -71,19 +75,12 @@ window.onload = ()=>{
             var num = 0;
             chats.cellLength(nums,aTagName,'li',(aTagName)=>{
                 num++;
-                aTagName.style.width = width;
-                aTagName.style.height = height;
-                aTagName.style.backgroundImage = 'url(./images/'+file+'/'+num+mine+')';
-                aTagName.style.backgroundSize = 'cover';
+                chats.css(aTagName,{'width':width,'height':height,'backgroundImage':'url(./images/'+file+'/'+num+mine+')','backgroundSize':'cover'});
                 chats.addEvFn(aTagName,'click',(that)=>{
                     chats.cellLength([1],oContent,'bdo',(aTagName)=>{
-                        aTagName.style.width = '3rem';
-                        aTagName.style.height = '3rem';
-                        aTagName.style.backgroundImage = that.style.backgroundImage;
-                        aTagName.style.backgroundSize = 'cover';
+                        chats.css(aTagName,{'width':'3rem','height':'3rem','backgroundImage':that.style.backgroundImage,'backgroundSize':'cover'});
                     });
-                    chats.getId('#send').style.backgroundColor = '#3572c5';
-                    chats.getId('#send').style.color = 'white';
+                    chats.css(chats.getId('#send'),{'backgroundColor':'#3572c5','color':'white'});
                 });
             })
         });
@@ -94,21 +91,14 @@ window.onload = ()=>{
         var num = 0;
         chats.cellLength(new Array(39),aTagName,'li',(aTagName)=>{
             num++;
-            aTagName.style.width = '11rem';
-            aTagName.style.height = '9rem';
-            aTagName.style.backgroundImage = 'url(./images/beg/'+num+'.jpg)';
-            aTagName.style.backgroundSize = '100% 100%';
+            chats.css(aTagName,{'width':'11rem','height':'9rem','backgroundImage':'url(./images/beg/'+num+'.jpg)','backgroundSize':'100% 100%'});
             chats.addEvFn(aTagName,'click',(that)=>{
                 let meYou = ['me','you'];
                 chats.cellLength([1],aAllOneLi.querySelector('article'),'div',(aTagName)=>{
                     aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
                     chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
                     chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                        aTagName.style.width = that.offsetWidth+'px';
-                        aTagName.style.height = that.offsetHeight+'px';
-                        aTagName.style.margin = '0 1rem 0 1rem';
-                        aTagName.style.backgroundImage = that.style.backgroundImage;
-                        aTagName.style.backgroundSize = '100% 100%';
+                        chats.css(aTagName,{'width':that.offsetWidth+'px','height':that.offsetHeight+'px','margin':'0 1rem 0 1rem','backgroundImage':that.style.backgroundImage,'backgroundSize':'100% 100%'});
                     });
                 });
             });
@@ -133,27 +123,27 @@ window.onload = ()=>{
                     aTagName.className = meYou[parseInt(Math.random() * meYou.length)];
                     chats.cellLength([1],aTagName,'bdo',(aTagName)=>{});
                     chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                        aTagName.style.margin = '0 1rem 0 1rem';
+                        chats.css(aTagName,{'margin':'0 1rem 0 1rem'});
+                        // aTagName.style.margin = '0 1rem 0 1rem';
                         aTagName.innerHTML = oContent.innerHTML;
                     });
                 });
                 oContent.innerHTML = '';
-                that.style.backgroundColor = '#f5f5f5';
-                that.style.color = '#8a8a8a';
+                chats.css(that,{'backgroundColor':'#f5f5f5','color':'8a8a8a'});
             }else {
                 return false;
             }
-        }else{
-            alert(222);
         }
     });
     chats.addEvFn(oPlus,'click',(that)=>{
         if (that.parentNode.parentNode.style.bottom == MoreHeight){
             that.parentNode.parentNode.style.bottom = 0;
+            // chats.css(chats.getId('#more',{'display':'none','bottom':'-'+MoreHeight}));
             chats.getId('#more').style.display = 'none';
             chats.getId('#more').style.bottom = '-'+MoreHeight;
         }else {
             that.parentNode.parentNode.style.bottom = MoreHeight;
+            // chats.css(chats.getId('#more',{'display':'block','bottom':'0'}));
             chats.getId('#more').style.bottom = 0;
             chats.getId('#more').style.display = 'block';
             chats.getId('#emoticon').style.bottom = '-18rem';
@@ -256,16 +246,12 @@ window.onload = ()=>{
                         aTagName.controls = "controls";
                         aTagName.src = url;
                         console.log(url);
-                        aTagName.style.width = '12rem';
-                        aTagName.style.height = '5rem';
-                        aTagName.style.display = 'none';
+                        chats.css(aTagName,{'width':'12rem','height':'5rem','display':'none'});
                     });
                     chats.cellLength([1],aTagName,'span',(aTagName)=>{
-                        aTagName.style.height = '2.6rem';
-                        aTagName.style.background = '#94e322';
+                        chats.css(aTagName,{'height':'2.6rem','background':'#94e322'});
                         chats.cellLength([1],aTagName,'i',(aTagName)=>{
-                            aTagName.style.backgroundImage = 'url(./images/3.png)';
-                            aTagName.style.backgroundSize = '100% 100%';
+                            chats.css(aTagName,{'backgroundImage':'url(./images/3.png','backgroundSize':'100% 100%'});
                         });
                         chats.addEvFn(aTagName,'click',(that)=>{
                             let num = 1;
@@ -577,6 +563,27 @@ window.onload = ()=>{
             });
         });
     }
+    let oBuddyList = chats.getId('#buddyList');
+    let aCheckBox = oBuddyList.querySelectorAll('.checkBox');
+    chats.addEvFn(chats.getTagClass(aAllTwoLi,'.plusPer'),'click',()=>{
+            oBuddyList.style.left = 0;
+            chats.getTagClass(oBuddyList,'title').innerHTML = '选择联系人';
+            chats.css(chats.getTagClass(oBuddyList,'.back'),{'display':'none'});
+            chats.css(chats.getTagClass(oBuddyList,'.personal'),{'display':'none'});
+            chats.getTagClass(oBuddyList,'.cancel').style.display = 'flex';
+            chats.getTagClass(oBuddyList,'.confirm').style.display = 'flex';
+        chats.loop(aCheckBox,(i)=>{
+            chats.css(i,{'display':'flex'});
+        });
+            oAll.style.display = 'none';
+            oBody.removeEventListener('touchmove',bodyScroll,false);
+        
+    });
+    chats.addEvFn(chats.getTagClass(chats.getId('#buddyList'),'.cancel'),'click',()=>{
+        chats.getId('#buddyList').style.left = '-100%';
+        oBody.addEventListener('touchmove',bodyScroll,false);
+        oAll.style.display = 'flex';
+    });
     let aPersons = aAllTwoLi.querySelectorAll('.persons');
     chats.myPromise(true).then(()=>{
         let logger = {
@@ -620,10 +627,10 @@ window.onload = ()=>{
     }
     window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", ()=>{
         if (window.orientation === 180 || window.orientation === 0) {
-            alert('竖屏');
+            console.log('竖屏');
         }
         if (window.orientation === 90 || window.orientation === -90 ){
-            alert('横屏');
+            console.log('横屏');
         }
     }, false);
     oRecording.addEventListener('change',function(e){
@@ -649,7 +656,7 @@ window.onload = ()=>{
         };
         fr.readAsDataURL(ele);
     });
-    oBody.style.width = oAll.offsetWidth+'px';
+    // oBody.style.width = oAll.offsetWidth+'px';
     chats.myPromise(true).then(()=>{
         chats.addEvFn(chats.getTagClass(aAllTwoLi,'.niCheng'),'click',()=>{
             chats.getId('#nickname').style.bottom = 0;
@@ -667,6 +674,39 @@ window.onload = ()=>{
             chats.getTagClass(aAllTwoLi,'.niCheng').innerHTML = chats.getTagClass(chats.getId('#nickname'),'.niCheng').innerHTML;
             chats.getTagClass(chats.getId('#nickname'),'.niCheng').innerHTML = '';
         });
+    });
+    chats.myPromise(true).then(()=>{
+        chats.addEvFn(chats.getTagClass(aAllOneLi,'.buddyList'),'click',()=>{
+            chats.getId('#buddyList').style.left = 0;
+            chats.getTagClass(chats.getId('#buddyList'),'title').innerHTML = '好友列表';
+            chats.css(chats.getTagClass(oBuddyList,'.back'),{'display':'flex'});
+            chats.css(chats.getTagClass(oBuddyList,'.personal'),{'display':'flex'});
+            chats.getTagClass(oBuddyList,'.cancel').style.display = 'none';
+            chats.getTagClass(oBuddyList,'.confirm').style.display = 'none';
+            chats.loop(aCheckBox,(i)=>{
+                chats.css(i,{'display':'none'});
+            });
+            oAll.style.display = 'none';
+            oBody.removeEventListener('touchmove',bodyScroll,false);
+        })
+    }).then(()=>{
+        chats.addEvFn(chats.getTagClass(chats.getId('#buddyList'),'.back'),'click',()=>{
+            chats.getId('#buddyList').style.left = '-100%';
+            oBody.addEventListener('touchmove',bodyScroll,false);
+            oAll.style.display = 'flex';
+        })
+    });
+    chats.loop(aCheckBox,(i)=>{
+        chats.addEvFn(i,'click',(that)=>{
+            if(that.style.background == 'seagreen'){
+                that.style.background = '#FFF';
+                chats.getTagClass(that,'span').style.display = 'none';
+                chats.getTagClass(oBuddyList,'.confirm').style.color = '#CCC';
+            }else {
+                that.style.background = 'seagreen';
+                chats.getTagClass(that,'span').style.display = 'block';
+            }
+        })
     });
 };
 function M() {

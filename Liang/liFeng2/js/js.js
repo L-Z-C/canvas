@@ -13,7 +13,6 @@ window.onload =  ()=>{
             let num = parseFloat((oActual -small.innerHTML)/(lager.innerHTML-small.innerHTML));
             let aaa = num*oBusinessBar.offsetWidth;
             oBackground.style.width = aaa+'px';
-            oBusinessBar.querySelector('p').innerHTML = oActual;
             small.innerHTML = small.innerHTML.replace(/0000/,"")+'w';
             lager.innerHTML = lager.innerHTML.replace(/0000/,"")+'w';
             oBusinessBar.addEventListener('mouseover',()=>{

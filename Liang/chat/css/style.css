@@ -45,7 +45,7 @@ body{
     color: #FFF;
     font-size: 2rem;
 }
-#all>li:first-child>header>i{
+#all>li:first-child>header .group{
     width: 3.6rem;
     height: 3rem;
     border-radius: 50%;
@@ -55,6 +55,18 @@ body{
     top:50%;
     transform: translateY(-50%);
     background: url("../images/users.png") no-repeat;
+    background-size: 100% 100%;
+}
+#all>li:first-child>header .buddyList{
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    position: absolute;
+    left: 6%;
+    display: flex;
+    top:50%;
+    transform: translateY(-50%);
+    background: url("../images/BuddyList.png") no-repeat;
     background-size: 100% 100%;
 }
 #all>li:nth-child(2)>header>i,#all>li:last-child>header>i{
@@ -217,6 +229,7 @@ body{
     font-size: 1.6rem;
     color: #333;
     padding: 0.5rem;
+    margin: 0.3rem;
     display: inline-flex;
     border-radius: 0.4rem;
     align-items: center;
@@ -715,4 +728,134 @@ body{
     font-size: 1.4rem;
     padding-left: 1rem;
     outline: none;
+}
+#buddyList{
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    background: #FFF;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s ease;
+    left: -100%;
+}
+#buddyList>header{
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    background: #333;
+    position: relative;
+}
+#buddyList>header>title{
+    display: flex;
+    color: #FFF;
+    font-size: 2rem;
+    align-self: center;
+    margin: 0 auto;
+}
+#buddyList>header .back,#buddyList>header .personal{
+    width: 3.2rem;
+    height: 3.2rem;
+}
+#buddyList>header .back,#buddyList>header .personal,#buddyList>header .cancel,#buddyList>header .confirm{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+}
+#buddyList>header .back{
+    left:6%;
+    background: url("../images/back.png") no-repeat;
+    background-size: cover;
+}
+#buddyList>header .personal{
+    right: 6%;
+    background: url("../images/personal.png") no-repeat;
+    background-size: cover;
+}
+#buddyList>header .confirm{
+    right: 6%;
+    color:#CCC;
+}
+#buddyList>header .cancel{
+    left:6%;
+    color:#CCC;
+}
+#buddyList>header .cancel,#buddyList>header .confirm{
+    display:flex;
+    align-self: center;
+    font-size:1.6rem;
+    display:none;
+}
+#buddyList>div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    overflow-y: auto;
+}
+#buddyList>div>dl{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+#buddyList>div>dl>dd{
+    width: 100%;
+    height: 6rem;
+    margin-top: 0.2rem;
+    border-bottom: 0.1rem solid #CCC;
+    display: flex;
+    position: relative;
+}
+#buddyList>div>dl>dd .checkBox{
+    width: 2rem;
+    height: 2rem;
+    border:solid 0.1rem #C9C5C5;
+    border-radius: 50%;
+    display: flex;
+    align-self: center;
+    margin: 0 0 0 3rem;
+    background: #FFF;
+    display: none;
+}
+#buddyList>div>dl>dd>div .checkbox{
+    display: none;
+}
+#buddyList>div>dl>dd>bdo{
+    width: 5rem;
+    height: 5rem;
+    background: url("../images/headOne.jpg") no-repeat;
+    background-size: cover;
+    align-self: center;
+    margin: 0 0 0 3rem;
+}
+#buddyList>div>dl>dd>bdi{
+    display: flex;
+    align-self: center;
+    margin: 0 0 0 3rem;
+    font-size: 1.6rem;
+}
+.checkbox{
+    position:relative;
+}
+.checkbox:after, .checkbox:before{
+    content:'';
+    height:1.4rem;
+    width:0.4rem;
+    display:block;
+    background:#FFF;
+    position:absolute;
+    top:0.4rem;
+    left:1.1rem;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    transform:rotate(30deg);
+}
+.checkbox:before{
+    height:1rem;
+    transform:rotate(-52deg);
+    top:0.9rem;
+    left:0.6rem;
 }
