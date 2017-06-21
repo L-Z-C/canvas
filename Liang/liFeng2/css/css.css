@@ -12,24 +12,23 @@ body{
     background: #FFF;
     overflow-x:hidden;
 }
-#header{
-    width: 100%;
-    height: 350px;
-    background: url("../images/bj.png") no-repeat;
-    position: absolute;
-    background-size: 100% 100%;
-    top:0;
-    left: 0;
-}
 #content{
     width: 100%;
     height: auto;
     background: url("../images/background.jpg") no-repeat;
     background-size:100% 100%;
     position: absolute;
-    top: 350px;
+    top: 0;
     left: 0;
     padding: 5% 0 6% 0;
+}
+#content .title{
+    font-size: 8rem;
+    color: #FFF;
+    text-align: center;
+    text-shadow: 1rem 1rem 1rem #333;
+    letter-spacing: 1.2rem;
+    margin: 40px 0 50px 0;
 }
 #content .center,#content .firstThree{
     width: 1024px;
