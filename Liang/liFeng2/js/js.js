@@ -3,7 +3,7 @@
  */
 window.onload =  ()=>{
     let aUsersLi = document.querySelectorAll('.usersLi');
-    function progress(obj) {
+    function progress(obj,objs) {
         for (let i =0 ;i<aUsersLi.length;i++){
             let oBusinessBar = aUsersLi[i].querySelector(obj);
             let small = oBusinessBar.querySelector('bdo');
@@ -15,16 +15,18 @@ window.onload =  ()=>{
             oBackground.style.width = aaa+'px';
             small.innerHTML = small.innerHTML.replace(/0000/,"")+'w';
             lager.innerHTML = lager.innerHTML.replace(/0000/,"")+'w';
-            oBusinessBar.addEventListener('mouseover',()=>{
+            let oBusinessBars = aUsersLi[i].querySelector(objs);
+            oBusinessBars.addEventListener('mouseover',()=>{
                 "use strict";
-                oBusinessBar.querySelector('p').style.display = 'block';
+                aUsersLi[i].querySelector('.showActual').innerHTML = oBusinessBar.querySelector('.actual').innerHTML;
+                aUsersLi[i].querySelector('.showActual').style.display = 'block';
             },false);
-            oBusinessBar.addEventListener('mouseout',()=>{
+            oBusinessBars.addEventListener('mouseout',()=>{
                 "use strict";
-                oBusinessBar.querySelector('p').style.display = 'none';
+                aUsersLi[i].querySelector('.showActual').style.display = 'none';
             },false);
         }
     }
-    progress('.businessBar');
-    progress('.praiseBar');
-}
+    progress('.businessBar','.businessBars');
+    progress('.praiseBar','.praiseBars');
+};
