@@ -27,35 +27,52 @@ body{
     padding: 5% 0 16% 0;
 }
 #content .title{
-    font-size: 16rem;
+    font-size: 14rem;
     color: #FFF;
     text-align: center;
     text-shadow: 1rem 1rem 1rem #333;
     letter-spacing: 1.2rem;
-    margin: 10% 0 50px 0;
+    margin: 5% 0 30px 0;
     font-family: hua;
+    position: relative;
 }
-#content>a{
-    font-size:5rem;
+#content a{
+    font-size:3rem;
     position:absolute;
+    top:50%;
+    transform: translateY(-50%);
     right:150px;
     color:#FFF;
-    top:16%;
     font-family: hua;
-    text-shadow: 1rem 1rem 3rem #333;
+    letter-spacing: normal;
+    text-shadow: none;
 }
-#content .center,#content .firstThree{
-    width: 1024px;
+#content .firstThree{
+    width: 82%;
     height: auto;
     margin: 10px auto;
     display: flex;
     flex-wrap: wrap;
     position: relative;
 }
-#content .center>li,#content .firstThree>li{
+#content .firstThree>li{
     border-radius: 6px;
     margin-top: 10px;
     position: relative;
+    transition: all .5s;
+    -webkit-box-reflect: below -10px -webkit-linear-gradient(transparent,transparent 88%,rgba(255,255,255,0.6));
+}
+#content .firstThree>li:first-child{
+    border-style: solid;
+    border-color: gold #fff419;
+}
+#content .firstThree>li:nth-child(2){
+    border-style: solid;
+    border-color: #8c8c8c #e7e7e7;
+}
+#content .firstThree>li:nth-child(3){
+    border-style: solid;
+    border-color:#D98719 #fbca67;
 }
 #content .firstThree>li .template{
     width: inherit;
@@ -65,28 +82,12 @@ body{
     z-index: 9999;
     position: relative;
 }
-#content .center>li .template{
-    width: inherit;
-    height: inherit;
-    background: url("../images/template.png") no-repeat;
-    background-size: 100% 100%;
-    z-index: 9999;
-    position: relative;
-}
-#content .center{
-    justify-content: space-around;
-}
 #content .firstThree{
     justify-content: space-around;
 }
-#content .center>li{
-    width: 220px;
-    height: 280px;
-    position: relative;
-}
 #content .firstThree>li{
-    width: 220px;
-    height: 280px;
+    width: 160px;
+    height: 220px;
     position: relative;
 }
 .actual{
@@ -102,131 +103,138 @@ body{
     background: url("../images/silver.png");
 }
 .red{
-    background: -webkit-linear-gradient(left,#652b49, #e51027,#e3011c);
-    background: -o-linear-gradient(right, #652b49, #e51027,#e3011c);
-    background: -moz-linear-gradient(right, #652b49, #e51027,#e3011c);
-    background: linear-gradient(to right, #652b49, #e51027,#e3011c);
+    background: -webkit-linear-gradient(left bottom,#ffff92,#fffe84, #e1b42e,#6d4c08);
+    background: -o-linear-gradient(right top, #ffff92,#fffe84, #e1b42e,#6d4c08);
+    background: -moz-linear-gradient(right top, #ffff92,#fffe84, #e1b42e,#6d4c08);
+    background: linear-gradient(to right top, #ffff92,#fffe84, #e1b42e,#6d4c08);
 }
 .blue{
-    background: -webkit-linear-gradient(left,#2073db, #18328c,#1f22d6);
-    background: -o-linear-gradient(right, #2073db, #18328c,#1f22d6);
-    background: -moz-linear-gradient(right, #2073db, #18328c,#1f22d6);
-    background: linear-gradient(to right, #2073db, #18328c,#1f22d6);
+    background: -webkit-linear-gradient(left bottom,#ffb867, #cc352b,#682a23);
+    background: -o-linear-gradient(right top, #ffb867, #cc352b,#682a23);
+    background: -moz-linear-gradient(right top, #ffb867, #cc352b,#682a23);
+    background: linear-gradient(to right top, #ffb867, #cc352b,#682a23);
 }
 #content .firstThree>li .header{
-    width: 220px;
-    height: 160px;
+    width: 160px;
+    height: 100px;
     position: relative;
 }
 #content .firstThree>li .header>sub{
     position:absolute;
     font-size:4rem;
-    left:20px;
-    top:3px;
+    left:11px;
+    top:-4px;
     color:#FFF;
     -webkit-text-stroke: 1px #333;
+    font-weight:bold;
 }
 #content .firstThree>li .footer{
-    width: 220px;
+    width: 180px;
     height: 120px;
     position: relative;
 }
 #content .firstThree>li>img{
-    width: 150px;
-    height: 160px;
+    width: 110px;
+    height: 110px;
     -moz-border-radius: 100px / 50px;
     -webkit-border-radius: 100px / 50px;
     border-radius: 100px / 50px;
     position: absolute;
-    top:9px;
-    left: 40px;
+    top:6px;
+    left: 28px;
 }
-#content .firstThree>li .header>span{
-    width: 220px;
-    display: block;
-    font-weight: bold;
+#content .firstThree>li .footer .name{
+    width: 160px;
     color: #FFF;
     font-size: 1.8rem;
     position: absolute;
-    text-align: center;
-    bottom: 0;
-    transform: rotate(-4deg);
+    bottom: 10px;
     letter-spacing: 1px;
+    text-align: center;
+    font-family: hua;
 }
-#content .firstThree>li .expBj,#content .center>li .expBj{
-    width:38px;
-    height:35px;
-    background: url("../images/exp.png") no-repeat;
-    background-size: 100% 100%;
+#content .firstThree>li .showActual{
     position: absolute;
-    bottom:8px;
-    left: 15px;
-}
-#content .firstThree>li .footer>div{
-    width: 160px;
-    height: 50px;
-    position: absolute;
-    bottom: 0;
-    left: 38px;
-    background: url("../images/blood.png") no-repeat;
-    background-size: 100% 100%;
-    z-index: 9999;
-    overflow: hidden;
-}
-#content .firstThree>li .showActual,#content .center>li .showActual{
-    position: absolute;
-    left:100px;
-    top:60px;
+    width: auto;
+    text-align: center;
+    bottom:1px;
     display: none;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: bold;
-    color: #FFF;
+    color: #000;
+    background:#FFF;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    padding: 1px;
 }
-#content .firstThree>li .businessBars,#content .center>li .businessBars{
-    width: 100px;
-    height: 6px;
-    border-bottom-right-radius: 4px;
-    right: 32px;
-    bottom: 25px;
+#content .firstThree>li .businessBars{
+    width: 32px;
+    height: 32px;
     position: absolute;
+    left: 9px;
+    bottom: 2px;
     z-index: 9999;
+    border-radius: 50%;
 }
-#content .firstThree>li .praiseBars,#content .center>li .praiseBars{
-    width: 80px;
-    height: 4px;
+#content .firstThree>li .praiseBars{
+    width: 30px;
+    height: 40px;
     position: absolute;
-    right: 56px;
-    bottom: 20px;
+    right: 3px;
+    bottom: 1px;
     z-index: 9999;
-    border-bottom-right-radius: 4px;
-    border-top-left-radius: 4px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+    border-bottom-right-radius: 40%;
+    border-bottom-left-radius: 80%;
+}
+#content .firstThree>li .businessBars>bdo,#content .firstThree>li .praiseBars>bdo{
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    position: absolute;
+    bottom: -10px;
+    left: 5px;
+    font-family: hua;
+    display: none;
 }
 #content .firstThree>li .businessBar{
-    width: 105px;
-    height: 7px;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    right: 32px;
-    bottom: 25px;
+    left: 9px;
+    bottom: 2px;
     z-index: 9998;
-    border-bottom-right-radius: 4px;
+    border-radius: 50%;
 }
 #content .firstThree>li .businessBar .background{
-    width: 105px;
-    height: 7px;
+    width: 32px;
+    height: 32px;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    position: absolute;
+    bottom: 0;
 }
 #content .firstThree>li .praiseBar{
-    width: 83px;
-    height: 5px;
+    width: 30px;
+    height: 40px;
     position: absolute;
-    right: 56px;
-    bottom: 20px;
+    right: 3px;
+    bottom: 1px;
     z-index: 9998;
-    border-bottom-right-radius: 4px;
-    border-top-left-radius: 4px;
+    border-top-left-radius: 40%;
+    border-top-right-radius: 40%;
+    border-bottom-right-radius: 40%;
+    border-bottom-left-radius: 80%;
 }
 #content .firstThree>li .praiseBar .background{
-    width: 83px;
-    height: 5px;
+    width: 30px;
+    height: 40px;
+    position: absolute;
+    bottom: 0;
+    border-bottom-right-radius: 52%;
+    border-bottom-left-radius: 80%;
 }
 #content .firstThree>li .businessBar>bdi,#content .firstThree>li .praiseBar>bdi,#content .firstThree>li .businessBar>bdo,#content .firstThree>li .praiseBar>bdo{
     display: none;
@@ -239,121 +247,25 @@ body{
     height: auto;
     position: absolute;
     left: 50%;
-    transform: translateX(-40%);
-    top:35px;
+    transform: translateX(-60%);
+    top:10px;
 }
 #content .firstThree>li dl>dd{
-    width: 30px;
-    height: 50px;
-    display: inline-block;
+    width: 15px;
+    height: 15px;
+    float:left;
     background-size: 100% 100%;
 }
-#content .firstThree>li .name{
-    width: 220px;
-    position: absolute;
-    font-size: 2px;
-    top:20px;
-    text-align: center;
-}
-
-
-#content .center>li .header{
-    width: 220px;
-    height: 160px;
-    position: relative;
-}
-#content .center>li .footer{
-    width: 220px;
-    height: 120px;
-    position: relative;
-}
-#content .center>li>img{
-    width: 150px;
-    height: 160px;
-    -moz-border-radius: 100px / 50px;
-    -webkit-border-radius: 100px / 50px;
-    border-radius: 100px / 50px;
-    position: absolute;
-    top:9px;
-    left: 40px;
-}
-#content .center>li .header>span{
-    width: 220px;
-    display: block;
-    font-weight: bold;
-    color: #FFF;
-    font-size: 1.8rem;
-    position: absolute;
-    text-align: center;
-    bottom: 0;
-    transform: rotate(-4deg);
-    letter-spacing: 1px;
-}
-#content .center>li .footer>div{
+#content .firstThree>li .address{
     width: 160px;
-    height: 50px;
-    position: absolute;
-    bottom: 0;
-    left: 38px;
-    background: url("../images/blood.png") no-repeat;
-    background-size: 100% 100%;
-    z-index: 9999;
-    overflow: hidden;
-}
-#content .center>li .businessBar{
-    width: 105px;
-    height: 7px;
-    position: absolute;
-    right: 32px;
-    bottom: 25px;
-    z-index: 9998;
-    border-bottom-right-radius: 4px;
-}
-#content .center>li .businessBar .background{
-    width: 105px;
-    height: 7px;
-}
-#content .center>li .praiseBar{
-    width: 83px;
-    height: 5px;
-    position: absolute;
-    right: 56px;
-    bottom: 20px;
-    z-index: 9998;
-    border-bottom-right-radius: 4px;
-    border-top-left-radius: 4px;
-}
-#content .center>li .praiseBar .background{
-    width: 83px;
-    height: 5px;
-}
-#content .center>li .businessBar>bdi,#content .center>li .praiseBar>bdi,#content .center>li .businessBar>bdo,#content .center>li .praiseBar>bdo{
-    display: none;
-}
-#content .center>li .businessBar .actual,#content .center>li .praiseBar .actual{
-    display: none;
-}
-#content .center>li dl{
-    width: auto;
     height: auto;
     position: absolute;
-    left: 50%;
-    transform: translateX(-40%);
-    top:35px;
+    top:42px;
 }
-#content .center>li dl>dd{
-    width: 30px;
-    height: 50px;
-    display: inline-block;
-    background-size: 100% 100%;
-}
-#content .center>li .name{
-    width: 220px;
-    position: absolute;
-    font-size: 2px;
-    top:20px;
+#content .firstThree>li .address>li{
+    width: inherit;
     text-align: center;
+    font-size: 1px;
+    font-family: hua;
+    margin-top: 1px;
 }
-
-
-

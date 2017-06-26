@@ -11,19 +11,21 @@ window.onload =  ()=>{
             let oBackground = oBusinessBar.querySelector('.background');
             let oActual = oBusinessBar.querySelector('.actual').innerHTML;
             let num = parseFloat((oActual -small.innerHTML)/(lager.innerHTML-small.innerHTML));
-            let aaa = num*oBusinessBar.offsetWidth;
-            oBackground.style.width = aaa+'px';
+            let aaa = num*oBusinessBar.offsetHeight;
+            oBackground.style.height = aaa+'px';
             small.innerHTML = small.innerHTML.replace(/0000/,"")+'w';
             lager.innerHTML = lager.innerHTML.replace(/0000/,"")+'w';
             let oBusinessBars = aUsersLi[i].querySelector(objs);
-            oBusinessBars.addEventListener('mouseover',()=>{
+            oBusinessBars.addEventListener('mouseover',function(){
                 "use strict";
                 aUsersLi[i].querySelector('.showActual').innerHTML = oBusinessBar.querySelector('.actual').innerHTML;
                 aUsersLi[i].querySelector('.showActual').style.display = 'block';
+                this.querySelector('bdo').style.display = 'block';
             },false);
-            oBusinessBars.addEventListener('mouseout',()=>{
+            oBusinessBars.addEventListener('mouseout',function(){
                 "use strict";
                 aUsersLi[i].querySelector('.showActual').style.display = 'none';
+                this.querySelector('bdo').style.display = 'none';
             },false);
         }
     }

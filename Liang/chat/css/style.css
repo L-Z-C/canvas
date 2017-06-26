@@ -234,6 +234,7 @@ body{
     border-radius: 0.4rem;
     align-items: center;
     letter-spacing: 0.2rem;
+    position: relative;
 }
 #all>li:first-child>article>div>span>i{
     width:2rem;
@@ -244,6 +245,32 @@ body{
 }
 #all .you{
     flex-direction: row;
+}
+#all .me>span:before {
+    content: "";
+    width: 0;
+    height: 0;
+    left: 95%;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    border-top: 0.5rem solid transparent;
+    border-left: 1rem solid #FFF;
+    border-bottom: 0.5rem solid transparent;
+    border-radius: 0.2rem;
+}
+#all .you>span:before {
+    content: "";
+    width: 0;
+    height: 0;
+    right: 95%;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    border-top: 0.5rem solid transparent;
+    border-right: 1rem solid #FFF;
+    border-bottom: 0.5rem solid transparent;
+    border-radius: 0.2rem;
 }
 #all .me>bdo{
     margin: 0 1rem 0 0;
