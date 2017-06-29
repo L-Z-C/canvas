@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "微软雅黑", "helvetica neue", tahoma, "hiragino sans gb", stheiti, "wenquanyi micro hei", \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, sans-serif;
+}
+#content{
+    position: absolute;
+    width: 90%;
+    left: 50%;
+    height: auto;
+    background: url("../images/IEbackground.jpg") no-repeat center top;
+    padding: 5% 0 20% 0;
+    top:0;
+}
+#content .firstThree {
+    width: 90%;
+    display: block;
+    position: relative;
+    left: 50%;
+}
+#content .title{
+    font-size: 80px;
+    color: #FFF;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 5% 0 30px 0;
+    position: relative;
+}
+#content a{
+    font-size:20px;
+    position:absolute;
+    right:100px;
+    color:#FFF;
+    letter-spacing: normal;
+}
+#content .firstThree>li{
+    width: 160px;
+    height: 220px;
+    position: relative;
+    float: left;
+}
+#content .firstThree>li .template{
+    background: url("../images/IEtemplate.png") no-repeat;
+}
+.red{
+    background: #ffff92;
+}
+.blue{
+    background: #cc352b;
+}
+#content .firstThree>li .header>sub{
+    position:absolute;
+    font-size:40px;
+    left:13px;
+    top:0;
+    color:#FFF;
+    font-weight:bold;
+}
+#content .firstThree>li dl{
+    width: auto;
+    height: auto;
+    position: absolute;
+    top:10px;
+    left: 45%;
+}
+#content .firstThree>li dl>dd{
+    width: 15px;
+    height: 15px;
+    float:left;
+}
+#content .firstThree>li .showActual{
+    position: absolute;
+    width: auto;
+    text-align: center;
+    left: 45%;
+    bottom:1px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000;
+    background: #FFF;
+}
+#content .firstThree>li:first-child{
+    height: 218px;
+    border: solid 1px gold ;
+}

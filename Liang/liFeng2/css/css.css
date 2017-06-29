@@ -19,7 +19,7 @@ body{
 #content{
     width: 100%;
     height: auto;
-    background: url("../images/background.jpg") no-repeat;
+    background: url("../images/background.jpg") no-repeat center top;
     background-size:100% 100%;
     position: absolute;
     top: 0;
@@ -81,6 +81,7 @@ body{
     background-size: 100% 100%;
     z-index: 9999;
     position: relative;
+    overflow: hidden;
 }
 #content .firstThree{
     justify-content: space-around;
@@ -162,7 +163,7 @@ body{
     font-size: 1rem;
     font-weight: bold;
     color: #000;
-    background:#FFF;
+    background:rgba(255,255,255,0.6);
     left: 50%;
     transform: translateX(-50%);
     border-radius: 5px;
@@ -265,7 +266,7 @@ body{
 #content .firstThree>li .address>li{
     width: inherit;
     text-align: center;
-    font-size: 1px;
+    font-size: 1rem;
     font-family: hua;
     margin-top: 1px;
 }
