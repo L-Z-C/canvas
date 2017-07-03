@@ -10,7 +10,7 @@ html{
 }
 body{
     background: #FFF;
-    overflow-x:hidden;
+    overflow: hidden;
 }
 @font-face {
     font-family: hua;
@@ -18,13 +18,20 @@ body{
 }
 #content{
     width: 100%;
-    height: auto;
+    height: 100%;
     background: url("../images/background.jpg") no-repeat center top;
     background-size:100% 100%;
     position: absolute;
     top: 0;
     left: 0;
-    padding: 5% 0 16% 0;
+}
+#content .middle{
+    width: 100%;
+    height: 80%;
+    position: relative;
+    overflow-y: auto;
+    top:50%;
+    transform: translateY(-50%);
 }
 #content .title{
     font-size: 14rem;
@@ -32,7 +39,7 @@ body{
     text-align: center;
     text-shadow: 1rem 1rem 1rem #333;
     letter-spacing: 1.2rem;
-    margin: 5% 0 30px 0;
+    margin: 0 0 30px 0;
     font-family: hua;
     position: relative;
 }
@@ -49,7 +56,7 @@ body{
 }
 #content .firstThree{
     width: 82%;
-    height: auto;
+    height: 100%;
     margin: 10px auto;
     display: flex;
     flex-wrap: wrap;

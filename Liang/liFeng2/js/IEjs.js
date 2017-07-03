@@ -64,7 +64,7 @@ function getEleStyle(ele, cssName){
 
 }
 window.onload = function () {
-    var oContent = document.getElementById('content'),aFirstThree = getClassNames('firstThree','ul');
+    var oContent = document.getElementById('content'),aFirstThree = getClassNames('firstThree','ul'),oMiddle = getClassNames('middle','div')[0];
     oContent.style.marginLeft = '-'+oContent.offsetWidth/2+'px';
     aFirstThree[0].style.marginLeft = '-40%';
     var aUsersLi = document.getElementsByClassName('usersLi');
@@ -105,5 +105,11 @@ window.onload = function () {
     var aDl = oContent.getElementsByTagName('dl');
     for (var i=0;i<aDl.length;i++){
         aDl[i].style.marginLeft = '-'+aDl[i].offsetWidth/2+'px';
+    }
+    if (navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE9.0"){
+        oMiddle.style.translateY = '-50%';
+    }else if(navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE8.0" || navigator.appName == "Microsoft Internet Explorer" && navigator.appVersion .split(";")[1].replace(/[ ]/g,"")=="MSIE7.0"){
+        oMiddle.style.top = '55%';
+        oMiddle.style.marginTop = '-'+oMiddle.offsetHeight/2+'px';
     }
 };
